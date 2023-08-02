@@ -8,7 +8,6 @@ import SkillsSection from "@/components/home-page-sections/SkillsSection"
 import ProjectCardsSection from '@/components/home-page-sections/ProjectCardsSection'
 import SlideShowSection from "@/components/home-page-sections/SlideShowSection"
 
-
 export default function Home() {
   let ref = useRef<HTMLElement | null>(null);
   let { scrollYProgress } = useScroll({
