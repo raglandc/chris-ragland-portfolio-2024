@@ -3,25 +3,42 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  /* light and dark mode */
+  --primary-color: 59, 130, 246;
+  --secondary-color: 37, 99, 235;
+
+  /* light mode */
+  --light-bg: 255, 255, 255;
+  --light-text-primary: 11, 11, 11;
+  --light-text-secondary: 75, 85, 99; 
+
+  /* dark mode */
+  --dark-bg: 17,17,17;
+  --dark-text-primary: 255,255,255;
+  --dark-text-secondary: 209, 213, 219;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  --color-primary: rgb(var(--primary-color));
+  --color-secondary: rgb(var(--secondary-color));
+  --background: rgb(var(--light-bg));
+  --text-primary: rgb(var(--light-text-primary));
+  --text-secondary: rgb(var(--light-text-secondary));
+}
+
+html.dark {
+  --color-primary: rgb(var(--primary-color));
+  --color-secondary: rgb(var(--secondary-color));
+  --background: rgb(var(--dark-bg));
+  --text-primary: rgb(var(--dark-text-primary)); 
+  --text-secondary: rgb(var(--dark-text-secondary));
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  overflow-x: hidden;
+  margin: 0;
 }

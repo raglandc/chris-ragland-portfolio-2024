@@ -1,0 +1,111 @@
+---
+date: 2022-05-20
+groupMembers: Chris Ragland
+image: /img/work-images/daily-derivative-landing-page.webp
+link: /projects/the-daily-derivative
+projectType: Web Development
+title: The Daily Derivative 
+---
+
+## Introduction
+
+The inspiration for this project came from working with nurses who LOVED to play the popular word guessing game, "Wordle".
+
+While I thought the game was interesting, being more of a math person myself I asked, "What if there were a calculus version of the game for us math enthusiasts?" This single idea would spark the creation and development of the game. 
+
+## Big Idea
+
+The idea behind The Daily Derivative (TDD) is simple. Similar to Wordle, users create an account and get three attempts to solve the daily problem. Problems consist of derivatives and integrals (anti-derivatives). User attempts and scores are saved and stored into the database where they can then see stats of their previous attempts.
+
+## Frontend
+
+The frontend design of this app is intended to be very simple. The app's frontend was built with React and CSS modules. The app is responsive to all screen sizes excluding smart-watches. 
+
+Visitors of the web app are greeted with the main dashboard when they visit the root address. 
+
+<Image
+  title="the daily derivative landing page dark mode"
+  link="/img/work-images/daily-derivative-landing-page.webp"
+  description="Dashboard landing page (Dark Mode)"
+/>
+
+The user has the option of both light and dark modes across the entire web app.
+
+<Image
+  title="the daily derivative landing page light mode"
+  link="/img/work-images/daily-derivative-landing-page-light.webp"
+  description="Dashboard landing page (Light Mode)"
+/>
+
+Users are not required to create an account to attempt the daily problem. However, if the user wishes to keep track of their personal stats, at this point they would be required to create an account. 
+
+The keypad for this project was built independently using css grid and react state. All of the data visible for the problem is loaded from the backend database which will be covered more in depth next.
+
+#### Special Expressions
+
+One of my favorite aspects for this project is the math parser I designed that allows users to enter math commands that are then converted into latex.
+
+I designed the software to loop through the user input and when it recognizes a "special expression's" closing tag, it will convert it to pretty latex. The groups are built around using parenthesis to group related values.
+
+I have a page dedicated to explain how the parsing works in detail and how users should enter answers. For example, pretend we want to enter a simple fraction $\frac{a}{b}$.
+
+You would simply input $$(a \div b)$$
+
+The moment you pass a closing parenthesis, it will convert all the related groups accordingly. 
+
+Using this system, users can build very complex special expressions.
+
+Here are a few examples from the docs I wrote for the program. 
+
+<Image
+  title="Several examples of special expressions users can build"
+  link="/img/work-images/daily-derivative-special-expressions.webp"
+  description="From the 'How To Play' page"
+/>
+
+#### User Stats
+
+When the user is not registered or logged in they are greeted with the following page. 
+
+<Image
+  title="user not logged in page"
+  link="/img/work-images/daily-derivative-not-signed-in.webp"
+  description="(Stats Page) user not signed in and/or not registered"
+/>
+
+Once they user signs in and solves several problems they see the following information.
+
+<Image
+  title="user logged in stats page"
+  link="/img/work-images/daily-derivative-signed-in-stats.webp"
+  description="(Stats Page) user signed in"
+/>
+
+I may or may not have gone inside of the database and altered my scores.
+
+In addition to these pages, there are a few others that contain static information relating to frequently asked questions and an about page describing why the application was created in the first place.
+
+## Backend
+
+The backend of The Daily Derivative is built with NextJS to handle to server requests and MongoDb to serve as the database backend of the application. Prior to this project I had no real database experience, I just knew at the time it was important for me to learn about them. 
+
+Looking back, I do wish I has taken the time to learn more SQL and possibly have implemented the backend with something like Postgres. The reason being that SQL is a more 'sought after' skill from developers then NoSQL. 
+
+I did take a class later that covered SQL and had plenty of practice with assignments and projects so I suppose everything happens for a reason. I got NoSQL experience on my own time and SQL experience at university. 
+
+## Summary
+
+All in all, I learned A LOT from this project. Working with a backend database and having that backend communicate with the frontend. Additionally, I learned that sometimes when you have a problem that is specific to you, it may be best to design and build your own solution. I actually had a lot of fun exploring the problem and building a solution.
+
+### Improvements?
+
+If I could do somethings differently for this project, it would be to allow multiple answer forms and the terms are allowed to be in any order. Also, instead of looping through the string as I do with a pointer, perhaps utilizing a stack instead. 
+
+This project took place before I had real data structure and algorithm experience and my thought process was along the lines, "if it works, it works." However, these days my thought process better aligns with, "yes it may work, but can it work better?"
+
+Yet, this is what learning and growing is all about. I am happy to look back and see how much I have learned and grown in this small time frame.
+
+#### Closing Note: 
+Recently there was a security issue found with in the mongoose package, which is a tool often used with MongoDb (one that I used). Unfortunately, when users visit the sight now, google flags the page as 'dangerous'. Given time permits, I may open the project to find and fix/remove the security issue.
+
+

@@ -1,0 +1,157 @@
+---
+author: Chris Ragland
+title: Proofs Review (part 1) - Direct Proofs
+link: /blogs/proofs-review-part-1
+image: https://images.unsplash.com/photo-1581089778245-3ce67677f718?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80
+date: 2023-06-29
+readTime: "10"
+postCategory: Algorithms
+---
+
+## Introduction
+
+In this article, we are going to talk about why we study proofs. how we should be setting up our proofs, and our first proof method: Direct proofs with an example.
+
+> Mathematics, as a science, commenced when first someone, probably a Greek, proved propositions about 'any' things or about 'some' things without specification of definite particular things.
+
+-- Alfred North Whitehead, 1861–1947
+
+It is important to point out that we will primarily be focused on proofs within the realm of integers. This is a branch of mathematics called number theory that explores the properties of numbers with an emphasis on positive integers. This is a huge area of math for computer scientists as we primarily focus on discrete structures. Discrete meaning whole numbers and countable objects. This is in contrast to continuous math which focuses on real numbers and approximations.
+
+Now let's begin.
+
+## Why Proofs?
+
+So why do we have mathematical proofs? Simple. To determine whether a mathematical statement is true or false.
+
+An easy way to look at proofs is to imagine we have a friend and we are arguing about some statement and we try to convince our friend that what we are saying is true. So what we do is write a list of steps (a list of steps sounds familiar, right?) that describe how we got to our conclusion. Pretend at every step, our friend asks us “why”, kind of like a 6-year-old kid loves to repeat over and over and over. Suppose we have an answer for every “why” that our friend challenges us with, then we have proved to our friend that we are correct and the statement we made is true. In other words, we provided proof.
+
+Why and where are proofs important in the real world?
+
+Pretend there is an engineer named Builder Bob. Bob builds houses in an area of the world known for earthquakes. It is bobs job to ensure that the homes he builds can withstand the vibrations to a certain threshold. We know math is a tool he can use to determine how his design will hold up. However, when we ask Bob if he has proof that his buildings can withstand the threshold he says he is sure and that it is “Obvious” they can and will.
+
+Hint: if you ever hear the word Obvious or It’s Obvious when discussing mathematics or engineering, you may consider that a red flag and should probably run for the hills.
+
+Would we want to live in one of Bob’s homes? Probably not, right?
+
+While that is an example related to a different branch of engineering, the idea is the same. While lives do not generally depend on our computer algorithms, although they may (ex. pacemakers, auto-pilot for planes and newer cars), we still want to prove our algorithms are efficient as we say they are and they do what we say they do.
+
+Let’s look at our first method of proof 
+
+## Direct proof
+
+The first thing to note is that direct proofs are always in the form 
+$$
+\text{if hypothesis x, then conclusion y}
+$$
+
+A direct proof is a straightforward method of proof where we assume the hypothesis (x) is true and use logical reasoning and known facts to arrive at the conclusion (y). The steps should follow a clear logical sequence, showing that the hypothesis being true implies the truth of the conclusion. At the end of the direct proof, we have shown that the statement "if x, then y" is valid.
+
+Let's begin our example with direct proof.
+
+Let's go back to the example of us with our friend. We tell our friend that if we take any two even numbers and add them, the result will always be an even number.
+
+Our friend laughs and says, “No way, prove it!”
+
+We say we will prove it directly in front of him. (See what I did there?)
+
+So to begin our proof we first have to know a few things.
+
+- What is our domain
+- What is our hypothesis 
+- What is our conclusion
+- The mathematical facts necessary to help prove it
+
+Ok, so in our problem we are focused on even integers. We should be safe to say then that our domain is the realm of all even integers.
+
+Next, so what is our hypothesis? In other words, what are we going to assume to be true to come to our conclusion?
+
+Well, we are saying that if we have two numbers, let us call them $x$ and $y$; if we add these two numbers then the result will be even.
+
+Our hypothesis must be then that $x$ and $y$ are even. We are assuming that $x$ and $y$ are even. 
+
+Perfect, so our conclusion, the thing we want to prove is true must be that $x + y$ is even. How do we show this?
+
+First, we should ask ourselves, what it means for a number to be even.
+
+A lot of the time, when working with proofs, the more mathematical facts we know off the top of your head the better. These mathematical facts are the tools that we use to come to our conclusions.
+
+Direct proofs boil down to proving things true with other things we have already proved in the past.
+
+Back to the point, an even number is defined as any number that is divisible by two. In other words, an even number is a number in the form $2n$, where $n$ is some integer.
+
+So we are trying to show that,
+
+$$
+x + y = 2n
+$$
+
+For our problem, we are assuming that our numbers x and y are even numbers. So if that is true then we can say that our numbers can also be represented as follows,
+
+$$
+\text{x = 2r$$, where r is some integer and y = 2t, where t is some integer}
+$$
+
+Notice that we use two different variables to represent the integers used to define x and $y$ as even numbers.
+
+This is one of the basic laws of logic referred to as existential instantiation.
+
+It can be summarized that if we know something exists, we are allowed to name it something. For example, our $x$ is an even integer we name it $2r$. However, when we then look at $y$, we have to name it something different because $x$ and $y$ are two different objects. They might be the same number but they are different entities.
+
+So now we should look to use other tools in our toolbox. How about a little algebra?
+
+Remember the substitution rule? Let's replace our $x$ and $y$ values in our equation.
+
+$$
+2r+2t=2n
+$$
+
+Using some more algebra, let's pull out a $2$ on the left side.
+
+$$
+2(r+t)=2n
+$$
+
+We know that $r$ and $t$ are just two random but arbitrary integers. On the right-hand side, $n$ is also a random but arbitrary integer. How about we let $n = r + t$ ? If we add two integers we are going to get an integer. 
+
+So we have shown that two random but arbitrarily chosen even integers and their sum is going to be even as well. 
+
+Let's look at how we would write this in a formal or more ‘mathy’ way.
+
+## Example Proof
+
+Prove:
+$$
+∀ \text{ integers } x \text{ and } y \text{, if } x \text{ and } y \text{ are even then } x + y \text{ is even.}
+$$
+
+Proof:
+$$
+\text{Suppose that x and y are two random but arbitrarily chosen even integers.}
+\\~\\
+\text{By definition of even, } x = 2r \text{ and } y = 2t \text{ for some integers } r \text{ and } t
+\\~\\
+x + y = 2r + 2t \hspace{10mm}\text{by substitution}
+\\~\\
+= 2(r + t) \hspace{10mm}\text{factor out 2}
+\\~\\
+\text{Let } n = r + t \text{, n must be an integer as the sum of two integers is always an integer}
+\\~\\
+\text{Q.E.D} \hspace{10mm} x + y = 2n \hspace{10mm} \text{where n is an integer}
+$$
+
+Congrats, we have done it! A direct proof! Our friend is in awe of our magically mathy ways.
+
+## Summary
+
+Let's quickly review what we just wrote. 
+
+1. We wrote in a formal way what we are trying to prove. We wrote our domain, for all integers $x$ and $y$, then our hypothesis and our conclusion. 
+2. We suppose that our hypothesis is true and will try to use other facts to take us to our conclusion.
+3. We used the definition of even numbers, rules of algebra (substitution and factoring) and finally a theorem of the sum of two integers resulting in an integer. 
+4. We finish our proof by writing the Latin abbreviation $Q.E.D$ (quod erat demonstrandum, which means ‘which was to be demonstrated’) marking the end of our proof. 
+
+We have done it! Congratulations our first direct proof! In the next article, we will discuss indirect proofs (contradiction/contraposition) before leading into the Computer Scientists' favorite proof technique; proof by induction.
+
+Until next time, happy coding!
+

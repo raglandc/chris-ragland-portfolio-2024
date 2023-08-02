@@ -1,0 +1,154 @@
+---
+author: Chris Ragland
+title: Introduction to Algorithms
+link: /blogs/introduction-algorithms
+image: https://images.unsplash.com/photo-1598811629267-faffa0027fe4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1716&q=80
+date: 2023-7-28
+readTime: "10"
+postCategory: Algorithms
+---
+
+## Why Do We Study Algorithms?
+
+In this article, we are going to talk about what an algorithm is and why we study them in Computer Science
+
+First, an algorithm is a set of steps, we might call them instructions, that provide a procedure for solving a problem
+
+When we say 'problem', we are referring to some general task that has input and needs something done to this input to compute some corresponding output
+
+What do we mean by ‘general task’?
+
+Think about sorting problems. Say we have 3 numbers A, B, and C that we want to sort. In this example, the general task is sorting. The problem is how do we sort these three numbers. The three numbers are the input to our problem, it is an instance of the problem.
+
+According to Steven Skiena, author of Algorithm Design Manual 
+
+>Determining that you are dealing with a general problem instead of an instance is your first step towards solving it 
+
+-- Skiena, 2020  
+
+When we write algorithms they should be as general as possible. This means we want our algorithms to solve any instance of valid input for the problem we describe. Consider our 3 numbers again: A, B, and C. Let's look at a simple example of how we could sort these three numbers.
+
+#### Python3 
+```python
+def sort_three_numbers(a: number, b: number, c: number) -> Tuple[int, int, int]:
+    smallest = min(a, b, c)
+    largest = max(a, b, c)
+    middle = a + b + c - smallest - largest
+    return smallest, middle, largest
+```
+
+Now looking at this code, we can see this would sort our three numbers in ascending order. Great, but there are a couple of problems.
+
+What if instead of numbers they were strings? Would we really want to write a separate algorithm for this input? What if there were more than three values to sort? We would be in trouble.
+
+I hope this clarifies why we want our algorithms to tackle the general problem. 
+
+Now let's discuss the why
+
+In math as well as computer science and many other areas of study and expertise, there are typically multiple ways to accomplish the same task. But are some ways better than others? In computer science, the answer to that is a resounding yes!
+
+For example, if we have a sorted array of numbers:
+
+$$
+[ 2, 5, 6, 9, 13, 21 ]
+$$
+
+Our goal is to find a specific/target value. There are several ways we could do it. 
+
+So what is the general problem and what is the instance? Go ahead and think about it for a minute.
+
+So we know that this array is an instance of our problem. It is the specific input that will be used to determine the output 
+
+So what is the problem or general task we are trying to solve?
+
+The general problem is: Given a sorted array of numbers, determine if the target number is in the array.
+
+How might we try and solve this problem?
+
+Start at the beginning and loop through until we find our value. Not bad should come out to taking linear time or $O(n)$.
+
+That might look something like
+
+#### Python 3
+```python
+def isValuePresent(numbers: List[int], target: int) -> bool:
+	for num in numbers:
+		if num == target:
+			return True
+	return False
+```
+
+This is great! But what if our array got super big? Really BIG, with millions of values 
+
+For some reason, finding whether this value is in our sorted array is very important and we want it to be done as quickly as possible. This is one of the major reasons we study algorithms. 
+
+## Efficiency 
+
+Efficient algorithms are better, because they do the same job but with fewer steps, producing the output at a faster rate.
+
+So how could we improve our algorithm's efficiency?
+
+Again, stop here and see if you can come up with a better idea.
+
+What if instead of one pointer we used two pointers?
+
+Say we check the middle value between them and if the target value is greater than our middle value we just increase the left pointer to be the middle value plus one. If our target value is less than our middle value we move our right pointer. If our middle value is equal to the target we can return true and be done. We do this while our left pointer is less than our right pointer.
+
+Ok, that was a lot but that code might look something like this,
+
+#### Python3
+
+```python
+def isValuePresent(numbers: List[int], target: int) -> bool:
+	left, right = 0, len(numbers) - 1
+	while left < right:
+		mid = (left + right) // 2 # '//' integer division
+		if nums[mid] == target:
+			return True
+		elif nums[mid] < target:
+			left = mid + 1
+		else: 
+			right = mid - 1
+	return False
+```
+
+This allows our pointers to skip over a lot of values at each iteration. Our new resulting complexity is $O(logn)$. This is much more efficient than our previous algorithm. But there's one problem, can you see what the problem is?
+
+What if we are given an instance of an array with one value and that value is our target value?
+
+We have a problem because our algorithm returns false if the left pointer is equal to our greater than our right pointer. This brings us to the next important reason why we study algorithms.
+
+## Correctness 
+
+How can we ensure that our algorithm handles edge cases and doesn't break our program in the case of bad or tricky instances?
+
+Our improved code would allow our left and right pointers to be able to be equal to each other before exiting the loop. Here is the improved and final code.
+
+#### Python3
+```python
+def isValuePresent(numbers: List[int], target: int) -> bool:
+	left, right = 0, len(numbers) - 1
+	while left <= right:
+		mid = (left + right) // 2
+		if nums[mid] == target:
+			return True
+		elif nums[mid] < target:
+			left = mid + 1
+		else: 
+			right = mid - 1
+	return False
+```
+
+## Algorithms We Can Understand
+
+Finally, we want algorithms that are easy to implement. While easy is a relative word, the algorithms we write should make sense to our fellow computer scientists and algorithm enthusiast.
+
+## Summary
+
+So now that we understand that algorithms are a set of steps to solve a general problem. We also know that we study algorithms to write more efficient, correct, and easy-to-implement instructions. So how do we know how efficient our algorithms are or how correct they are? 
+
+This is where the analysis of algorithms and the use of proofs come into play. In the next article, we will review important proof concepts.
+
+I hope this article was helpful and until next time, happy coding! 
+
+<Youtube uid="CPOTT0mfcMk" />
