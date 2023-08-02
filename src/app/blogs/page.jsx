@@ -1,4 +1,4 @@
-import { Blog, allBlogs } from "contentlayer/generated" 
+import { allBlogs } from "contentlayer/generated" 
 import BlogCard from "@/components/BlogCard";
 
 export default function BlogsPage()
@@ -25,7 +25,7 @@ export default function BlogsPage()
               className='mx-auto mt-7 flex max-w-7xl snap-x snap-mandatory space-x-6 overflow-x-auto pb-6 lg:mt-8 lg:grid lg:snap-none lg:grid-cols-3 lg:gap-x-3.5 lg:gap-y-12 lg:space-x-0 lg:px-4 before:flex-shrink-0 before:basis-4 before:content-[""] after:flex-shrink-0 after:basis-4 after:content-[""] md:before:basis-6 md:after:basis-6 lg:before:hidden lg:after:hidden'
             >
               {allBlogs
-              .sort(( a:Blog, b:Blog ) => {
+              .sort(( a, b ) => {
                 return new Date(b.date) - new Date(a.date)
               })
               .slice(0, 5)
