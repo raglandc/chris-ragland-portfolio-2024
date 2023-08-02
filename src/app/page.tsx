@@ -29,10 +29,14 @@ export default function Home() {
               muted
               loop
               autoPlay
-              className='aspect-square w-full md:aspect-video object-cover object-center absolute opacity-80' 
+              className='hidden md:block w-full md:aspect-video object-cover object-center absolute opacity-80' 
             >
               <source src="/img/landing-page-video.mp4" type='video/mp4'/>
             </video>
+
+            <div
+              className='md:hidden w-full aspect-square bg-[url("/img/banner.png")] bg-contain bg-no-repeat bg-center'
+            />
 
             <div 
               className='absolute -inset-px to-custom-background opacity-50'
