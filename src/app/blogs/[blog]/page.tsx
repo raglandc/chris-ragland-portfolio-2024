@@ -13,7 +13,6 @@ export const generateStaticParams = async () => allBlogs.map((blog) => ({ slug: 
 export const generateMetadata = ({ params }: { params: { blog: string } }) => {
   const blog = allBlogs.find((blog) => {
     const targetPath = blog._raw.flattenedPath.split("/")[2];
-    console.log(targetPath);
     return targetPath === params.blog
 })
   if (!blog)
