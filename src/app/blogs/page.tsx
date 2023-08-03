@@ -26,7 +26,7 @@ export default function BlogsPage()
             >
               {allBlogs
               .sort(( a, b ) => {
-                return new Date(b.date) - new Date(a.date)
+                return new Date(b.date).getTime() - new Date(a.date).getTime()
               })
               .slice(0, 5)
               .map((blog) => {
