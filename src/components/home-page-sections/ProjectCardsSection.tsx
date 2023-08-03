@@ -13,7 +13,7 @@ export default function ProjectCardsSection() {
   const groupInView = useInView(groupRef, { once: true, margin: '-150px' })
 
   return (
-    <section className='mt-14 pb-12 md:mt-20 md:pb-16 lg:px-0 lg:pb-32'>
+    <section className='mt-14 pb-12 md:mt-20 md:pb-16 lg:px-0 lg:pb-32 bg-custom-background'>
       <div className='flex flex-col max-w-7xl mx-auto px-4 md:px-6'>
         <h1
           ref={headerRef}

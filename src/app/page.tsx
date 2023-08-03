@@ -20,7 +20,7 @@ export default function Home() {
 
   return (
     <main className='w-full'>
-      <section ref={ref} className='flex flex-col relative pb-8'>
+      <section ref={ref} className='flex flex-col relative pb-8 bg-custom-background -z-10'>
 
         {/* trying to get video background banner playing */}
         <motion.div style={{ y, opacity }} className='absolute -top-14 bg-custom-background -z-10 inset-0'>
