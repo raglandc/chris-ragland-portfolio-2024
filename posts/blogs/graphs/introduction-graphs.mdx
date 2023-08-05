@@ -1,0 +1,182 @@
+---
+author: Chris Ragland
+date: 08-02-2023
+image: https://images.unsplash.com/photo-1601190719933-d496fef946c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzR8fGNvbm5lY3Rpb25zfGVufDB8fDB8fHww&auto=format&fit=crop&w=300&q=60
+link: blogs/introduction-graphs
+postCategory: Graphs
+readTime: "8"
+title: Introduction to Graphs
+---
+
+## Introduction
+
+In this article, we are going to discuss the basics of the graph data structure and why we even use it in the first place. 
+
+In my personal opinion, graphs are probably my favorite data structure. This is because the graph is the data structure that represents connections and networks. Which I feel is what makes technology so great in the first place is its ability to connect us all in one form or another. 
+
+## A Little History
+
+The first important concept to understand is that the idea of graphs is not new to computer science. In math, specifically discrete math, there is an area of study called, "graph theory." Which we might be able to guess is the study of graphs. Graphs are used to study relationships between objects. 
+
+With little surprise, it is the mathematical properties of graphs that we implement in our computers. 
+
+## Building a Graph
+
+### Building Blocks
+
+There are two essential components of a graph:
+- vertices (also called nodes or points)
+- edges (also called links or lines)
+
+For our purposes, we will stick to calling them vertices and edges to keep us closer to the original math lingo.
+
+Our objects are represented in the vertices. For example, we have the city Chicago. We store information about Chicago in our vertex. We can store whatever information we like in our vertex: population, size of the city, city officials, etc.
+
+Edges on the other hand, are the links that connect our cities. In our example, we may have an edge from Chicago to New York. This edge can hold information, this is often called the edge's "weight", but it is not required to. 
+
+In our example, the edge might represent the path from Chicago to New York. If we were to store information in our edge it might be the distance from Chicago to New York. In this case, the distance is the weight of the edge. 
+
+What about if we wanted to go from New York to Chicago? This leads us to our next property of graphs. 
+
+### Direction
+
+Our connections or edges can occur in two ways:
+- Undirected (symmetric)
+- Directed (asymmetric)
+
+Undirected graphs are symmetric, meaning that if you are at a given vertex, if any edge is available we are allowed to traverse it. Compare this to directed graphs where the edge goes in a specific direction. The best way to understand this better is with an example. 
+
+Let's image social media networks like Instagram and Facebook
+
+In our example, Instagram can be represented as a directed graph. If we follow a celebrity does not mean that celebrity follows us back. 
+
+Whereas with Facebook, if we send a friend request and it is accepted, that friend ship goes both ways. 
+
+```
+Instagram:
+
+ME ---> (follows) Taylor Swift
+
+Facebook:
+
+ME <---> (friends) Taylor Swift
+```
+The arrows really help clear this concept up. We see that the Instagram follow is directed but does not go both ways like the Facebook friends.
+
+## Representation 
+
+There are four main ways we can represent a graph.
+
+1. Edge List
+2. Adjacency Matrix
+3. Adjacency List
+4. Incidence Matrix
+
+To keep the article short, I will focus on the first 3 as the incidence matrix is the least common. If you would like to learn more about incidence matrix, as it does have some interesting mathematical properties, there are plenty of great free resources that cover the topic like this basic intro from [wikipedia](https://en.wikipedia.org/wiki/Incidence_matrix). 
+
+### Edge List
+
+Is a list of the graphs edges. The entire edge list is able to be defined as a two-dimensional matrix. The first column describes the initial vertex and the second column describes the final vertex. 
+
+|  $V_{i}$  | $V_{f}$  |
+|-----------|----------|
+|     0     |     1    |
+|     0     |     4    |
+|     1     |     2    | 
+|     2     |     3    |
+|     2     |     4    |
+|     3     |     4    | 
+
+Therefor our final graph would look something like: 
+
+<Image
+  title="Edge list example graph"
+  link="/img/post-images/blog-images/graphs/edge-list-example.svg"
+  description="Edge list example graph"
+/>
+
+### Adjacency Matrix
+
+Is a $n$ x $n$ matrix. Where $V_{ij}$ represents if $V_{i}$ and $V_{j}$ are adjacent (Computer scientists are really creative with names). Looking at our previous example we would have the following adjacency matrix.
+
+$$
+\begin{vmatrix}
+0&1&0&0&1\\
+1&0&1&0&0\\
+0&1&0&1&1\\
+0&0&1&0&1\\
+1&0&1&1&0\\
+\end{vmatrix}
+$$
+
+Where each row represents a vertex in our matrix, and each column represents the corresponding vertex. A '1' means that there is indeed an edge between two vertices and a '0' means no edge. 
+
+The graph we are describing is a undirected, but to make it directed we would simple remove half of our matrix across the diagonal. It would look something like the following.  
+
+$$
+\begin{vmatrix}
+0&-&-&-&-\\
+1&0&-&-&-\\
+0&1&0&-&-\\
+0&0&1&0&-\\
+1&0&1&1&0\\
+\end{vmatrix}
+$$
+
+<Image
+  title="Adjacency matrix example graph 1"
+  link="/img/post-images/blog-images/graphs/adjacency-matrix-example-1.svg"
+  description="Adjacency matrix example - directed graph 1"
+/>
+
+or
+
+$$
+\begin{vmatrix}
+0&1&0&0&1\\
+-&0&1&0&0\\
+-&-&0&1&1\\
+-&-&-&0&1\\
+-&-&-&-&0\\
+\end{vmatrix}
+$$
+
+<Image
+  title="Adjacency matrix example graph 2"
+  link="/img/post-images/blog-images/graphs/adjacency-matrix-example-2.svg"
+  description="Adjacency matrix example - directed graph 2"
+/>
+
+We can see that they are mirrored across the main diagonal of the matrix.
+
+### Adjacency List 
+
+In this representation, each vertex in the graph is associated with a list containing its adjacent vertices. Instead of using a matrix to store the connections between vertices, adjacency lists provide a more memory-efficient approach, especially for sparse graphs, as they only store the connections that exist.
+
+There are several methods proposed for how we store our lists of adjacent vertices. One implementation suggested by [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum) uses a hash table. Another way, the way we will use in future articles, is to use a list to store each vertices adjacency list.
+
+Let's look at an example. 
+
+$$
+[v_{0}, v_{1}, v_{2}, v_{0}]
+$$
+
+Each index in our array is associated with a vertex in our graph. 
+
+Now if we access the indices and look at their values we will see their neighbor vertices.
+
+Using our previous example still, lets access $v_{0}$ and see what neighbors are present. 
+
+$$
+ourList[0] == v_{0} == [v_{1}, v_{4}] 
+$$
+
+This tells us the neighbors of $v_{0}$ are $v_{1}$ and $v_{4}$ which if we scroll up to our previous example we will see is true. 
+
+## Summary
+
+Now that we have an idea for how our graphs are built and represented in the computer we can begin performing operations on our graphs such as searching.
+
+In the next article, we will learn some important graph vocabulary that help us describe the graph.
+
+Until next time, happy coding!

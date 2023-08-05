@@ -1,0 +1,170 @@
+---
+author: Chris Ragland
+date: 08-04-2023
+image: https://images.unsplash.com/photo-1456428746267-a1756408f782?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y29ubmVjdGlvbnN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=300&q=60
+link: blogs/graph-traversal
+postCategory: Graphs
+readTime: "10"
+title: Graph Traversal - DFS & BFS
+---
+
+## Introduction
+
+In this article, we are going to look at two methods that allow us to travel throughout a graph. 
+
+Before we begin, it is important that the reader have a basic understanding of how we represent graphs in a computer program, as well as the definitions used to describe them. Please refer to the previous articles. 
+
+## Graph Traversal - The Big Idea
+
+So we have a graph set up in our program. The vertices have data in them and life is good. Now we want to search for a specific vertex in our graph. How would we do this? 
+
+Introducing graph traversal algorithms: Depth First Search and Breadth First Search.
+
+The big idea and purpose of graph traversal is to systematically explore and visit all the vertices and edges of a graph in a well-defined order. Graph traversal algorithms help us understand the structure of the graph, identify relationships between vertices, and find paths or connections between specific vertices.
+
+Let's begin with DFS.
+
+## Depth First Search - DFS
+
+DFS (Depth-First Search) is commonly implemented using recursion, which provides a straightforward and intuitive approach. However, recursive DFS may lead to stack overflow errors for large graphs due to excessive stack space usage. In contrast, an iterative DFS implementation using an explicit stack consumes less memory and is preferred for handling large graphs or when memory constraints are crucial. Additionally, if the recursive approach is implemented in a tail-recursive style and the compiler supports tail call optimization, the performance gap between recursive and iterative DFS can be minimized.
+
+If you are familiar with pre-order traversals used in Binary-Search-Tree problems, this should feel very familiar. 
+
+Let's take a look at the process,
+
+DFS: 
+1. We are going to mark all of our vertices undiscovered
+2. Recursively call our DFS algorithm on $v_{0}$
+3. If there are any vertices in our list that are still undiscovered, choose one and restart the process
+
+DFS-Recursive($v$):
+1. Mark $v$ as discovered
+2. For all the undiscovered vertices recurse on those vertices
+
+Now that we know the process lets write this algorithm. 
+
+```cpp
+/* DFS in C++ */
+
+class Solution 
+{
+  public:
+    void recursiveDFS(int v, vector<int> adj[], map<int, bool>& vis, vector<int>& res)
+    {
+      // mark as visited
+      vis[v] = true;
+      res.push_back(v);
+      
+      // loop through adjacencies
+      for (auto i = adj[v].begin(); i != adj[v].end(); ++i)
+      {
+        if (!vis[*i])
+          recursiveDFS(*i, adj, vis, res);
+      }
+        
+    }
+
+    // function to return a list containing the DFS traversal of the graph.
+    vector<int> dfsOfGraph(int V, vector<int> adj[]) 
+    {
+      //create visited map and result vector
+      vector<int> result;
+      map<int, bool> visited;
+      
+      // visit each node in our adjacency list
+      for (int i = 0; i < V; ++i)
+      {
+        if (!visited[i])
+          recursiveDFS(i, adj, visited, result);
+      }
+      return result;
+    }
+};
+```
+
+### DFS Applications
+
+There are several problems where DFS applies. Here are several taken from this [page](https://en.wikipedia.org/wiki/Depth-first_search)
+
+- Finding connected components.
+- Topological sorting.
+- Finding 2-(edge or vertex)-connected components.
+- Finding 3-(edge or vertex)-connected components.
+- Finding the bridges of a graph.
+- Generating words in order to plot the limit set of a group.
+- Finding strongly connected components.
+- Determining whether a species is closer to one species or another in a phylogenetic tree.
+
+## Breadth First Search - BFS
+
+Similar to DFS, BFS will mark vertices as it makes its way through other vertices.
+
+However, instead of using recursion like DFS, BFS is a Queue-based traversal. 
+
+The process is rather simple, 
+
+1. Start at the first vertex and add it to the queue
+2. Dequeue vertex and add all the unvisited neighbors of that vertex to the queue
+3. Continue the until the queue is empty
+4. If more than one component of vertices, continue on to the next component 
+
+Let's look at this process implemented in C++
+
+```cpp
+/* BFS in C++ */
+
+class Solution 
+{
+  public:
+    // function to return Breadth First Traversal of given graph.
+    vector<int> bfsOfGraph(int V, vector<int> adj[]) 
+    {
+      // create queue and map for visited
+      queue<int> Q;
+      map<int, bool> visited;
+      vector<int> result;
+      
+      Q.push(0);
+      visited[0] = true;
+      
+      while (!Q.empty())
+      {
+        int v = Q.front();
+        result.push_back(v);
+        Q.pop();
+        
+        for (auto i = adj[v].begin(); i != adj[v].end(); ++i)
+        {
+          if (visited[*i] == false)
+          {
+            Q.push(*i);
+            visited[*i] = true;
+          }
+        }
+      }
+      return result;
+    }
+};
+```
+
+### BFS Applications
+
+There are several problems where DFS applies. Here are several taken from this [page](https://en.wikipedia.org/wiki/Breadth-first_search)
+
+- Copying garbage collection, Cheney's algorithm
+- Finding the shortest path between two nodes u and v, with path length measured by number of edges (an advantage over depth-first search)[13]
+- (Reverse) Cuthill–McKee mesh numbering
+- Ford–Fulkerson method for computing the maximum flow in a flow network
+- Serialization/Deserialization of a binary tree vs serialization in sorted order, allows the tree to be re-constructed in an efficient manner.
+- Construction of the failure function of the Aho-Corasick pattern matcher.
+- Testing bipartiteness of a graph.
+
+## Summary 
+
+In conclusion, graphs are a very powerful and practical data structure. In this article we discussed two important graph traversal methods: Depth-First-Search and Breadth-First-Search. We learned that DFS is implemented with recursion but can also be done so iteratively. We also learned that BFS is implemented with a queue data structure. We saw both traversal methods implemented in C++. Finally, we discovered applications for both DFS and BFS. 
+
+Until next time, happy coding!
+
+
+
+
