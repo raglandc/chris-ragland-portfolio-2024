@@ -34,7 +34,7 @@ export default function AboutPage()
       </section>
 
       <section 
-        className="px-4 md:px-6 max-w-7xl space-y-4 min-h-screen mx-auto"
+        className="px-4 md:px-6 max-w-7xl space-y-4 my-10 mx-auto"
       >
         <Image
           className="rounded-xl mx-auto"
@@ -54,6 +54,18 @@ export default function AboutPage()
             Chris is currently working towards his bachelors in Computer Science at the University of South Florida.
           </p>
         </div>
+      </section>
+
+      <section
+        className="px-4 md:px-6 max-w-7xl space-y-4 mx-auto my-10"
+      >
+        <h1 className="font-semibold text-2xl">Education</h1>
+        <div className="flex justify-between">
+          <p className="font-semibold">BS in Computer Science</p>
+          <p>Aug 2022 - Dec 2024</p>
+        </div>
+        <p>University of South Florida - Tampa, Florida</p>
+        <p><span className="font-semibold">GPA:</span> 4.0 / 4.0</p>
       </section>
     </main>
   )
