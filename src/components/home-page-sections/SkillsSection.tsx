@@ -4,7 +4,6 @@ import {
   SiJavascript,
   SiReact,
   SiTypescript,
-  SiBlender,
   SiCplusplus,
   SiC,
   SiNextdotjs,
@@ -14,6 +13,7 @@ import {
   SiLinux,
   SiPython,
 } from 'react-icons/si'
+import { FaJava } from 'react-icons/fa'
 import SkillCard from './util/SkillCard'
 
 export default function SkillsSection({ ...props }) {
@@ -89,5 +89,5 @@ const skillsArray = [
   { title: 'ThreeJs', logo: <SiThreedotjs /> },
   { title: 'PostgresSQL', logo: <SiPostgresql /> },
   { title: 'MongoDB', logo: <SiMongodb /> },
-  { title: 'Blender', logo: <SiBlender /> },
+  { title: 'Java', logo: <FaJava /> },
 ]
