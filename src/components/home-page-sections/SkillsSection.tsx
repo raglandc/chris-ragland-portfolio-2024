@@ -83,11 +83,11 @@ const skillsArray = [
   { title: 'Python', logo: <SiPython /> },
   { title: 'JavaScript', logo: <SiJavascript /> },
   { title: 'TypeScript', logo: <SiTypescript /> },
+  { title: 'Java', logo: <FaJava /> },
   { title: 'Linux', logo: <SiLinux /> },
   { title: 'React', logo: <SiReact /> },
   { title: 'NextJs', logo: <SiNextdotjs /> },
   { title: 'ThreeJs', logo: <SiThreedotjs /> },
   { title: 'PostgresSQL', logo: <SiPostgresql /> },
-  { title: 'MongoDB', logo: <SiMongodb /> },
-  { title: 'Java', logo: <FaJava /> },
+  { title: 'MongoDB', logo: <SiMongodb /> }
 ]
