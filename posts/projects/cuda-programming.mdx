@@ -8,33 +8,29 @@ title: Cuda Programming
 ---
 
 ## Introduction
-
-This article presents an overview of the academic journey and key learnings from an elective course titled "Programming on Massively Parallel Systems" offered at my university. The course is designed to impart comprehensive knowledge and practical skills in parallel programming, specifically utilizing Nvidia's CUDA (Compute Unified Device Architecture) framework.
+This article presents an overview of the key learnings from an elective course titled "Programming on Massively Parallel Systems" offered at my university. The course is designed to impart comprehensive knowledge and practical skills in parallel programming, specifically utilizing Nvidia's CUDA (Compute Unified Device Architecture) framework.
 
 The curriculum is structured around the paradigm of transforming sequential algorithms into parallel counterparts to enhance performance and efficiency. Central to this transformation is the CUDA API, which provides the necessary tools and architectural understanding to leverage Nvidia GPUs for computational tasks.
 
-In this course, we delved into the intricate architecture of Nvidia GPUs, comprising Streaming Multiprocessors, Grids, Blocks, Warps, and Threads. Understanding this architecture is crucial as it forms the backbone of effective parallel programming strategies.
+In this course, we delved into the intricate architecture of Nvidia GPUs, comprising streaming multiprocessors (SM), grids, blocks, warps, and threads. Understanding this architecture is crucial as it forms the backbone of effective parallel programming strategies.
 
 One of the pivotal learning outcomes was developing a mindset for parallel thinking. This shift from traditional sequential processing to parallelism is not trivial; it involves a strategic approach to problem-solving. We explored the concept of parallelizability of problems, examining the dependencies within data and strategizing on optimal execution paths. This also included handling complexities and potential pitfalls associated with parallel execution.
 
 The course's relevance extends beyond academic curiosity, particularly in the current technological landscape where AI and machine learning are at the forefront. Parallel programming, as taught in this course, is a critical skill in addressing the computational demands in these fields. It enables the handling of extensive data sets and complex algorithms that would otherwise be constrained by the limitations of standard CPUs.
 
-The elective "Programming on Massively Parallel Systems" has been an enlightening experience, significantly enhancing my understanding and skills in parallel programming. The practical knowledge gained through the CUDA API, combined with the theoretical underpinnings of parallel system architecture, has equipped me with the tools necessary to tackle modern computational challenges, especially in the realms of AI and machine learning. This course has not only expanded my problem-solving repertoire but also positioned me well for future endeavors in high-performance computing domains.
-
 While the course included three projects, I will focus only on the second project as it captures the skills learned as well as the power of writing effective CUDA code. 
 
 ## Project 2 Report
-
-In this report, I detail the optimizations implemented in the spatial distance histogram (SDH) calculations. Our enhanced methodology involves two dis0nct kernels. The PDH Kernel manages the computation of distances, formulates, and creates private histograms in shared memory, and subsequently transfers these histograms to global memory. Following this, a secondary reduction kernel retrieves a private histogram from global into shared memory, applies a reduction algorithm on the buckets, and consolidates the data into a final histogram in global memory, which is then compared with the CPU results. This refined approach augments the efficiency of our SDH computations.
+In this report, I detail the optimizations implemented in the spatial distance histogram (SDH) calculations. Our enhanced methodology involves two distinct kernels. The PDH Kernel manages the computation of distances, formulates, and creates private histograms in shared memory, and subsequently transfers these histograms to global memory. Following this, a secondary reduction kernel retrieves a private histogram from global into shared memory, applies a reduction algorithm on the buckets, and consolidates the data into a final histogram in global memory, which is then compared with the CPU results. This refined approach augments the efficiency of our SDH computations.
 
 ### PDH Kernel
-The PDH kernel is responsible for the large majority of the work in project 2. The kernel I have designed is to my knowledge what algorithm three would look like if it is wriNen in CUDA C.
+The PDH kernel is responsible for the large majority of the work in project 2.
 
 Each thread in every block will contain an atoms data.
 
 <Image title="Load coordinates into registers" link="/img/post-images/project-images/cuda/picture-1.webp" />
 
-Due to the value being stored in registers, the access time for this data is roughly one clock cycle. Next is the process of seSng up shared memory for every block to utilize quick access times to data. Since the size of shared memory would not be determined until run time, shared memory was allocated for each block in an external way. Here each block will have a private histogram as well as three lists that correspond to the x, y, and z atom coordinates. Shared memory typically has a size of 48KB on modern GPUs. Every block in the first kernel has
+Due to the value being stored in registers, the access time for this data is roughly one clock cycle. Next is the process of setting up shared memory for every block to utilize quick access times to data. Since the size of shared memory would not be determined until run time, shared memory was allocated for each block in an external way. Here each block will have a private histogram as well as three lists that correspond to the x, y, and z atom coordinates. Shared memory typically has a size of 48KB on modern GPUs. Every block in the first kernel has
 
 $$
 \text{nThreads} * \text{sizeof(double)} * 3 + \text{sizeof(long)} * \text{nBuckets}
@@ -96,7 +92,6 @@ The resulting histogram is than compared with the final histogram.
 <Image title="Collect results" link="/img/post-images/project-images/cuda/picture-12.webp" />
 
 ### Results
-
 Looking at project 1 scores we see that the previous GPU version had a total run time of 53.25085 milliseconds.
 
 <Image title="Results before optimizations" link="/img/post-images/project-images/cuda/picture-13.webp" />
@@ -106,7 +101,4 @@ The new version of the GPU program shows to be 4x faster then the original progr
 <Image title="Results after optimizations" link="/img/post-images/project-images/cuda/picture-14.webp" />
 
 ### Conclusion
-
 The results of this experiment show dramatic improvement over the first version of the GPU program regardless; However, the exact improvement is hard to determine as the testing environment is bogged down by the number of users accessing it for GPU computation. The fastest reported time I received for the above algorithm was about 10 milliseconds. In comparison to the previous GPU program, the new version can push a speedup of 4-5x faster. But again, without an isolated testing environment it is difficult to determine the accuracy of these tests. Regardless, because of the utilization of shared memory, privatization, the stride reduction algorithm, and other CUDA techniques there is an obvious improvement from the first project.
-
-
