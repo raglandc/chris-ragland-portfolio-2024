@@ -62,9 +62,6 @@ export default function SlideShow()
           exit="exit"
         />
       </AnimatePresence>
-      <div className="absolute rounded-b-lg bottom-0 w-full p-2 text-center bg-custom-colorPrimary">
-        {photos[imageIndex].description}
-      </div>
       <div className="absolute px-3 place-items-center grid-cols-3 grid -bottom-12">
         <button onClick={() => setImageIndex(wrap(0, photos.length, imageIndex - 1))}>
           <BsArrowLeft className="text-3xl hover:fill-custom-colorPrimary hover:scale-105" />
