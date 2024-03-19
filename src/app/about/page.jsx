@@ -38,10 +38,10 @@ export default function AboutPage()
       >
         <Image
           className="rounded-xl mx-auto"
-          src="/img/about-images/chris.webp"
-          alt="Picture of Chris Ragland"
-          width={250}
-          height={375}
+          src="/img/about-images/headshot.jpg"
+          alt="Photo head-shot of Chris Ragland"
+          width={350}
+          height={475}
         />
         <div className="space-y-3">
           <h1
@@ -57,7 +57,7 @@ export default function AboutPage()
       </section>
 
       <section
-        className="px-4 md:px-6 max-w-7xl space-y-4 mx-auto my-10"
+        className="px-4 md:px-6 max-w-7xl space-y-4 mx-auto mb-20"
       >
         <h1 className="font-semibold text-2xl">Education</h1>
         <div className="flex justify-between">
