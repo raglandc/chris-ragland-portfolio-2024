@@ -20,4 +20,8 @@ export const photos = [
     photoLink: '/img/life-images/group-photo.webp',
     description: "T'was the night before our Computer Org. final"
   },
+  {
+    photoLink: '/img/life-images/comp-arch-2024.webp',
+    description: "Group photo of computer architecture lab mates"
+  }
 ]
