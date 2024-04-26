@@ -15,13 +15,44 @@ export default function ProjectsPage()
       </section>
       
       <main className='mt-6 pb-8 md:mt-12 md:pb-16 lg:px-0 lg:pb-32'>
-        {/* 2023 */}
+       {/* 2024 */}
         <div className='space-y-16'>
           <div>
             <div className='mx-auto max-w-7xl px-4 md:px-6'>
               <span className='text-sm font-semibold text-sky-400 lg:text-base'>
                 New Projects
               </span>
+              <h2 className='mt-4 max-w-3xl text-xl font-semibold md:text-2xl lg:mt-5'>2024</h2>
+              <p className='mt-1 block text-custom-textSecondary lg:text-lg'>
+                Take a look at some of the awesome projects I worked on during my senior year at USF
+              </p>
+            </div>
+            <div className='mx-auto mt-7 flex max-w-7xl snap-x snap-mandatory space-x-6 overflow-x-auto pb-6 lg:mt-8 lg:grid lg:snap-none lg:grid-cols-3 lg:gap-x-3.5 lg:gap-y-12 lg:space-x-0 lg:px-4 before:flex-shrink-0 before:basis-4 before:content-[""] after:flex-shrink-0 after:basis-4 after:content-[""] md:before:basis-6 md:after:basis-6 lg:before:hidden lg:after:hidden'>
+              {allProjects.sort((a, b) => {
+                let dateA = new Date(a.date)
+                let dateB = new Date(b.date)
+                return dateB.getTime() - dateA.getTime()
+              }).filter((project) => { 
+                return project.date.split("-")[0] === "2024"
+              })
+              .map((project) => {
+                return (
+                  <ProjectCard
+                    key={project.title}
+                    title={project.title}
+                    image={project.image}
+                    link={project.link}
+                    projectType={project.projectType}
+                  />
+                )
+              })}
+            </div>
+          </div>
+        </div>
+        {/* 2023 */}
+        <div className='space-y-16'>
+          <div>
+            <div className='mx-auto max-w-7xl px-4 md:px-6'>
               <h2 className='mt-4 max-w-3xl text-xl font-semibold md:text-2xl lg:mt-5'>2023</h2>
               <p className='mt-1 block text-custom-textSecondary lg:text-lg'>Here are some of the interesting projects I have worked on the during my junior year at USF</p>
             </div>
