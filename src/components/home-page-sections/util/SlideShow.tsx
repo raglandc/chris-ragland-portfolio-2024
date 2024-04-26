@@ -45,7 +45,7 @@ export default function SlideShow()
 
   return (
     <div
-    className="relative flex justify-center aspect-video min-h-[200px]"
+    className="relative flex justify-center items-center aspect-video min-h-[200px]"
     onMouseEnter={() => setIsPaused(true)}
     onMouseLeave={() => setIsPaused(false)}
     >
