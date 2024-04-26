@@ -6,10 +6,10 @@ export const workArrayIndexPage = [
     projectType: 'Embedded Systems',
   },
   {
-    title: 'The Daily Derivative',
-    link: '/projects/the-daily-derivative',
-    image: '/img/post-images/project-images/daily-derivative/daily-derivative-landing-page.webp',
-    projectType: 'Web Development',
+    title: 'Diminished Java Compiler',
+    link: '/projects/dj-compiler',
+    image: '/img/post-images/project-images/dj-compiler/dj-compiler-cover.webp',
+    projectType: 'Compilers',
   },
   {
     title: 'CUDA Programming',

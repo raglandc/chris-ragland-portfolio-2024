@@ -11,7 +11,7 @@ type ProjectCardIndexProps = {
 export default function ProjectCardIndex({ title, link, image, projectType }: ProjectCardIndexProps) {
   return (
     <Link href={link}  className='mx-auto w-full max-w-sm md:max-w-none flex-none snap-start s lg:px-2'>
-      <div className='relative h-48 overflow-hidden rounded-t-md'>
+      <div className='relative h-56 overflow-hidden rounded-t-md'>
         <Image
           src={image}
           alt={`${title} personal project image`}
