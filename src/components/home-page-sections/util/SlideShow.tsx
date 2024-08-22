@@ -55,7 +55,7 @@ export default function SlideShow()
           key={photos[imageIndex].photoLink}
           alt={photos[imageIndex].description} 
           variants={variants}
-          className="rounded-lg absolute"
+           className="rounded-lg absolute w-full h-full object-cover"
           initial="enter"
           animate="center"
           transition={{duration: .20}}

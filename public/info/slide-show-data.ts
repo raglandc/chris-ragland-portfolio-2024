@@ -1,6 +1,14 @@
 //array of photos
 export const photos = [
   {
+    photoLink: '/img/life-images/citi-tech-group-24.webp',
+    description: "Myself with several of the other tech interns at Citi 2024"
+  },
+  {
+    photoLink: '/img/life-images/citi-senior-group-24.webp',
+    description: "My Citi senior mentor group members 2024"
+  },
+  {
     photoLink: '/img/life-images/chau-and-i.webp',
     description: "My lab partner and I on our last digital logic design lab"
   },

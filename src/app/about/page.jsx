@@ -6,10 +6,10 @@ export default function AboutPage()
 {
 
   return (
-    <main className="w-full my-12 px-2">
+    <main className="max-w-7xl pt-8 mx-auto px-4 md:px-6 md:pt-14">
       {/* Introduction */}
       <section 
-        className="p-4 md:p-6 max-w-6xl mx-auto my-4 shadow-lg border rounded-2xl"
+        className="p-4 md:p-6 max-w-5xl mx-auto my-4 shadow-lg border rounded-xl"
       >
         <h1 className="font-semibold text-3xl ml-2 mb-6">
           About  
@@ -31,7 +31,7 @@ export default function AboutPage()
         </div>
       </section>
       {/* Time line begins here */}
-      <section>
+      <section className="prose dark:prose-invert mx-auto pb-8 md:pb-16 lg:pb-32">
         <TimeLineCard year="Current">
           <p>I am currently working as a Technology Analyst Intern at Citi Bank located in Tampa, Florida.</p>
         </TimeLineCard>

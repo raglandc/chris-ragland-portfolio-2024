@@ -1,8 +1,136 @@
 ---
 date: 2024-05-13
 groupMembers: Chris Ragland
-image: /img/post-images/project-images/cuda/nvidia-cuda.webp
+image: /img/post-images/project-images/bookmark/bookmark-cover.webp
 link: /projects/bookmark
 projectType: Web Development
 title: BookMark
 ---
+
+## Introduction 
+This project came to be as a result of a group project for a required elective course during my bachelors degree titled, "Software Engineering". Can you guess what it was about?
+
+The course covered topics from the software development lifecycle, version control, continuous integration/delivery, story points, etc. It was a class that I thought I would learn a lot in but actually learned more than I expected. I remember thinking, "wow, this is a lot of homework" and at the time what felt like busy work. However, after actually working in industry I can see that none of it was busy work and it all served a purpose. 
+
+Towards the middle of the course, we were to start working on our group projects and by the end of the semester have some type of working product that solved the problem we wanted to address. 
+
+## The Problem
+The problem that we looked to solve was the idea of reading with friends and making sure that no friends spoil any part of the plot for the other readers. 
+
+Imagine, you and a friend are reading a book together. You work a full time job and do not get to read as often as your friend who is a student. Naturally, they read ahead of you and come to a really 'spicy' part of the story. They immediately want to talk with you about it. Except, they do not know where you are in the book. They might want to text you so they do not forget but that might ruin it. Ahhhhhhh!!! What do they do?
+
+## Enter BookMark
+This is where our application comes into play. The main idea is users create an account, add their current reads to their current reads list and update their current location as they work through the book.
+
+If they come to a part in the book where they want to talk with you about it they can leave a comment. 
+
+This comment will be stored in a database, if you friend is already past that page they will get the notification in their inbox immediately. If they are not quite to that page though, it will wait until they update their current page to be past that point in the book before sending the message. 
+
+This means that users need to be able to store books, have friends, and leave comments.
+
+## The Tech to Make it Happen
+Now, lets talk about the technology used to make this project/idea come to life.
+
+- **HTML** - As you might have guessed, no web application is complete without HTML. HTML is responsible for setting up the structure of what the users can read and see on screen when they visit our application. 
+
+- **CSS** - For styling we decided to go with Tailwind CSS. Tailwind can just make writing css a breeze and save a lot of dev time of having to create and go back and forth between different files. Also, as silly as it sounds, it lets us skip the part of having to think of class names to describe our markup. Simple and maybe even silly but when you spend a lot of time writing code the little things like that add up. 
+
+- **JavaScript** - If its on the internet it probably uses JavaScript (the language of the web) and our application is no exception. We used JS to make our app more responsive to user actions. For example, when making HTTP requests to the backend of our application, a user should not have to reload the page to see those changes. Instead we just used JS to make the request and once a response came back we updated the UI appropriately. 
+
+- **Ruby & Ruby on Rails** - Ruby and Ruby on Rails was the big learning curve this semester. I had heard of the tools but never actually worked or developed with it in the past. The professor wanted us to use this tool set for a few reasons, one being that RoR is popular because developers are generally very productive with the stack. Less time trying to figure out code and more time spent on developing business logic.   
+
+- **SQLite** - As mentioned earlier, our app needs to handle users, user friendships, books, and comments. To persist these changes even after the server stops, we require a form of storage. SQLite is an ideal choice because it stores data in a file, making it simple and lightweight. Since our application is was being developed locally on each team member’s machine, using the same SQLite file avoids the need to set up a dedicated database server, which simplifies development.
+
+- **Github** - We used Github for more than just version control. We also used it as our project management software. We would set up our sprints, assign and calculate story points, and keep track of our project status and if it was on track to be complete by the deadline. Git and version control was not new to me, however, project management is a beast and I was not expecting it to be so involved. I now understand why there are people dedicated to doing just that.
+
+## Demo
+
+### Login & Sign Up
+
+Lets start at the login and sign up page. We used a library called 'devise' to help us with managing authentication and user sessions. Why re-invent the wheel right?
+
+<Image title="Sign up page" link="/img/post-images/project-images/bookmark/signup-page.webp" />
+
+<Image title="Login page" link="/img/post-images/project-images/bookmark/login-page.webp" />
+
+### Dashboard
+
+After creating an account, we can login and head to the dashboard.
+
+<Image title="User dashboard" link="/img/post-images/project-images/bookmark/user-dashboard.webp" />
+
+We don't currently have any books in our 'Current Reads' list so lets search for a book shall we?
+
+### Searching & Adding Books
+
+We can do this by clicking the search button in the navigation bar at the top of the page. 
+
+<Image title="Searching for a book" link="/img/post-images/project-images/bookmark/searching-for-a-book.webp" />
+
+We used a lovely resource provided by a group of two students who put together a web-scraper to get sample book data. This data provided us with over 50,000 example books to search from and use in this project. So shout out to Lorena Casanova Lozano and Sergio Costa Planells.
+
+Now lets search for a book. How about the hunger games? As we type in the search bar it triggers a JavaScript function that to search against our database. There is a debounce applied to the typing to avoid unnecessary calls to the db.
+
+<Image title="Searching for the hunger games" link="/img/post-images/project-images/bookmark/searching-for-hunger-games.webp" />
+
+We can click on the book to get some more details and add to our current reads. Once the book is added to our current reads it will always show that we can only remove it and not add it again.
+
+Back in our dashboard we can see the book has been added and we are currently on page zero.
+
+<Image title="Book details and added to current reads" link="/img/post-images/project-images/bookmark/book-details.webp" />
+
+### Friends & Friend Requests
+
+Before we start reading lets go add our friend who just signed up. 
+
+Heading back to the nav bar we can go to the friends page. Once there we can click add friend to search for our friend by email. 
+
+Once we have found our friend we can add them and they will get our friend request. They can then accept or decline our friend request from the inbox page. JavaScript was used so that when the friend request is successfully sent, there will be immediate feedback that the friend request is pending. It is the little things in life, am I right?    
+
+<Image title="Send a friend request" link="/img/post-images/project-images/bookmark/send-friend-request.webp" />
+
+And here we can see that friend request in our friends inbox. We went ahead and accepted it because we are super excited to read this book!
+
+<Image title="Friend Request message" link="/img/post-images/project-images/bookmark/friend-request-message.webp" />
+
+We also can go ahead and delete the message to clear up our inbox. Up top we show an alert asking if the user is sure they want to delete it. 
+
+Ok, so now lets head back to our profile and well see a message that they accepted our friend request. 
+
+Again, we will delete this message and this is what the warning looks like...
+
+<Image title="Deleting a message from inbox" link="/img/post-images/project-images/bookmark/delete-friend-request.webp" />
+
+If we head over to our friends page, well see a list of all our friends. Every user has the option to remove a friend if they need to.
+
+<Image title="Friends page" link="/img/post-images/project-images/bookmark/friends-page.webp" />
+
+### Reading & Leaving Comments
+
+Ok now we can go ahead and read our book. Lets say we read 50 pages and oh boy I want to comment on something that just happened. Lets start by updating our page number in our current book. You can have multiple current reads by the way. No reason to stop the fun at one book. 
+
+With our current page updated we can go ahead and leave a message for a friend. Remember that they will only see the message if they are at or past the current page I am writing this message for. 
+
+We will go ahead and say, "Wow can you believe that twist? I cannot believe they had to split up like that. I was just starting to really like their dynamics."
+
+<Image title="Leave a comment" link="/img/post-images/project-images/bookmark/leave-a-comment.webp" />
+
+After posting the comment, we can login as our friend and see that he indeed does not have a message until we update.
+
+<Image title="Empty inbox" link="/img/post-images/project-images/bookmark/empty-inbox-before-update.webp" />
+
+After updating we can then see that we now get the message. 
+
+<Image title="Comment found after updating" link="/img/post-images/project-images/bookmark/comment-after-update.webp" />
+
+Pretty cool right? 
+
+## Conclusion
+
+All in all this was a very fun project to work on. I enjoyed learning Ruby and Ruby on Rails. I had become super comfortable with Next.js before this and to see how other web frameworks operate to achieve the same goals in different ways was interesting. RoR is a very opinionated library. Meaning that they think things should be done a certain way and they provide you the template to do that. I enjoyed the testing portion of that template a lot.
+
+Testing was also another big topic we covered in the course. The differences between White-box and Black-box, what they mean, and how to write tests for them. We learned about integration tests as well as unit tests. We had tests on how we write tests in programs. The recursion is everywhere! 
+
+We ended the semester with a presentation for this project (that we crushed 😀) and a lot of lessons learned. 
+
+Thats all for this project, thanks for reading ✌️

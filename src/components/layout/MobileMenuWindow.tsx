@@ -1,5 +1,4 @@
 "use client"
-
 import { useState, useEffect } from "react"
 import { FaHome } from 'react-icons/fa'
 import { MdWork, MdPerson, MdMessage } from 'react-icons/md'
@@ -65,12 +64,12 @@ export default function MobileMenuWindow({ closeHandler }: MenuWindowProps) {
             title="Projects" 
             icon={<MdWork/>}
           />
-          <MobileMenuLink 
+          {/* <MobileMenuLink 
             closeHandler={closeHandler} 
             link="/blogs" 
             title="Blog" 
             icon={<BsBookFill/>}
-          />
+          /> */}
           <div className='flex text-white w-full items-center justify-between bg-gray-500 rounded-md p-4' onClick={() => setTheme(nextTheme)}>
             {theme == "dark" ? (<BsFillSunFill size={18} />) : (<BsMoonStarsFill size={18} />)}
             {theme == "dark" ? "Switch to light mode" : "Switch to dark mode"}
