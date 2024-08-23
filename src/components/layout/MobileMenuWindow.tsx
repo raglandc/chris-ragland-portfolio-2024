@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from "react"
 import { FaHome } from 'react-icons/fa'
-import { MdWork, MdPerson, MdMessage } from 'react-icons/md'
+import { MdWork, MdPerson } from 'react-icons/md'
 import { BsMoonStarsFill, BsFillSunFill, BsBookFill } from "react-icons/bs"
 import { VscClose } from 'react-icons/vsc'
 import { motion } from 'framer-motion'
