@@ -1,19 +1,21 @@
 import { useRef } from 'react'
 import { useInView } from 'framer-motion'
 import {
-  SiJavascript,
   SiReact,
   SiTypescript,
   SiCplusplus,
   SiC,
   SiNextdotjs,
-  SiThreedotjs,
   SiMongodb,
   SiPostgresql,
   SiLinux,
   SiPython,
+  SiDocker,
+  SiGnubash,
 } from 'react-icons/si'
-import { FaJava } from 'react-icons/fa'
+import { BiLogoSpringBoot } from "react-icons/bi";
+import { FaGit, FaJava } from 'react-icons/fa'
+import { TbSql } from "react-icons/tb";
 import SkillCard from './util/SkillCard'
 
 export default function SkillsSection({ ...props }) {
@@ -48,7 +50,7 @@ export default function SkillsSection({ ...props }) {
           }}
           className='relative my-5 max-w-xl text-custom-textSecondary'
         >
-          I started my programming journey in late 2020, during the covid-19 pandemic. My first real programming language was JavaScript. I still love JavaScript (it may have helped make this website), but it has only made me eager to learn more!
+          I started my programming journey during the COVID-19 pandemic. My introduction into programming was through web-development with technologies like HTML, CSS & JavaScript. I was so inspired by everything that I was learning that I decided to major in Computer Science. This is where I would begin to learn the magic behind computers. 
         </p>
         <p
           ref={quoteRef}
@@ -58,7 +60,7 @@ export default function SkillsSection({ ...props }) {
           }}
           className='relative my-5 max-w-xl text-custom-textSecondary'
         >
-          Here are some of the tools I have worked with over the years.
+          Here are a few of the technologies I have been able to work with over the years.
         </p>
       </div>
       <div className='max-w-2xl grid place-content-stretch grid-cols-3 gap-2 md:gap-x-12 h-max'>
@@ -78,16 +80,16 @@ export default function SkillsSection({ ...props }) {
 }
 
 const skillsArray = [
-  { title: 'C', logo: <SiC /> },
-  { title: 'C++', logo: <SiCplusplus /> },
+  { title: 'C/C++', logo: <SiCplusplus /> },
   { title: 'Python', logo: <SiPython /> },
-  { title: 'JavaScript', logo: <SiJavascript /> },
-  { title: 'TypeScript', logo: <SiTypescript /> },
+  { title: 'Java/TypeScript', logo: <SiTypescript /> },
   { title: 'Java', logo: <FaJava /> },
+  { title: 'SQL', logo: <TbSql/> },
+  { title: 'Git', logo: <FaGit />},
+  { title: 'Bash', logo: <SiGnubash />},
   { title: 'Linux', logo: <SiLinux /> },
+  { title: 'Docker', logo: <SiDocker />},
+  { title: 'Spring', logo: <BiLogoSpringBoot /> },
   { title: 'React', logo: <SiReact /> },
   { title: 'NextJs', logo: <SiNextdotjs /> },
-  { title: 'ThreeJs', logo: <SiThreedotjs /> },
-  { title: 'PostgresSQL', logo: <SiPostgresql /> },
-  { title: 'MongoDB', logo: <SiMongodb /> }
 ]
