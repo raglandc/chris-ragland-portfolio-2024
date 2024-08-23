@@ -27,7 +27,7 @@ export default function Navigation() {
           <NavLink link="/" title='Home' />
           <NavLink link="/about" title='About' />
           <NavLink link="/projects" title='Projects' />
-          {/* <NavLink link="/blogs" title='Blog' /> */}
+          <NavLink link="/blogs" title='Blog' />
         </div>
 
         <div className='hidden md:flex w-1/3 items-center justify-end'>
