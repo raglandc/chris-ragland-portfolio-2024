@@ -82,7 +82,7 @@ export default function SkillsSection({ ...props }) {
 const skillsArray = [
   { title: 'C/C++', logo: <SiCplusplus /> },
   { title: 'Python', logo: <SiPython /> },
-  { title: 'Java/TypeScript', logo: <SiTypescript /> },
+  { title: 'TypeScript', logo: <SiTypescript /> },
   { title: 'Java', logo: <FaJava /> },
   { title: 'SQL', logo: <TbSql/> },
   { title: 'Git', logo: <FaGit />},

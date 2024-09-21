@@ -39,7 +39,10 @@ $$
 Assuming that in the worst case, nThreads is 1024, and we have 500 buckets,
 
 $$
-(1024\text{ threads}) * (8\text{ bytes}) * 3 + (8\text{ bytes}) * (500\text{ buckets}) = 28,576\text{ bytes}
+(1024\text{ threads}) * (8\text{ bytes}) * 3
+$$
+$$ 
++ (8\text{ bytes}) * (500\text{ buckets}) = 28,576\text{ bytes}
 $$
 
 This number is well under the 48KB size of shared memory.
