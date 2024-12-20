@@ -47,7 +47,7 @@ export default function SkillsSection({ ...props }) {
           }}
           className='relative my-5 max-w-xl text-custom-textSecondary'
         >
-          I started programming during the COVID-19 pandemic, beginning with web development. This introduction made me curious about the broader capabilities of programming. I went on to earn a Bachelor of Science in Computer Science from the University of South Florida. My primary interests are in machine learning, specifically reinforcement learning.
+          I started programming during the COVID-19 pandemic, beginning with web development. This introduction really made me wonder what else was possible. I went on to earn a Bachelor of Science in Computer Science from the University of South Florida. My primary interests are in machine learning, specifically reinforcement learning.
         </p>
         <p
           ref={quoteRef}

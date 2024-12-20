@@ -27,5 +27,13 @@ export const photos = [
   {
     photoLink: '/img/life-images/comp-arch-2024.webp',
     description: "Group photo of computer architecture lab mates"
+  }, 
+  {
+    photoLink: '/img/life-images/group-grad-ceremony.webp',
+    description: "Group photo from graduation ceremony"
+  }, 
+  {
+    photoLink: '/img/life-images/group-pinning-ceremony.webp',
+    description: "Group photo from induction into the profession ceremony"
   }
 ]
