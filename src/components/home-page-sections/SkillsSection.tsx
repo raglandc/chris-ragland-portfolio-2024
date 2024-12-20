@@ -4,14 +4,11 @@ import {
   SiReact,
   SiTypescript,
   SiCplusplus,
-  SiC,
-  SiNextdotjs,
-  SiMongodb,
-  SiPostgresql,
   SiLinux,
   SiPython,
   SiDocker,
   SiGnubash,
+  SiTensorflow
 } from 'react-icons/si'
 import { BiLogoSpringBoot } from "react-icons/bi";
 import { FaGit, FaJava } from 'react-icons/fa'
@@ -50,7 +47,7 @@ export default function SkillsSection({ ...props }) {
           }}
           className='relative my-5 max-w-xl text-custom-textSecondary'
         >
-          I started my programming journey during the COVID-19 pandemic. My introduction into programming was through web-development with technologies like HTML, CSS & JavaScript. I was so inspired by everything that I was learning that I decided to major in Computer Science. This is where I would begin to learn the magic behind computers. 
+          I started programming during the COVID-19 pandemic, beginning with web development. This introduction made me curious about the broader capabilities of programming. I went on to earn a Bachelor of Science in Computer Science from the University of South Florida. My primary interests are in machine learning, specifically reinforcement learning.
         </p>
         <p
           ref={quoteRef}
@@ -91,5 +88,5 @@ const skillsArray = [
   { title: 'Docker', logo: <SiDocker />},
   { title: 'Spring', logo: <BiLogoSpringBoot /> },
   { title: 'React', logo: <SiReact /> },
-  { title: 'NextJs', logo: <SiNextdotjs /> },
+  { title: 'TensorFlow', logo: <SiTensorflow /> },
 ]

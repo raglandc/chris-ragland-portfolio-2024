@@ -70,14 +70,14 @@ export default function Home() {
             <h2 className='text-4xl my-8 sm:text-5xl text-custom-textSecondary'>
               <Typewriter
                 options={{
-                  strings: ['student.', 'developer.', "coffee ❤️'er."],
+                  strings: ['scientist.', 'engineer.', "coffee ❤️'er."],
                   autoStart: true,
                   loop: true,
                   cursor: '_',
                 }}
               />
             </h2>
-            <p className='mt-8 max-w-lg space-y-6 text-lg md:max-w-xl lg:text-xl text-custom-textSecondary'>I am currently studying Computer Science at the University of South Florida. Welcome to my website, take a look around to learn more about me.</p>
+            <p className='mt-8 max-w-lg space-y-6 text-lg md:max-w-xl lg:text-xl text-custom-textSecondary'>I am currently a software engineer based in Tampa Florida. Welcome to my website, take a look around to learn more about me.</p>
           </motion.div>
         </div>
       </section>

@@ -26,14 +26,14 @@ export default function AboutPage()
             height={475}
           />
           <p className="md: px-4">
-            My name is Chris and I am a computer scientist based in the vibrant city of Tampa, Florida. I received my Bachelors of Science in Computer Science from the University of South Florida. I enjoy working on interesting problems with the use of computer algorithms. In my free time, I enjoy exercising and playing the guitar.       
+            My name is Chris and I am a computer scientist and software engineer based in the vibrant city of Tampa, Florida. I received my Bachelors of Science in Computer Science from the University of South Florida. I enjoy working on interesting problems with the use of computer algorithms. In my free time, I enjoy exercising and playing the guitar.       
           </p>
         </div>
       </section>
       {/* Time line begins here */}
       <section className="prose dark:prose-invert mx-auto pb-8 md:pb-16 lg:pb-32">
         <TimeLineCard year="Current">
-          <p>I am currently working as a Technology Analyst Intern at Citi Bank located in Tampa, Florida.</p>
+          <p>I am currently working as a software engineer for a fortune 100 company.</p>
         </TimeLineCard>
         <TimeLineCard year="2022 - 2024">
           <p>
