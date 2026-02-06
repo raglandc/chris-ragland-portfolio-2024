@@ -1,12 +1,9 @@
 import fs from "node:fs";
 import matter from "gray-matter";
-import { format, parseISO } from "date-fns";
 import { notFound } from "next/navigation";
-
 import TableOfContents from "@/components/util/TableOfContents";
 import { mdxComponents } from "@/components/MDXComponents";
 import PageProgressBar from "@/components/PageProgressBar";
-
 import { getAllProjects, projectFileBySlug } from "@/lib/content";
 import { renderMdx } from "@/lib/mdx";
 
@@ -42,7 +39,6 @@ export default async function ProjectPage({
     const groupMembers = data.groupMembers ? String(data.groupMembers) : "";
 
     if (!title || !date) {
-        // Don’t render half-baked content; fix frontmatter instead
         notFound();
     }
 
@@ -51,7 +47,6 @@ export default async function ProjectPage({
             <PageProgressBar />
             <article className="prose dark:prose-invert mx-auto pb-8 md:pb-16 lg:pb-32">
                 <h1 className="text-3xl md:text-4xl mt-0">{title}</h1>
-
                 <div>
                     <p className="m-0">
                         <span className="font-semibold">Project Type: </span>
@@ -61,15 +56,11 @@ export default async function ProjectPage({
                         <span className="font-semibold">Project Members: </span>
                         {groupMembers}
                     </p>
-                    <time
-                        dateTime={date}
-                        className="block"
-                    >
+                    <p className="block">
                         <span className="font-semibold">Published: </span>
-                        {format(parseISO(date), "LLLL d, yyyy")}
-                    </time>
+                        {date}
+                    </p>
                 </div>
-
                 <TableOfContents />
                 <div className="js-toc-content">{mdx}</div>
             </article>
