@@ -1,6 +1,6 @@
 ---
-date: 2023-08-20
-groupMembers: Chris Ragland, Pedro Bautista, Christiana Hellenbrand 
+date: "2023-08-20"
+groupMembers: Chris Ragland, Pedro Bautista, Christiana Hellenbrand
 image: /img/post-images/project-images/bulls-movies/search-page.webp
 link: /projects/bulls-movies
 projectType: Web Development
@@ -19,204 +19,208 @@ Once logged in, the user is redirected to the Newest Page which includes the top
 #### Entity-Relationship Diagram (ER Diagram)
 
 <Image
-  title="Bulls movies ER diagram"
-  link="/img/post-images/project-images/bulls-movies/er-diagram.webp"
-  description="Bull's Movies ER Diagram"
+    title="Bulls movies ER diagram"
+    link="/img/post-images/project-images/bulls-movies/er-diagram.webp"
+    description="Bull's Movies ER Diagram"
 />
 
 Relations:
+
 - One-to-one: User has one Account and one Session
 - One-to-many: UserLikes contains multiple Movies and Watchlist contains multiple Movies
 
 ## Frontend
 
 ### Login & Sign-up Page
+
 <Image
-  title="Login & Sign-up Page"
-  link="/img/post-images/project-images/bulls-movies/sign-in-page.webp"
+    title="Login & Sign-up Page"
+    link="/img/post-images/project-images/bulls-movies/sign-in-page.webp"
 />
 
 ### Recently Added Page
+
 <Image
-  title="Login & Sign-up Page"
-  link="/img/post-images/project-images/bulls-movies/recently-added-page.webp"
+    title="Login & Sign-up Page"
+    link="/img/post-images/project-images/bulls-movies/recently-added-page.webp"
 />
 
 ### Favorites/Watchlist Page
 
-The Favorites page and the Watchlist page are similar enough that seeing one page you will understand the design within the other. 
+The Favorites page and the Watchlist page are similar enough that seeing one page you will understand the design within the other.
 
 <Image
-  title="Login & Sign-up Page"
-  link="/img/post-images/project-images/bulls-movies/favorites-page.webp"
+    title="Login & Sign-up Page"
+    link="/img/post-images/project-images/bulls-movies/favorites-page.webp"
 />
 
 ### Search Page
 
 <Image
-  title="Login & Sign-up Page"
-  link="/img/post-images/project-images/bulls-movies/search-page.webp"
+    title="Login & Sign-up Page"
+    link="/img/post-images/project-images/bulls-movies/search-page.webp"
 />
-
 
 ## Backend - Three-Tier Implementation
 
 ### Interface
+
 - Bulls Movies is implemented through a web user interface created with React for the client UI and actions/procedures are executed through NodeJS via API routes that allows the user to interact with various features on a remote server. The database is connected through the interface via an ORM called Prisma, that calls a Prisma Client to connect with the database using Cockroach DB over the cloud.
 
 ### Application Logic
+
 - a. Searching
-  - A form is present on the search page for users to fill out. Using client-side scripting, when the user presses the submit (“Search”) button the form values are passed to the API call and within the API call, only information that is not null-ish or undefined is passed to the SQL query. This allows users to enter multiple search parameters simultaneously.
+    - A form is present on the search page for users to fill out. Using client-side scripting, when the user presses the submit (“Search”) button the form values are passed to the API call and within the API call, only information that is not null-ish or undefined is passed to the SQL query. This allows users to enter multiple search parameters simultaneously.
 
 - b. Pagination for search page
-  - Instead of repeatedly making a call to the database to return the next 12 or previous 12 movies from the Movies table, the movies that match the user search are returned and stored in an array via JavaScript. This improves the speed and the user experience of the application. When the user clicks on next or previous, the current 12 is either shifted forward 12 or backwards 12 given the user is not at the front of the list or the back of the list.
+    - Instead of repeatedly making a call to the database to return the next 12 or previous 12 movies from the Movies table, the movies that match the user search are returned and stored in an array via JavaScript. This improves the speed and the user experience of the application. When the user clicks on next or previous, the current 12 is either shifted forward 12 or backwards 12 given the user is not at the front of the list or the back of the list.
 
 - c. Watchlist
-  - The idea behind Watchlist is, while the user is looking through different movies and they see a movie they want to watch they click the “+” to add the specific movie to the list of movies they plan on watching at a later point in time.
+    - The idea behind Watchlist is, while the user is looking through different movies and they see a movie they want to watch they click the “+” to add the specific movie to the list of movies they plan on watching at a later point in time.
 
 - d. Favorites
-  - The idea behind the Favorites page is when the user has watched a movie previously and likes the movie; the user can click on the heart button to add/remove it from their favorites page.
+    - The idea behind the Favorites page is when the user has watched a movie previously and likes the movie; the user can click on the heart button to add/remove it from their favorites page.
 
 ### Database
+
 - a. The database was created using SQL with Postgres
 - b. Tables
-  - i. Movies
-    - This table stores the information associated with a given movie. When a user searches for a movie or accesses the Learn More page, the Movie table is called to access details of the movie. Each movie is associated to a unique MoviesID.
+    - i. Movies
+        - This table stores the information associated with a given movie. When a user searches for a movie or accesses the Learn More page, the Movie table is called to access details of the movie. Each movie is associated to a unique MoviesID.
 
-    - Movies( MoviesID: STRING, Poster_Link: STRING, M_title:STRING, Released_Year: INTEGER, Certification: STRING, Runtime: INTEGER, Genre: STRING[], IMBD_Rating: DECIMAL, M_overview: STRING, Meta_score: INTEGER, Director: STRING, Star1: STRING, Star2: STRING, Star3: STRING, Star4: STRING, m_voteCount: INTEGER, Gross: INTEGER)
+        - Movies( MoviesID: STRING, Poster_Link: STRING, M_title:STRING, Released_Year: INTEGER, Certification: STRING, Runtime: INTEGER, Genre: STRING[], IMBD_Rating: DECIMAL, M_overview: STRING, Meta_score: INTEGER, Director: STRING, Star1: STRING, Star2: STRING, Star3: STRING, Star4: STRING, m_voteCount: INTEGER, Gross: INTEGER)
 
-    - Foreign keys: none
-    - Candidate key: MoviesID
-    - Primary key: MoviesID 
-    - Not NULL: MoviesID, Poster_Link,M_title,Runtime, IMBD_Rating, Director, Star1, Star2, Star3, Star4, m_voteCount
+        - Foreign keys: none
+        - Candidate key: MoviesID
+        - Primary key: MoviesID
+        - Not NULL: MoviesID, Poster_Link,M_title,Runtime, IMBD_Rating, Director, Star1, Star2, Star3, Star4, m_voteCount
 
-  - ii. UserLikes
+    - ii. UserLikes
+        - This table stores the movies that a user likes. When the user clicks the heart icon at the top right corner of the movie card, the movieId is added to this table with the associated userId and when they liked the movie. The user can add or remove a like by clicking the heart icon consecutively.
 
-    - This table stores the movies that a user likes. When the user clicks the heart icon at the top right corner of the movie card, the movieId is added to this table with the associated userId and when they liked the movie. The user can add or remove a like by clicking the heart icon consecutively.
+        - UserLikes(userId: STRING, movieId: STRING likesAt:DATETIME)
 
-    - UserLikes(userId: STRING, movieId: STRING likesAt:DATETIME)
+        - Foreign keys: userId, movieId
+        - Candidate key: userId, movieId
+        - Primary key: [userId , movieId]
+        - Not NULL: userId, movieId, likesAt
 
-    - Foreign keys: userId, movieId
-    - Candidate key: userId, movieId
-    - Primary key: [userId , movieId]
-    - Not NULL: userId, movieId, likesAt
-  
-  - iii. MovieWatchlist
-    - This table stores the user’s watchlist. The watchlist is a collection of movies that the user plans to watch in the future. The user can add or remove movies from their Watchlist using ‘+’ and ‘-’ at the top right corner of the movie card.
+    - iii. MovieWatchlist
+        - This table stores the user’s watchlist. The watchlist is a collection of movies that the user plans to watch in the future. The user can add or remove movies from their Watchlist using ‘+’ and ‘-’ at the top right corner of the movie card.
 
-    - MovieWatchlist( userId: STRING, movieId: STRING addedAt:DATETIME)
+        - MovieWatchlist( userId: STRING, movieId: STRING addedAt:DATETIME)
 
-    - Foreign keys: userId, movieId
-    - Candidate key: userId, movieId
-    - Primary key: [userId , movieId]
-    - Not NULL: userId, movieId, addedAt
+        - Foreign keys: userId, movieId
+        - Candidate key: userId, movieId
+        - Primary key: [userId , movieId]
+        - Not NULL: userId, movieId, addedAt
 
-  - iv. Account
-    - This table stores the user’s account information When a new user creates an account, their account information is stored here This keeps track of the number of users using the Bulls Movies system.
+    - iv. Account
+        - This table stores the user’s account information When a new user creates an account, their account information is stored here This keeps track of the number of users using the Bulls Movies system.
 
-    - Account(id: STRING, userId: STRING, type: STRING provider: STRING, providerAccountId: STRING, refresh_token: STRING access_token: STRING, expires_at: INTEGER, token_type: STRING,scope: STRING, id_token: STRING, session_state: STRING)
+        - Account(id: STRING, userId: STRING, type: STRING provider: STRING, providerAccountId: STRING, refresh_token: STRING access_token: STRING, expires_at: INTEGER, token_type: STRING,scope: STRING, id_token: STRING, session_state: STRING)
 
-    - Foreign keys: userId
-    - Candidate key: id, userId, [provider, providerAccountId]
-    - Primary key: id
-    - Not NULL: id, userId, [provider, providerAccountId]
+        - Foreign keys: userId
+        - Candidate key: id, userId, [provider, providerAccountId]
+        - Primary key: id
+        - Not NULL: id, userId, [provider, providerAccountId]
 
-  - v. Session
-    - This table stores each session that the user accesses Bulls Movies. Each session is associated with a userId and the time in which the session token will expire.
+    - v. Session
+        - This table stores each session that the user accesses Bulls Movies. Each session is associated with a userId and the time in which the session token will expire.
 
-    - Session(id: STRING, sessionToken: STRING, userId: STRING, expires: DATETIME)
+        - Session(id: STRING, sessionToken: STRING, userId: STRING, expires: DATETIME)
 
-    - Foreign keys: userId 
-    - Candidate key: id, sessionToken 
-    - Primary key: id 
-    - Not NULL: id, sessionToken, userId, expires
+        - Foreign keys: userId
+        - Candidate key: id, sessionToken
+        - Primary key: id
+        - Not NULL: id, sessionToken, userId, expires
 
-  - vi. User
-    - This table stores the user’s account, session likes, and watchlist information. userId is used as a foreign key to associate the user with additional attributes in other tables.
+    - vi. User
+        - This table stores the user’s account, session likes, and watchlist information. userId is used as a foreign key to associate the user with additional attributes in other tables.
 
-    - User(id: STRING, name: STRING, email: STRING. emailVerified: DATETIME, image: STRING, accounts: ACCOUNT[], sessions: SESSION[], UserLikes: USERLIKES[],MovieWatchlist: MOVIEWATCHLIST[])
+        - User(id: STRING, name: STRING, email: STRING. emailVerified: DATETIME, image: STRING, accounts: ACCOUNT[], sessions: SESSION[], UserLikes: USERLIKES[],MovieWatchlist: MOVIEWATCHLIST[])
 
-    - Foreign keys: accounts, sessions, UserLikes, MovieWatchlist
-    - Candidate key: id, email
-    - Primary key: id 
-    - Not NULL: id, email, accounts, sessions, UserLikes, MovieWatchlist
+        - Foreign keys: accounts, sessions, UserLikes, MovieWatchlist
+        - Candidate key: id, email
+        - Primary key: id
+        - Not NULL: id, email, accounts, sessions, UserLikes, MovieWatchlist
 
-  - vii. VerificationToken
-    - This table holds the token-based authentication for the user to verify their identity. When accessing their account, they receive a unique token that gives them access and expires after a certain amount of time.
+    - vii. VerificationToken
+        - This table holds the token-based authentication for the user to verify their identity. When accessing their account, they receive a unique token that gives them access and expires after a certain amount of time.
 
-    - VerificationToken(identifier: STRING, token: STRING, expires: DATETIME)
+        - VerificationToken(identifier: STRING, token: STRING, expires: DATETIME)
 
-    - Foreign keys: none
-    - Candidate key: identifier, token
-    - Primary key: [identifier, token]
-    - Not NULL: identifier, token, expires
+        - Foreign keys: none
+        - Candidate key: identifier, token
+        - Primary key: [identifier, token]
+        - Not NULL: identifier, token, expires
+
 - c. Queries
-  - i. User Sign-In
-    - When the user clicks the login button, the database is called, and a new user is added to the Account table. While in the database, the user information is either created or collected and a session token is created that will give the user access for the duration of the token’s life span.
+    - i. User Sign-In
+        - When the user clicks the login button, the database is called, and a new user is added to the Account table. While in the database, the user information is either created or collected and a session token is created that will give the user access for the duration of the token’s life span.
 
-    <Image 
-      title="code snippet 1"
-      link="/img/post-images/project-images/bulls-movies/code-snippet-1.webp"
+        <Image
+            title="code snippet 1"
+            link="/img/post-images/project-images/bulls-movies/code-snippet-1.webp"
+        />
+
+    - ii. Recently Added
+        - First, the authenticity of the user is checked. If the user is not logged in, they are redirected to the login page. Else, an async call is made to the database. Lastly, the top twelve new movies are called from the database and returned to the Newest page.
+
+        <Image
+            title="code snippet 2"
+            link="/img/post-images/project-images/bulls-movies/code-snippet-2.webp"
+        />
+
+    - iii. Search
+        - The user fills out the search criteria based on four categories: The movie’s title (case sensitive), the year the movie was released, the genre of the movie, and the rating of the movie. The results are ordered by title in alphabetical order. A count of the total movies that match the criteria is collected and returned as well.
+
+        <Image
+            title="code snippet 3"
+            link="/img/post-images/project-images/bulls-movies/code-snippet-3.webp"
+        />
+
+    - iv. Watchlist
+        - When the user accesses the watchlist page, user authenticity is first checked before prompting the query. If not, user is redirected to login page. Else, user email is used to go to Watchlist table and retrieve all the movies associated with user email.
+
+    <Image
+        title="code snippet 4"
+        link="/img/post-images/project-images/bulls-movies/code-snippet-4.webp"
     />
+    - v. Favorites
+        - When the user accesses the favorites page, user authenticity is first checked before prompting the query. If not, the user is redirected to the login page. Else, the user email is used to return all the movies associated with the user within the UserLikes table.
 
-  - ii. Recently Added
-    - First, the authenticity of the user is checked. If the user is not logged in, they are redirected to the login page. Else, an async call is made to the database. Lastly, the top twelve new movies are called from the database and returned to the Newest page.
+        <Image
+            title="code snippet 5"
+            link="/img/post-images/project-images/bulls-movies/code-snippet-5.webp"
+        />
 
-    <Image 
-      title="code snippet 2"
-      link="/img/post-images/project-images/bulls-movies/code-snippet-2.webp"
-    />
+    - vi. Add to Watchlist/Favorites
+        - A user clicks the ‘+’ on the movie card to add to Watchlist and the heart icon to add to Favorites. The specific card’s movieId as well as the user's email is passed to an API call that is sent to the MovieWatchlist table or the Favorites table. A record is created with the movieId and userId and is added to the Watchlist Favorites.
 
-  - iii. Search 
-    - The user fills out the search criteria based on four categories: The movie’s title (case sensitive), the year the movie was released, the genre of the movie, and the rating of the movie. The results are ordered by title in alphabetical order. A count of the total movies that match the criteria is collected and returned as well.
+        <Image
+            title="code snippet 6"
+            link="/img/post-images/project-images/bulls-movies/code-snippet-6.webp"
+        />
 
-    <Image 
-      title="code snippet 3"
-      link="/img/post-images/project-images/bulls-movies/code-snippet-3.webp"
-    />
+    - vii. Remove from Watchlist/Favorites
+        - A movie is present in the user’s Watchlist and/or user’s Favorites. The user clicks “-” or the heart icon on the movie card which triggers an API call passing the user’s email and the specific movieId for that card. The user’s email is queried in the User table to find the userId which is then used with the MovieWatchlist or Favorites table to find the matching record. The matching record is then removed from the table.
 
-  - iv. Watchlist
-    - When the user accesses the watchlist page, user authenticity is first checked before prompting the query. If not, user is redirected to login page. Else, user email is used to go to Watchlist table and retrieve all the movies associated with user email.
+        <Image
+            title="code snippet 7"
+            link="/img/post-images/project-images/bulls-movies/code-snippet-7.webp"
+        />
 
-   <Image 
-      title="code snippet 4"
-      link="/img/post-images/project-images/bulls-movies/code-snippet-4.webp"
-    /> 
+    - viii. Learn More
+        - If the user is not signed in, they are redirected to login page. Otherwise, the movieId that passed to the URL is found in the database and returns information pertaining to the movie. This includes title, genre, overview, director, runtime, IMDB rating, movie’s stars, and release year.
 
-  - v. Favorites
-    - When the user accesses the favorites page, user authenticity is first checked before prompting the query. If not, the user is redirected to the login page. Else, the user email is used to return all the movies associated with the user within the UserLikes table.
-
-    <Image 
-      title="code snippet 5"
-      link="/img/post-images/project-images/bulls-movies/code-snippet-5.webp"
-    />  
-  
-  - vi. Add to Watchlist/Favorites
-    - A user clicks the ‘+’ on the movie card to add to Watchlist and the heart icon to add to Favorites. The specific card’s movieId as well as the user's email is passed to an API call that is sent to the MovieWatchlist table or the Favorites table. A record is created with the movieId and userId and is added to the Watchlist Favorites.
-
-    <Image 
-      title="code snippet 6"
-      link="/img/post-images/project-images/bulls-movies/code-snippet-6.webp"
-    />   
-
-  - vii. Remove from Watchlist/Favorites
-    - A movie is present in the user’s Watchlist and/or user’s Favorites. The user clicks “-” or the heart icon on the movie card which triggers an API call passing the user’s email and the specific movieId for that card. The user’s email is queried in the User table to find the userId which is then used with the MovieWatchlist or Favorites table to find the matching record. The matching record is then removed from the table.
-
-    <Image 
-      title="code snippet 7"
-      link="/img/post-images/project-images/bulls-movies/code-snippet-7.webp"
-    />      
-
-  - viii. Learn More
-    - If the user is not signed in, they are redirected to login page. Otherwise, the movieId that passed to the URL is found in the database and returns information pertaining to the movie. This includes title, genre, overview, director, runtime, IMDB rating, movie’s stars, and release year.
-
-    <Image 
-      title="code snippet 8"
-      link="/img/post-images/project-images/bulls-movies/code-snippet-8.webp"
-    /> 
+        <Image
+            title="code snippet 8"
+            link="/img/post-images/project-images/bulls-movies/code-snippet-8.webp"
+        />
 
 ## Summary
 
-This project brought together a lot of skills from frontend design, user authentication, different APIs, and working with a database on the backend for example. Most importantly I got a lot experience working with SQL and incorporating the backend consisting of a database with a large amount of data. 
+This project brought together a lot of skills from frontend design, user authentication, different APIs, and working with a database on the backend for example. Most importantly I got a lot experience working with SQL and incorporating the backend consisting of a database with a large amount of data.
 
-Bringing all of these skills together shows me that everything I am learning is related in some form or another. 
+Bringing all of these skills together shows me that everything I am learning is related in some form or another.

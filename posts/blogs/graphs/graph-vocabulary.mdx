@@ -1,6 +1,6 @@
 ---
 author: Chris Ragland
-date: 08-03-2023
+date: "08-03-2023"
 image: https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG1hcHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60
 link: blogs/graph-vocabulary
 postCategory: Graphs
@@ -10,7 +10,7 @@ title: Graph Vocabulary
 
 In this article, we are going to define important words used to describe graphs.
 
-When we want to move through out a graph we do so by traveling from one vertex, across an edge, to another vertex. 
+When we want to move through out a graph we do so by traveling from one vertex, across an edge, to another vertex.
 
 There are six basic terms we should feel comfortable with before moving forward.
 
@@ -25,9 +25,9 @@ Let's begin.
 
 ## 1. Walk
 
-A walk is a finite (there is an ending vertex) sequence of neighboring vertices and edges from some start vertex to some end vertex. 
+A walk is a finite (there is an ending vertex) sequence of neighboring vertices and edges from some start vertex to some end vertex.
 
-To simplify this, a walk is simple saying; we start at vertex $v_{0}$ and travel along some neighboring edges and vertices until we make it to $v_{n}$, our target vertex. 
+To simplify this, a walk is simple saying; we start at vertex $v_{0}$ and travel along some neighboring edges and vertices until we make it to $v_{n}$, our target vertex.
 
 It does not matter what path we take, if we go in circular loops, stop at the same vertex several times or go straight to the vertex, it is considered a walk.
 
@@ -42,12 +42,12 @@ v_{0}, v_{1}, v_{4}, v_{2}, v_{1}, v_{0}, v_{2}, v_{3}, v_{5}, v_{7}, v_{6}
 $$
 
 <Image
-  title="example of a walk"
-  link="/img/post-images/blog-images/graphs/walk-example.svg"
-  description="Example of a walk on a undirected graph"
+    title="example of a walk"
+    link="/img/post-images/blog-images/graphs/walk-example.svg"
+    description="Example of a walk on a undirected graph"
 />
 
-If we walk through this sequence (see what I did there?) we see that we make some redundant choices. In other words, we take a very inefficient set of steps to get to our final vertex. 
+If we walk through this sequence (see what I did there?) we see that we make some redundant choices. In other words, we take a very inefficient set of steps to get to our final vertex.
 
 This is true, however, this stresses that a walk is a very broad term. As we proceed, we define new terms that allow us to set specific rules our walk must follow.
 
@@ -62,18 +62,18 @@ A trail is still a walk, but it specifically tells us that we should not travers
 We have traversed one less edge, awesome. Our new traversal looks like the following,
 
 $$
-v_{0}, v_{2}, v_{4}, v_{1}, v_{2}, v_{3}, v_{5}, v_{7}, v_{6} 
+v_{0}, v_{2}, v_{4}, v_{1}, v_{2}, v_{3}, v_{5}, v_{7}, v_{6}
 $$
 
 <Image
-  title="example of a trail"
-  link="/img/post-images/blog-images/graphs/trail-example.svg"
-  description="Example of a trail on a undirected graph"
+    title="example of a trail"
+    link="/img/post-images/blog-images/graphs/trail-example.svg"
+    description="Example of a trail on a undirected graph"
 />
 
 This is great but we still hit $v_{2}$ twice and we know that we can do better. So what is next?
 
-Next lets add to our trail term. Trails tell us we cannot repeat edges, what about not repeating vertices? 
+Next lets add to our trail term. Trails tell us we cannot repeat edges, what about not repeating vertices?
 
 Introducing paths.
 
@@ -81,18 +81,18 @@ Introducing paths.
 
 A path is a walk that does not have any repeated edges or repeated vertices.
 
-We can also say that a path is a trail without repeated vertices. 
+We can also say that a path is a trail without repeated vertices.
 
-So again starting at v_{0} we get the following sequence.
+So again starting at v\_{0} we get the following sequence.
 
 $$
-v_{0}, v_{2}, v_{3}, v_{5}, v_{6} 
+v_{0}, v_{2}, v_{3}, v_{5}, v_{6}
 $$
 
 <Image
-  title="example of a path"
-  link="/img/post-images/blog-images/graphs/path-example.svg"
-  description="Example of a path on a undirected graph"
+    title="example of a path"
+    link="/img/post-images/blog-images/graphs/path-example.svg"
+    description="Example of a path on a undirected graph"
 />
 
 Now the path we take looks pretty dang good to me. No repeated edges (trail) and now no repeated edges (path). Life is good and we reduced the amount of steps necessary drastically.
@@ -105,18 +105,18 @@ Our first term is the circular walk.
 
 A closed walk is a walk that starts and ends at the same vertex.
 
-Same as before, a closed walk is a very loose rule. We can repeat edges and vertices as long as we end at the same vertex that we started at. 
+Same as before, a closed walk is a very loose rule. We can repeat edges and vertices as long as we end at the same vertex that we started at.
 
 Lets look at a simple example.
 
 $$
-v_{0}, v_{2}, v_{4}, v_{1}, v_{2}, v_{0} 
+v_{0}, v_{2}, v_{4}, v_{1}, v_{2}, v_{0}
 $$
 
 <Image
-  title="example of a closed walk"
-  link="/img/post-images/blog-images/graphs/closed-walk-example.svg"
-  description="Example of a closed walk on a undirected graph"
+    title="example of a closed walk"
+    link="/img/post-images/blog-images/graphs/closed-walk-example.svg"
+    description="Example of a closed walk on a undirected graph"
 />
 
 Yes this works, but notice that we repeat the Edge($v_{0}$, $v_{2}$) twice and we also visit $v_{2}$ twice. Can we do better?
@@ -125,29 +125,29 @@ Let's start by removing the repeated edge.
 
 ## 5. Circuit
 
-A circuit is a closed walk that has at least one edge and no repeated edges. Exactly the same concept as a trail to a walk.  
+A circuit is a closed walk that has at least one edge and no repeated edges. Exactly the same concept as a trail to a walk.
 
 Now our traversal should go like this.
 
 $$
-v_{0}, v_{2}, v_{4}, v_{1}, v_{2}, v_{3}, v_{0} 
+v_{0}, v_{2}, v_{4}, v_{1}, v_{2}, v_{3}, v_{0}
 $$
 
 <Image
-  title="example of a circuit"
-  link="/img/post-images/blog-images/graphs/circuit-example.svg"
-  description="Example of a circuit on a undirected graph"
+    title="example of a circuit"
+    link="/img/post-images/blog-images/graphs/circuit-example.svg"
+    description="Example of a circuit on a undirected graph"
 />
 
 While this graph does not have a repeated edge it did not improve the number of steps required. However, it does stress the difference between a closed walk and a circuit. NO REPEATED EDGES.
 
-Finally, let's remove the repeated vertex. 
+Finally, let's remove the repeated vertex.
 
 ## 6. Simple Circuit
 
 A simple circuit is a closed walk that does not contain any repeated edges or vertices.
 
-The only vertex that may be visited twice is the first and last. 
+The only vertex that may be visited twice is the first and last.
 
 Our final graph traversal looks like the following,
 
@@ -156,21 +156,17 @@ v_{0}, v_{2}, v_{4}, v_{1}, v_{0}
 $$
 
 <Image
-  title="example of a simple circuit"
-  link="/img/post-images/blog-images/graphs/simple-circuit-example.svg"
-  description="Example of a simple circuit on a undirected graph"
+    title="example of a simple circuit"
+    link="/img/post-images/blog-images/graphs/simple-circuit-example.svg"
+    description="Example of a simple circuit on a undirected graph"
 />
 
-Remember, these are just examples to demonstrate the terms. We could have definitely done somethings better. All that matters is we understand the important terminology. 
+Remember, these are just examples to demonstrate the terms. We could have definitely done somethings better. All that matters is we understand the important terminology.
 
 ## Summary
 
-In summary, we discussed 6 important terms used to define the traversal of graphs. 
+In summary, we discussed 6 important terms used to define the traversal of graphs.
 
 We defined and saw examples for the following terms: Walk, Trail, Path, Closed Walk, Circuit, Simple Circuit
 
 I hope this article was helpful and until next time, happy coding!
-
-
-
-
