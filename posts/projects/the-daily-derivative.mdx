@@ -1,17 +1,17 @@
 ---
-date: 2022-05-20
+date: "2022-05-20"
 groupMembers: Chris Ragland
 image: /img/post-images/project-images/daily-derivative/daily-derivative-landing-page.webp
 link: /projects/the-daily-derivative
 projectType: Web Development
-title: The Daily Derivative 
+title: The Daily Derivative
 ---
 
 ## Introduction
 
 The inspiration for this project came from working with nurses who LOVED to play the popular word guessing game, "Wordle".
 
-While I thought the game was interesting, being more of a math person myself I asked, "What if there were a calculus version of the game for us math enthusiasts?" This single idea would spark the creation and development of the game. 
+While I thought the game was interesting, being more of a math person myself I asked, "What if there were a calculus version of the game for us math enthusiasts?" This single idea would spark the creation and development of the game.
 
 ## Big Idea
 
@@ -19,25 +19,25 @@ The idea behind The Daily Derivative (TDD) is simple. Similar to Wordle, users c
 
 ## Frontend
 
-The frontend design of this app is intended to be very simple. The app's frontend was built with React and CSS modules. The app is responsive to all screen sizes excluding smart-watches. 
+The frontend design of this app is intended to be very simple. The app's frontend was built with React and CSS modules. The app is responsive to all screen sizes excluding smart-watches.
 
-Visitors of the web app are greeted with the main dashboard when they visit the root address. 
+Visitors of the web app are greeted with the main dashboard when they visit the root address.
 
 <Image
-  title="the daily derivative landing page dark mode"
-  link="/img/post-images/project-images/daily-derivative/daily-derivative-landing-page.webp"
-  description="Dashboard landing page (Dark Mode)"
+    title="the daily derivative landing page dark mode"
+    link="/img/post-images/project-images/daily-derivative/daily-derivative-landing-page.webp"
+    description="Dashboard landing page (Dark Mode)"
 />
 
 The user has the option of both light and dark modes across the entire web app.
 
 <Image
-  title="the daily derivative landing page light mode"
-  link="/img/post-images/project-images/daily-derivative/daily-derivative-landing-page-light.webp"
-  description="Dashboard landing page (Light Mode)"
+    title="the daily derivative landing page light mode"
+    link="/img/post-images/project-images/daily-derivative/daily-derivative-landing-page-light.webp"
+    description="Dashboard landing page (Light Mode)"
 />
 
-Users are not required to create an account to attempt the daily problem. However, if the user wishes to keep track of their personal stats, at this point they would be required to create an account. 
+Users are not required to create an account to attempt the daily problem. However, if the user wishes to keep track of their personal stats, at this point they would be required to create an account.
 
 The keypad for this project was built independently using css grid and react state. All of the data visible for the problem is loaded from the backend database which will be covered more in depth next.
 
@@ -51,34 +51,34 @@ I have a page dedicated to explain how the parsing works in detail and how users
 
 You would simply input $$(a \div b)$$
 
-The moment you pass a closing parenthesis, it will convert all the related groups accordingly. 
+The moment you pass a closing parenthesis, it will convert all the related groups accordingly.
 
 Using this system, users can build very complex special expressions.
 
-Here are a few examples from the docs I wrote for the program. 
+Here are a few examples from the docs I wrote for the program.
 
 <Image
-  title="Several examples of special expressions users can build"
-  link="/img/post-images/project-images/daily-derivative/daily-derivative-special-expressions.webp"
-  description="From the 'How To Play' page"
+    title="Several examples of special expressions users can build"
+    link="/img/post-images/project-images/daily-derivative/daily-derivative-special-expressions.webp"
+    description="From the 'How To Play' page"
 />
 
 #### User Stats
 
-When the user is not registered or logged in they are greeted with the following page. 
+When the user is not registered or logged in they are greeted with the following page.
 
 <Image
-  title="user not logged in page"
-  link="/img/post-images/project-images/daily-derivative/daily-derivative-not-signed-in.webp"
-  description="(Stats Page) user not signed in and/or not registered"
+    title="user not logged in page"
+    link="/img/post-images/project-images/daily-derivative/daily-derivative-not-signed-in.webp"
+    description="(Stats Page) user not signed in and/or not registered"
 />
 
 Once they user signs in and solves several problems they see the following information.
 
 <Image
-  title="user logged in stats page"
-  link="/img/post-images/project-images/daily-derivative/daily-derivative-signed-in-stats.webp"
-  description="(Stats Page) user signed in"
+    title="user logged in stats page"
+    link="/img/post-images/project-images/daily-derivative/daily-derivative-signed-in-stats.webp"
+    description="(Stats Page) user signed in"
 />
 
 I may or may not have gone inside of the database and altered my scores.
@@ -87,11 +87,11 @@ In addition to these pages, there are a few others that contain static informati
 
 ## Backend
 
-The backend of The Daily Derivative is built with NextJS to handle to server requests and MongoDb to serve as the database backend of the application. Prior to this project I had no real database experience, I just knew at the time it was important for me to learn about them. 
+The backend of The Daily Derivative is built with NextJS to handle to server requests and MongoDb to serve as the database backend of the application. Prior to this project I had no real database experience, I just knew at the time it was important for me to learn about them.
 
-Looking back, I do wish I has taken the time to learn more SQL and possibly have implemented the backend with something like Postgres. The reason being that SQL is a more 'sought after' skill from developers then NoSQL. 
+Looking back, I do wish I has taken the time to learn more SQL and possibly have implemented the backend with something like Postgres. The reason being that SQL is a more 'sought after' skill from developers then NoSQL.
 
-I did take a class later that covered SQL and had plenty of practice with assignments and projects so I suppose everything happens for a reason. I got NoSQL experience on my own time and SQL experience at university. 
+I did take a class later that covered SQL and had plenty of practice with assignments and projects so I suppose everything happens for a reason. I got NoSQL experience on my own time and SQL experience at university.
 
 ## Summary
 
@@ -99,13 +99,12 @@ All in all, I learned A LOT from this project. Working with a backend database a
 
 ### Improvements?
 
-If I could do somethings differently for this project, it would be to allow multiple answer forms and the terms are allowed to be in any order. Also, instead of looping through the string as I do with a pointer, perhaps utilizing a stack instead. 
+If I could do somethings differently for this project, it would be to allow multiple answer forms and the terms are allowed to be in any order. Also, instead of looping through the string as I do with a pointer, perhaps utilizing a stack instead.
 
 This project took place before I had real data structure and algorithm experience and my thought process was along the lines, "if it works, it works." However, these days my thought process better aligns with, "yes it may work, but can it work better?"
 
 Yet, this is what learning and growing is all about. I am happy to look back and see how much I have learned and grown in this small time frame.
 
-#### Closing Note: 
+#### Closing Note:
+
 Recently there was a security issue found with in the mongoose package, which is a tool often used with MongoDb (one that I used). Unfortunately, when users visit the sight now, google flags the page as 'dangerous'. Given time permits, I may open the project to find and fix/remove the security issue.
-
-

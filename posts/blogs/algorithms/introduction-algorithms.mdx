@@ -4,7 +4,7 @@ title: Introduction to Algorithms
 link: /blogs/introduction-algorithms
 image: https://images.unsplash.com/photo-1598811629267-faffa0027fe4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1716&q=80
 date: 2023-7-28
-readTime: "10"
+readTime: 10
 postCategory: Algorithms
 ---
 
@@ -20,15 +20,16 @@ What do we mean by ‘general task’?
 
 Think about sorting problems. Say we have 3 numbers A, B, and C that we want to sort. In this example, the general task is sorting. The problem is how do we sort these three numbers. The three numbers are the input to our problem, it is an instance of the problem.
 
-According to Steven Skiena, author of Algorithm Design Manual 
+According to Steven Skiena, author of Algorithm Design Manual
 
->Determining that you are dealing with a general problem instead of an instance is your first step towards solving it 
+> Determining that you are dealing with a general problem instead of an instance is your first step towards solving it
 
--- Skiena, 2020  
+-- Skiena, 2020
 
 When we write algorithms they should be as general as possible. This means we want our algorithms to solve any instance of valid input for the problem we describe. Consider our 3 numbers again: A, B, and C. Let's look at a simple example of how we could sort these three numbers.
 
-#### Python3 
+#### Python3
+
 ```python
 def sort_three_numbers(a: number, b: number, c: number) -> Tuple[int, int, int]:
     smallest = min(a, b, c)
@@ -41,7 +42,7 @@ Now looking at this code, we can see this would sort our three numbers in ascend
 
 What if instead of numbers they were strings? Would we really want to write a separate algorithm for this input? What if there were more than three values to sort? We would be in trouble.
 
-I hope this clarifies why we want our algorithms to tackle the general problem. 
+I hope this clarifies why we want our algorithms to tackle the general problem.
 
 Now let's discuss the why
 
@@ -53,11 +54,11 @@ $$
 [ 2, 5, 6, 9, 13, 21 ]
 $$
 
-Our goal is to find a specific/target value. There are several ways we could do it. 
+Our goal is to find a specific/target value. There are several ways we could do it.
 
 So what is the general problem and what is the instance? Go ahead and think about it for a minute.
 
-So we know that this array is an instance of our problem. It is the specific input that will be used to determine the output 
+So we know that this array is an instance of our problem. It is the specific input that will be used to determine the output
 
 So what is the problem or general task we are trying to solve?
 
@@ -70,6 +71,7 @@ Start at the beginning and loop through until we find our value. Not bad should 
 That might look something like
 
 #### Python 3
+
 ```python
 def isValuePresent(numbers: List[int], target: int) -> bool:
 	for num in numbers:
@@ -78,11 +80,11 @@ def isValuePresent(numbers: List[int], target: int) -> bool:
 	return False
 ```
 
-This is great! But what if our array got super big? Really BIG, with millions of values 
+This is great! But what if our array got super big? Really BIG, with millions of values
 
-For some reason, finding whether this value is in our sorted array is very important and we want it to be done as quickly as possible. This is one of the major reasons we study algorithms. 
+For some reason, finding whether this value is in our sorted array is very important and we want it to be done as quickly as possible. This is one of the major reasons we study algorithms.
 
-## Efficiency 
+## Efficiency
 
 Efficient algorithms are better, because they do the same job but with fewer steps, producing the output at a faster rate.
 
@@ -107,7 +109,7 @@ def isValuePresent(numbers: List[int], target: int) -> bool:
 			return True
 		elif nums[mid] < target:
 			left = mid + 1
-		else: 
+		else:
 			right = mid - 1
 	return False
 ```
@@ -118,13 +120,14 @@ What if we are given an instance of an array with one value and that value is ou
 
 We have a problem because our algorithm returns false if the left pointer is equal to our greater than our right pointer. This brings us to the next important reason why we study algorithms.
 
-## Correctness 
+## Correctness
 
 How can we ensure that our algorithm handles edge cases and doesn't break our program in the case of bad or tricky instances?
 
 Our improved code would allow our left and right pointers to be able to be equal to each other before exiting the loop. Here is the improved and final code.
 
 #### Python3
+
 ```python
 def isValuePresent(numbers: List[int], target: int) -> bool:
 	left, right = 0, len(numbers) - 1
@@ -134,7 +137,7 @@ def isValuePresent(numbers: List[int], target: int) -> bool:
 			return True
 		elif nums[mid] < target:
 			left = mid + 1
-		else: 
+		else:
 			right = mid - 1
 	return False
 ```
@@ -145,10 +148,10 @@ Finally, we want algorithms that are easy to implement. While easy is a relative
 
 ## Summary
 
-So now that we understand that algorithms are a set of steps to solve a general problem. We also know that we study algorithms to write more efficient, correct, and easy-to-implement instructions. So how do we know how efficient our algorithms are or how correct they are? 
+So now that we understand that algorithms are a set of steps to solve a general problem. We also know that we study algorithms to write more efficient, correct, and easy-to-implement instructions. So how do we know how efficient our algorithms are or how correct they are?
 
 This is where the analysis of algorithms and the use of proofs come into play. In the next article, we will review important proof concepts.
 
-I hope this article was helpful and until next time, happy coding! 
+I hope this article was helpful and until next time, happy coding!
 
 <Youtube uid="CPOTT0mfcMk" />

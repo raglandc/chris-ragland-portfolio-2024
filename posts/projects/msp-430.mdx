@@ -1,21 +1,21 @@
 ---
-date: 2023-08-21
+date: "2023-08-21"
 groupMembers: Chris Ragland, Jacob Henson, Minh Nguyen, Polina Yefimenko
 image: /img/post-images/project-images/msp430/MSP430FR2355.webp
 link: /projects/msp-430
 projectType: Embedded Systems
-title: MSP430FR2355 Projects 
+title: MSP430FR2355 Projects
 ---
 
 ## Introduction
 
 The projects described in this article are from a hardware elective offered at my university.
 
-The class is an introduction to embedded systems. I enjoy learning about the low-level mechanics of how computers work. Even more, I enjoy building things that interact with the real world and the people that inhabit it. 
+The class is an introduction to embedded systems. I enjoy learning about the low-level mechanics of how computers work. Even more, I enjoy building things that interact with the real world and the people that inhabit it.
 
-The semester begins with us writing the projects in assembly. The first few are very simple, single file projects, and the code for them can reasonably be displayed within the article. However, at some point, moving to C in the middle of the semester the projects grow and snippets of code are provided instead of full files. To view the full source code for the project, check out my github. 
+The semester begins with us writing the projects in assembly. The first few are very simple, single file projects, and the code for them can reasonably be displayed within the article. However, at some point, moving to C in the middle of the semester the projects grow and snippets of code are provided instead of full files. To view the full source code for the project, check out my github.
 
-Going forward in the article, each project begins with a description of the problem. Which is followed by the thoughts that went into implementing the project.Next, code snippets that describe how to implement the important features for that given project. Finally, a video that demonstrate the project in action. 
+Going forward in the article, each project begins with a description of the problem. Which is followed by the thoughts that went into implementing the project.Next, code snippets that describe how to implement the important features for that given project. Finally, a video that demonstrate the project in action.
 
 ## Project 1: Assembly Language and Timer System
 
@@ -57,10 +57,11 @@ Delay:
   - Jump back to main // repeat loop forever
   - NOP // no operation
 ```
+
 #### Code
 
 ```asm showLineNumbers
-init:   
+init:
       bis.b #BIT6, &P6DIR 	  ; Set P6.6 as output
       mov.b #0, &P4DIR        ; Set P4.1 as input
       mov.b #0, &P2DIR        ; Set P2.3 as input
@@ -78,11 +79,11 @@ main:
 check_b1:
       bit.b #BIT3, &P2IN    ; Check button 1 (pull up) bit
       jz   	toggle_led      ; Jump to check again
-      
+
       bit.b #BIT1, &P4IN    ; Check button 2 (pull up) bit
       jnz check_b1          ; Jump to check again
 
-toggle_led: 
+toggle_led:
       xor.b #BIT6, &P6OUT   ; Toggle LED light on button press
 
       mov.w #0FFFFh, R4     ; Store big value into accumulator
@@ -98,15 +99,15 @@ delay:
 
 #### Project Video
 
-<Youtube uid="5RPm_tlemtA"/>
+<Youtube uid="5RPm_tlemtA" />
 
 ## Project 2: I/O and Timers (interrupts)
 
-Project 2 was definitely more involved then the previous assignment. This project was our introduction to using interrupts within embedded devices. 
+Project 2 was definitely more involved then the previous assignment. This project was our introduction to using interrupts within embedded devices.
 
 Additionally, to reduce the number of ports used, instead of displaying the tens place and the ones place, we display one at a time.
 
-We are constantly switching between which 7-segment screen we are displaying at any given time. However, it happens so fast that our human perception is not able to visibly notice the 7-segments repeatedly being turned on and off. 
+We are constantly switching between which 7-segment screen we are displaying at any given time. However, it happens so fast that our human perception is not able to visibly notice the 7-segments repeatedly being turned on and off.
 
 #### Problem Description
 
@@ -116,21 +117,21 @@ Produce an output showing the use of Digital I/O’s and TIMER_B. We need to bui
 
 Before beginning the program, we calculate the time with the following equation.
 
-- △t = T ⋅ N 
+- △t = T ⋅ N
 - T = period
-- N = count of overflows 
+- N = count of overflows
 
 The frequency of the timer ACLK=32.768kHz, which makes the period T=3.052⋅10^(-5) s
 
-- N=2^15 
+- N=2^15
 - T⋅N = 3.052⋅10^(-5)⋅2^15 = 1s
 
-Therefor we will use 2^15 as our initial value. 
+Therefor we will use 2^15 as our initial value.
 
 Now we can plan out our program with some simple english-like pseudocode.
 
 ```
-Init:		
+Init:
       Set all the direction and output pins we will use
       Ensure they are initially turned off
       Disable high impedance
@@ -140,9 +141,9 @@ Init:
         > enable interrupt and clear flag
         > enable global interrupts
       Set desired binary for the segments into memory
-      Set two pointers to point at memory and the values 
+      Set two pointers to point at memory and the values
       we put into them
-main:  
+main:
       Move the data for display one into our output ports
       Turn on display 0 and show the 10ths place
       Turn off display 0 and hide the 10ths place
@@ -164,7 +165,7 @@ ISR_TIMERB_OVERFLOW:
       Return from interrupt
 ```
 
-Now let's take a look at how we transferred out pseudocode into actual assembly instruction. 
+Now let's take a look at how we transferred out pseudocode into actual assembly instruction.
 
 ```asm showLineNumbers
 init:
@@ -176,7 +177,7 @@ init:
       bis.b #BIT2, &P6DIR 		        ; Set P6.2 as output (SEG - E)
       bis.b #BIT3, &P6DIR 		        ; Set P6.3 as output (SEG - F)
       bis.b #BIT4, &P6DIR 		        ; Set P6.4 as output (SEG - G)
-  
+
       bis.b #BIT0, &P3DIR 		        ; Set P3.0 as output (toggle LED0 10ths place)
       bis.b #BIT2, &P3DIR 		        ; Set P3.2 as output (toggle LED1 1s place)
 
@@ -210,7 +211,7 @@ init:
       mov.w #2000h, R5                ; R5 pointing at first position in array (1's place)
 
 ;-- Main loop that will repeat forever
-main: 	
+main:
       bic.w #0FFFFh, R6            ; R6 will be used as a mask register so we clear it
       mov.b @R4, R6                ; Move the binary data at the address in R4 into register R6
       and.b #00000011b, R6         ; Clear every bit except the first two
@@ -256,7 +257,7 @@ ISR_TIMER0_B3_OVERFLOW:
       incd R4                       ; R5 carry into R4 increment by 1
       jmp end_else_one              ; Branch to the instruction after the first else
 
-else_one: 
+else_one:
       incd R5                       ; Increment the address in R5 by 2 (memory is in even blocks)
 
 end_else_one:
@@ -273,10 +274,14 @@ else_two:
 
 #### Wiring Diagram
 
-<Image title="Project 2 wiring diagram" link="/img/post-images/project-images/msp430/project-2-wiring-diagram.webp" />
+<Image
+    title="Project 2 wiring diagram"
+    link="/img/post-images/project-images/msp430/project-2-wiring-diagram.webp"
+/>
 
-#### Project 2 Video 
-<Youtube uid="QMCDpsu_j7I"/>
+#### Project 2 Video
+
+<Youtube uid="QMCDpsu_j7I" />
 
 ## Project 3: Using The ADC (Analog Digital Converter)
 
@@ -286,18 +291,18 @@ Using the ADC System, produce a blinking output in one external LED on a bread b
 
 #### Pseudocode
 
-At this point in the course, I was feeling a lot more comfortable with thinking in assembly that my pseudocode could almost be directly transferred to assembly language. 
+At this point in the course, I was feeling a lot more comfortable with thinking in assembly that my pseudocode could almost be directly transferred to assembly language.
 
 ```
 init:	clear R4				//will hold ADC result
 		clear any values in P4OUT
 		set P4 to be output
-		
+
 		change the function purpose
 		in register P5 to be analog
-		
+
 		disable low power mode
-		
+
 		/* set up timer B */
 		Clear timer b and its dividers
 		Set initial value to 2^15 in TB0CCR0
@@ -310,15 +315,15 @@ init:	clear R4				//will hold ADC result
 		Clear initial sample hold time
 		Set sample hold time to 16 cycles
 		Turn on ADC
-		Set signal source from timer 
+		Set signal source from timer
 		Select SMCLK and single channel
 		Clear initial 10-bit resolution
 		Set resolution to 12 bits
 		Set reference and input channel source
 		Enable interrupt for ADC conversion completion
-		
+
 		Enable global interrupt
-		 
+
 		Enable conversion and start conversion
 
 Main: 	loop to main forever waiting for interrupts
@@ -366,11 +371,11 @@ init: CLR.w R4                      ; R4 will hold ADC result, clear
 ; --- configure ADC
 
       bic.b #ADCSHT, &ADCCTL0       ; clear initial sample hold time
-      mov.w #0210h, &ADCCTL0        ; set sample hold time to 16- 
+      mov.w #0210h, &ADCCTL0        ; set sample hold time to 16-
                                     ; cycles and turn on ADC
 
-      mov.w #0218h, &ADCCTL1        ; set signal source from timer 
-                                    ; select SMCLK and single  
+      mov.w #0218h, &ADCCTL1        ; set signal source from timer
+                                    ; select SMCLK and single
                                     ; channel
 
       bic.b #ADCRES, &ADCCTL2       ; clear initial 10-bit resolution
@@ -390,7 +395,7 @@ init: CLR.w R4                      ; R4 will hold ADC result, clear
 main: jmp main                      ; loop to main waiting for interrupt
 ```
 
-The main program is very simple, it sits in the main loop after the initial setup and waits for interrupts to happen. The entire application rests on the interrupts and what they do when called. 
+The main program is very simple, it sits in the main loop after the initial setup and waits for interrupts to happen. The entire application rests on the interrupts and what they do when called.
 
 Below are the interrupt functions for this program.
 
@@ -398,9 +403,9 @@ Below are the interrupt functions for this program.
 ISR_conversion:
       mov.w ADCMEM0, R4       ; move data in ADC memory to
                               ; R4
-      rlc.w R4                ; multiply by two. Slow down 
+      rlc.w R4                ; multiply by two. Slow down
                               ; frequency
-      rlc.w R4                ; multiply by two. Slow down 
+      rlc.w R4                ; multiply by two. Slow down
                               ; frequency
       mov.w R4, &TB0CCR0      ; put the output of ADC into
                               ; TB0CCR0
@@ -411,32 +416,32 @@ ISR_conversion:
 ISR_timerB:
       xor.b #BIT0,  &P4OUT    ; toggle led on breadboard
       bic.w #TBIFG, &TB0CTL   ; clear interrupt flag
-      reti                    ; restore stack pointer and status 
+      reti                    ; restore stack pointer and status
                               ; register
 ```
 
 #### Wiring Diagram
 
 <Image
-      title="project 3 wiring diagram"
-      link="/img/post-images/project-images/msp430/project-3-wiring-diagram.webp"
+    title="project 3 wiring diagram"
+    link="/img/post-images/project-images/msp430/project-3-wiring-diagram.webp"
 />
 
 #### Project 3 Video
 
-<Youtube uid="PywXpfdJczw"/>
+<Youtube uid="PywXpfdJczw" />
 
 ## Project 4: Using 4x4 Matrix Keypad, I2C (Inter-Integrated Circuit) LCD, & PWM
 
 #### Problem Description
-Using the 4x4 matrix keypad, LCD screen, brush motor, and the MSP430FR2355 micro-controller, the task at hand is to control the pulse-width-modulation (PWM) via user input. The user must be able to enter a number into the keypad, pressing enter and causing the number to display on the LCD screen. The MCU communicates to the LCD screen with the on-board I2C communication module. This number is then used to set the duty-cycle of the motor. 
+
+Using the 4x4 matrix keypad, LCD screen, brush motor, and the MSP430FR2355 micro-controller, the task at hand is to control the pulse-width-modulation (PWM) via user input. The user must be able to enter a number into the keypad, pressing enter and causing the number to display on the LCD screen. The MCU communicates to the LCD screen with the on-board I2C communication module. This number is then used to set the duty-cycle of the motor.
 
 #### Pseudocode
 
 At this point in the class, we have finally switched over to learning embedded C. Assembly is great but C is just so fun and natural in the way we write programs.
 
-Due to the project including several header files and source files I will only post the main file and the keypad file that describes the program for the most part. This goes for the Pseudocode and the actual code. 
-
+Due to the project including several header files and source files I will only post the main file and the keypad file that describes the program for the most part. This goes for the Pseudocode and the actual code.
 
 #### Main
 
@@ -517,7 +522,7 @@ These two files perform most of the work. Setting up the project and handling th
 ```c
 /* main.c */
 
-#include <msp430.h> 
+#include <msp430.h>
 #include "./src/lcd/LiquidCrystal_I2C.h"
 #include "./src/keypad/keypad.h"
 #include "./src/timer/timer.h"
@@ -712,25 +717,27 @@ __interrupt void ISR_KEYPRESS(void)
     P1IFG = 0x00;    //lower flags
 }
 ```
+
 The keypad is a pretty hefty file as it requires a lot of setup. The program itself for detecting which key is pressed is a tad bit more complicated as we use a technique that allows us to reduce from 16 wires (1 for each key) down to 8 wires (4 for the rows and 4 for the columns).
 
-For a more detailed explanation of the code, watch the video for the project where I explain what is happening. 
+For a more detailed explanation of the code, watch the video for the project where I explain what is happening.
 
 #### Wiring Diagram
 
-<Image 
-      title="project 4 wiring diagram"
-      link="/img/post-images/project-images/msp430/project-4-wiring-diagram.webp"
+<Image
+    title="project 4 wiring diagram"
+    link="/img/post-images/project-images/msp430/project-4-wiring-diagram.webp"
 />
 
 #### Project 4 Video
 
-<Youtube uid="699INBJbN9g"/>
+<Youtube uid="699INBJbN9g" />
 
-## Final Project: Bluetooth with UART, I2C (Inter-Integrated Circuit) LCD, & PWM 
+## Final Project: Bluetooth with UART, I2C (Inter-Integrated Circuit) LCD, & PWM
 
 #### Problem Description
-Using the H10 Bluetooth module, LCD screen, brush motor, and the MSP430FR2355 micro-controller, the task at hand is to control the pulse-width-modulation (PWM) via user input. The user must be able to connect to the bluetooth module and via mobile application, input a numerical value, and send that value through microwave frequencies to the H10 Bluetooth device. When the user presses submit in the application, the values are transferred via UART to the MSP430FR2355 on-board UART receiver pin. The MCU communicates this value to the LCD screen with the on-board I2C communication module. This number should then be used to set the duty-cycle of the motor. 
+
+Using the H10 Bluetooth module, LCD screen, brush motor, and the MSP430FR2355 micro-controller, the task at hand is to control the pulse-width-modulation (PWM) via user input. The user must be able to connect to the bluetooth module and via mobile application, input a numerical value, and send that value through microwave frequencies to the H10 Bluetooth device. When the user presses submit in the application, the values are transferred via UART to the MSP430FR2355 on-board UART receiver pin. The MCU communicates this value to the LCD screen with the on-board I2C communication module. This number should then be used to set the duty-cycle of the motor.
 
 #### Pseudocode
 
@@ -769,17 +776,18 @@ While(1)
       Else:
 	      Disable interrupt for CCR0 so motor does not turn off
       No matter the value entered set LCD to 100%
-      Reset variables (entered_value, is_complete, digit_count) 
+      Reset variables (entered_value, is_complete, digit_count)
       to 0 for a new value to be entered by the user.
 }
 ```
+
 #### Code
 
 Let's now look at the code that made the magic happen.
 
 ```c
 /* main.c */
-#include <msp430.h> 
+#include <msp430.h>
 #include "./src/lcd/LiquidCrystal_I2C.h"
 #include "./src/timer/timer.h"
 #include "./src/bluetooth/bluetooth.h"
@@ -787,7 +795,7 @@ Let's now look at the code that made the magic happen.
 int main(void)
 {
 	WDTCTL = WDTPW | WDTHOLD;	  // stop watch dog timer
-	
+
 	/* initial setup */
 	timer_b0_setup();
 	timer_b1_setup();
@@ -983,10 +991,12 @@ __interrupt void ISR_A0_RX(void)
 ```
 
 #### Wiring Diagram
+
 <Image
-      title="Final project wiring diagram"
-      link="/img/post-images/project-images/msp430/final-project-wiring-diagram.webp"
+    title="Final project wiring diagram"
+    link="/img/post-images/project-images/msp430/final-project-wiring-diagram.webp"
 />
 
 #### Final Project Video
-<Youtube uid="y6dtZ_NQ2UE"/>
+
+<Youtube uid="y6dtZ_NQ2UE" />
