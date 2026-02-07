@@ -30,15 +30,9 @@ export default async function ProjectPage({
 
     const raw = fs.readFileSync(file, "utf8");
     const { data, content } = matter(raw);
-
     const mdx = await renderMdx(content, mdxComponents);
 
-    const title = String(data.title ?? "");
-    const date = String(data.date ?? "");
-    const projectType = data.projectType ? String(data.projectType) : "";
-    const groupMembers = data.groupMembers ? String(data.groupMembers) : "";
-
-    if (!title || !date) {
+    if (!data.title || !data.date) {
         notFound();
     }
 
@@ -46,19 +40,19 @@ export default async function ProjectPage({
         <main className="max-w-7xl pt-8 mx-auto px-4 md:px-6 md:pt-14">
             <PageProgressBar />
             <article className="prose dark:prose-invert mx-auto pb-8 md:pb-16 lg:pb-32">
-                <h1 className="text-3xl md:text-4xl mt-0">{title}</h1>
+                <h1 className="text-3xl md:text-4xl mt-0">{data.title}</h1>
                 <div>
                     <p className="m-0">
                         <span className="font-semibold">Project Type: </span>
-                        {projectType}
+                        {data.projectType}
                     </p>
                     <p className="m-0">
                         <span className="font-semibold">Project Members: </span>
-                        {groupMembers}
+                        {data.groupMembers}
                     </p>
-                    <p className="block">
+                    <p className="m-0">
                         <span className="font-semibold">Published: </span>
-                        {date}
+                        {data.date}
                     </p>
                 </div>
                 <TableOfContents />

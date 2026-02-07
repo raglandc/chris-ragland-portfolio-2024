@@ -86,7 +86,6 @@ export function getAllProjects(): ProjectMeta[] {
 }
 
 export function findBlogFileBySlug(slug: string): string | null {
-    // Your slug is unique across categories; find it
     const files = walkMdxFiles(BLOGS_DIR);
     for (const f of files) {
         if (path.basename(f).replace(/\.mdx$/, "") === slug) return f;
