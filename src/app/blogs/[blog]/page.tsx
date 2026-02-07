@@ -36,13 +36,10 @@ export default async function Blog({ params }: { params: { blog: string } }) {
                         <span className="font-semibold">Author: </span>
                         {data.author}
                     </p>
-                    <time
-                        dateTime={String(data.date)}
-                        className="block"
-                    >
+                    <p className="m-0">
                         <span className="font-semibold">Published: </span>
                         {data.date}
-                    </time>
+                    </p>
                 </div>
                 <TableOfContents />
                 {data.image && (

@@ -20,7 +20,7 @@ export default function BlogsPage() {
                             <span className="text-sm font-semibold text-sky-400 lg:text-base">
                                 New Blogs
                             </span>
-                            <h2 className="mt-4 max-w-3xl text-xl font-semibold md:text-2xl lg:mt-5">
+                            <h2 className="mt-1 max-w-3xl text-xl font-semibold md:text-2xl lg:mt-2">
                                 Newest
                             </h2>
                             <p className="mt-1 block text-custom-textSecondary lg:text-lg">
