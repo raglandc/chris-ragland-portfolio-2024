@@ -8,7 +8,6 @@ import {
     SiPython,
     SiDocker,
     SiTensorflow,
-    SiRust,
 } from "react-icons/si";
 import { BiLogoSpringBoot } from "react-icons/bi";
 import { FaGit, FaJava, FaRust } from "react-icons/fa";
