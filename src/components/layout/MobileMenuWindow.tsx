@@ -15,8 +15,8 @@ type MenuWindowProps = {
 
 export default function MobileMenuWindow({ closeHandler }: MenuWindowProps) {
   const [mounted, setMounted] = useState(false);
-  const {theme, setTheme} = useTheme();
-  const nextTheme = (theme == "dark") ? "light" : "dark";
+  const { resolvedTheme, setTheme } = useTheme();
+  const nextTheme = resolvedTheme === "dark" ? "light" : "dark";
 
     // useEffect only runs on the client, so now we can safely show the UI
 
@@ -71,8 +71,8 @@ export default function MobileMenuWindow({ closeHandler }: MenuWindowProps) {
             icon={<BsBookFill/>}
           />
           <div className='flex text-white w-full items-center justify-between bg-gray-500 rounded-md p-4' onClick={() => setTheme(nextTheme)}>
-            {theme == "dark" ? (<BsFillSunFill size={18} />) : (<BsMoonStarsFill size={18} />)}
-            {theme == "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            {resolvedTheme === "dark" ? (<BsFillSunFill size={18} />) : (<BsMoonStarsFill size={18} />)}
+            {resolvedTheme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
           </div>
         </ul>
       </motion.div>

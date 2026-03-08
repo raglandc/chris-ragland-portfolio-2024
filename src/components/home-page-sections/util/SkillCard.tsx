@@ -19,9 +19,9 @@ export default function SkillCard({ title, logo }: SkillCardProps) {
         transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
       }}
     >
-      <div className='flex flex-col items-center justify-center px-4 py-5 text-center'>
-        <h1 className='mb-3'>{title}</h1>
-        <span className='text-2xl'>{logo}</span>
+      <div className='flex flex-col items-center justify-center px-4 py-5 text-center rounded-lg border border-gray-200 dark:border-gray-700/50 hover:border-custom-colorPrimary/50 transition-colors duration-200'>
+        <span className='text-2xl mb-3'>{logo}</span>
+        <p className='text-sm font-medium'>{title}</p>
       </div>
     </span>
   )

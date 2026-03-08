@@ -25,7 +25,7 @@ export default function ProjectCardsSection() {
         >
             Projects Galore
         </h1>
-        <div className='my-7 justify-center flex flex-col md:grid md:grid-cols-3 md:gap-3'>
+        <div className='my-7 justify-center flex flex-col gap-4 md:grid md:grid-cols-3 md:gap-3'>
           {workArrayIndexPage.map((item: any, index: number) => (
             <ProjectCardIndex
               key={index}

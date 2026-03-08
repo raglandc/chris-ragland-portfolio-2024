@@ -22,27 +22,26 @@ export default function Home() {
                 ref={ref}
                 className="flex flex-col relative pb-8 bg-custom-background -z-10"
             >
-                {/* trying to get video background banner playing */}
                 <motion.div
                     style={{ y, opacity }}
-                    className="absolute -top-14 bg-custom-background -z-10 inset-0"
+                    className="absolute -top-14 bg-custom-background -z-10 inset-0 will-change-transform"
                 >
                     <div className="absolute inset-x-0 top-0 max-w-[1280px] h-full overflow-hidden lg:bottom-auto lg:right-0 lg:left-auto lg:w-[80%]">
                         <video
                             muted
                             loop
                             autoPlay
+                            playsInline
                             className="hidden md:block w-full md:aspect-video object-cover object-center absolute opacity-80"
                         >
                             <source
                                 src="/img/landing-page-video.webm"
-                                type="video/mp4"
+                                type="video/webm"
                             />
                         </video>
 
                         <div className='md:hidden w-full aspect-square bg-[url("/img/banner.webp")] bg-contain bg-no-repeat bg-center' />
 
-                        <div className="absolute -inset-px to-custom-background opacity-50" />
                         <div className="absolute -inset-px hidden lg:block bg-gradient-to-l from-transparent via-transparent to-custom-background" />
                         <div className="absolute -inset-px bg-gradient-to-b from-transparent via-transparent to-custom-background" />
                     </div>
