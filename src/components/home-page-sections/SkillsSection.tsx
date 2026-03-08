@@ -71,7 +71,7 @@ export default function SkillsSection({ ...props }) {
                         work with over the years.
                     </p>
                 </div>
-                <div className="max-w-2xl grid place-content-stretch grid-cols-3 gap-2 md:gap-x-12 h-max px-4 md:px-0">
+                <div className="max-w-2xl grid place-content-stretch grid-cols-3 gap-2 md:gap-x-12 h-max px-4">
                     {skillsArray.map((item, index) => {
                         return (
                             <SkillCard
