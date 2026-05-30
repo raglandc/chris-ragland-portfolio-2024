@@ -30,7 +30,14 @@ export default function Navigation() {
           <NavLink link="/blogs" title='Blog' />
         </div>
 
-        <div className='hidden md:flex w-1/3 items-center justify-end'>
+        <div className='hidden md:flex w-1/3 items-center justify-end gap-2'>
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
+            className='border border-gray-300 dark:border-gray-600 rounded px-2 py-0.5 text-gray-500 dark:text-gray-400 font-mono text-xs hover:border-gray-400 dark:hover:border-gray-400 transition-colors'
+            aria-label="Open command palette"
+          >
+            ⌘K
+          </button>
           <ThemeChanger/>
           <ContactButton/>
         </div>
