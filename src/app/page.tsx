@@ -58,21 +58,21 @@ export default function Home() {
                         }}
                         className="mx-auto w-full max-w-7xl px-4 md:px-6"
                     >
-                        <h1 className="text-4xl md:text-5xl font-semibold">
+                        <h1 className="text-4xl md:text-5xl font-semibold font-display">
                             Hi,
                         </h1>
-                        <h1 className="text-4xl md:text-5xl font-semibold">
+                        <h1 className="text-4xl md:text-5xl font-semibold font-display">
                             {" "}
                             my name is{" "}
                         </h1>
-                        <h1 className="pb-1 text-5xl font-black text-transparent sm:text-6xl animate-text bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 bg-clip-text">
+                        <h1 className="pb-1 text-6xl font-black tracking-tighter text-transparent md:text-8xl animate-text bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 bg-clip-text font-display">
                             Chris{" "}
                             <span className="hidden sm:contents">Ragland</span>
                         </h1>
-                        <h1 className="w-10/12 pb-1 text-5xl font-black text-transparent sm:hidden sm:text-6xl animate-text bg-gradient-to-l from-blue-600 via-indigo-600 to-blue-600 bg-clip-text">
+                        <h1 className="w-10/12 pb-1 text-6xl font-black tracking-tighter text-transparent sm:hidden md:text-8xl animate-text bg-gradient-to-l from-blue-600 via-indigo-600 to-blue-600 bg-clip-text font-display">
                             Ragland
                         </h1>
-                        <h2 className="text-4xl my-8 sm:text-5xl text-custom-textSecondary">
+                        <h2 className="text-4xl my-8 sm:text-5xl text-custom-textSecondary font-display">
                             <Typewriter
                                 options={{
                                     strings: [

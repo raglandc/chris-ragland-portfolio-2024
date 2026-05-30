@@ -26,7 +26,7 @@ export default function AboutPage() {
                             <p className="text-custom-colorPrimary font-semibold text-xs uppercase tracking-widest mb-3">
                                 Software Engineer · Tampa, FL
                             </p>
-                            <h1 className="font-bold text-4xl md:text-5xl leading-tight">
+                            <h1 className="font-bold text-4xl md:text-5xl leading-tight font-display">
                                 From EMT to{" "}
                                 <span className="text-custom-colorPrimary">
                                     Software Engineering
@@ -48,7 +48,7 @@ export default function AboutPage() {
                         {/* Stats */}
                         <div className="flex flex-wrap gap-8 pt-2 border-t border-gray-200 dark:border-gray-800">
                             <div>
-                                <p className="text-2xl font-bold text-custom-colorPrimary">
+                                <p className="text-2xl font-bold text-custom-colorPrimary font-mono">
                                     Fortune 100
                                 </p>
                                 <p className="text-sm text-custom-textSecondary">
@@ -56,7 +56,7 @@ export default function AboutPage() {
                                 </p>
                             </div>
                             <div>
-                                <p className="text-2xl font-bold text-custom-colorPrimary">
+                                <p className="text-2xl font-bold text-custom-colorPrimary font-mono">
                                     B.S. CS
                                 </p>
                                 <p className="text-sm text-custom-textSecondary">
@@ -64,7 +64,7 @@ export default function AboutPage() {
                                 </p>
                             </div>
                             <div>
-                                <p className="text-2xl font-bold text-custom-colorPrimary">
+                                <p className="text-2xl font-bold text-custom-colorPrimary font-mono">
                                     4+ yrs
                                 </p>
                                 <p className="text-sm text-custom-textSecondary">

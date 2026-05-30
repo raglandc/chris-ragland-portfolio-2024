@@ -10,13 +10,18 @@ module.exports =
   ],
   theme: 
   {
-    extend: 
+    extend:
     {
-      perspective: 
+      perspective:
       {
         '1': '1px',
       },
-      colors: 
+      fontFamily:
+      {
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "Menlo", "monospace"],
+      },
+      colors:
       {
         custom: 
         {

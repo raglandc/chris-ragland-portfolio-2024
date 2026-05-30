@@ -21,7 +21,7 @@ export default function SkillCard({ title, logo }: SkillCardProps) {
     >
       <div className='flex flex-col items-center justify-center px-4 py-5 text-center rounded-lg border border-gray-200 dark:border-gray-700/50 hover:border-custom-colorPrimary/50 transition-colors duration-200'>
         <span className='text-2xl mb-3'>{logo}</span>
-        <p className='text-sm font-medium'>{title}</p>
+        <p className='text-xs font-medium font-mono'>{title}</p>
       </div>
     </span>
   )

@@ -36,7 +36,7 @@ export default function SkillsSection({ ...props }) {
                             transition:
                                 "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
                         }}
-                        className="w-full my-5 font-semibold text-xl md:text-2xl lg:my-8"
+                        className="w-full my-5 font-semibold text-xl md:text-2xl lg:my-8 font-display"
                     >
                         I like to learn 📚
                     </h2>
