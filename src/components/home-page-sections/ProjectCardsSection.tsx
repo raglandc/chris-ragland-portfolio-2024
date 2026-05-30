@@ -21,7 +21,7 @@ export default function ProjectCardsSection() {
             opacity: headerInView ? 1 : 0,
             transition: 'all 2s ease-in-out',
           }}
-          className='w-full my-5 font-semibold text-xl md:text-2xl lg:my-8'
+          className='w-full my-5 font-semibold text-xl md:text-2xl lg:my-8 font-display'
         >
             Projects Galore
         </h1>

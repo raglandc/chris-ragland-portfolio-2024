@@ -7,7 +7,7 @@ export default function BlogsPage() {
         <>
             <section className="max-w-7xl mx-auto flex items-center justify-center h-96">
                 <div className="mx-auto space-y-8 text-center">
-                    <h1 className="text-6xl md:text-9xl tracking-wide font-bold">
+                    <h1 className="text-6xl md:text-9xl tracking-wide font-bold font-display">
                         Blog
                     </h1>
                 </div>
