@@ -16,8 +16,8 @@ export default function ProjectCardIndex({ title, link, image, projectType }: Pr
           <Image
             src={image}
             alt={`${title} personal project image`}
-            layout='fill'
-            objectFit='cover'
+            fill
+            style={{ objectFit: 'cover' }}
             className='group-hover:scale-105 transition-transform duration-300'
           />
         </div>
