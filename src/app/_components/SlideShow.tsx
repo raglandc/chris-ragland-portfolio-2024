@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { AnimatePresence, motion } from "framer-motion";
 import { wrap } from "popmotion";
-import { photos } from "../../../../public/info/slide-show-data";
+import { photos } from "@/data/slide-show-data";
 
 const variants = {
     enter: { opacity: 0 },

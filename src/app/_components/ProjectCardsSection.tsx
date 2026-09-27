@@ -2,9 +2,10 @@
 
 import { useRef } from 'react'
 import { useInView } from 'framer-motion'
+import Link from 'next/link'
 import { SiGithub } from 'react-icons/si'
-import ProjectCardIndex from './util/ProjectCardIndex'
-import { workArrayIndexPage } from "../../../public/info/project-card-data"
+import ProjectCardIndex from './ProjectCardIndex'
+import { workArrayIndexPage } from "@/data/project-card-data"
 
 export default function ProjectCardsSection() {
   const headerRef = useRef(null)
@@ -48,25 +49,20 @@ export default function ProjectCardsSection() {
             If you would like to see more of my work, check out my github or the projects page of this website for more projects. 👨‍💻
           </p>
           <div className='flex items-center md:flex-row flex-col gap-2 w-full mt-10 lg:w-8/12 justify-center'>
-            <button className='hover:shadow-md p-2 w-full text-center rounded-md bg-custom-colorSecondary text-white hover:bg-custom-colorPrimary max-w-xs'>
-              <a
-                target='_blank'
-                href='https://www.github.com/raglandc'
-                rel='noreferrer'
-                className='flex items-center justify-center w-full h-full px-6 py-2 text-sm'
-              >
-                Visit GitHub <SiGithub className='inline ml-2' />
-              </a>
-            </button>
-            <button className='w-full p-2 ease-in text-center rounded-md bg-custom-background border border-custom-textPrimary hover:bg-custom-textPrimary hover:text-custom-background text-custom-textPrimary max-w-xs'>
-              <a
-                href='/projects'
-                rel='noreferrer'
-                className='flex items-center justify-center w-full h-full px-6 py-2 text-sm'
-              >
-                See More Projects
-              </a>
-            </button>
+            <a
+              target='_blank'
+              href='https://www.github.com/raglandc'
+              rel='noreferrer'
+              className='hover:shadow-md p-2 w-full max-w-xs text-center rounded-md bg-custom-colorSecondary text-white hover:bg-custom-colorPrimary flex items-center justify-center px-6 py-4 text-sm'
+            >
+              Visit GitHub <SiGithub className='inline ml-2' />
+            </a>
+            <Link
+              href='/projects'
+              className='w-full max-w-xs p-2 ease-in text-center rounded-md bg-custom-background border border-custom-textPrimary hover:bg-custom-textPrimary hover:text-custom-background text-custom-textPrimary flex items-center justify-center px-6 py-4 text-sm'
+            >
+              See More Projects
+            </Link>
           </div>
         </div>
       </div>

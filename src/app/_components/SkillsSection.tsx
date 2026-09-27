@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef } from "react";
 import { useInView } from "framer-motion";
 import {
@@ -12,19 +14,18 @@ import {
 import { BiLogoSpringBoot } from "react-icons/bi";
 import { FaGit, FaJava, FaRust } from "react-icons/fa";
 import { TbSql } from "react-icons/tb";
-import SkillCard from "./util/SkillCard";
+import SkillCard from "./SkillCard";
 
-export default function SkillsSection({ ...props }) {
+export default function SkillsSection() {
     const headerRef = useRef(null);
     const quoteRef = useRef(null);
+    const quote2Ref = useRef(null);
     const headerInView = useInView(headerRef, { once: true });
     const quoteInView = useInView(quoteRef, { once: true });
+    const quote2InView = useInView(quote2Ref, { once: true });
     return (
         <section className="pt-14 pb-12 md:pt-24 md:pb-16 lg:px-0 lg:pb-32 bg-custom-background">
-            <div
-                {...props}
-                className="flex flex-col max-w-7xl mx-auto md:justify-between md:flex-row"
-            >
+            <div className="flex flex-col max-w-7xl mx-auto md:justify-between md:flex-row">
                 <div className="px-4 md:px-6">
                     <h2
                         ref={headerRef}
@@ -49,26 +50,23 @@ export default function SkillsSection({ ...props }) {
                         }}
                         className="relative my-5 max-w-xl text-custom-textSecondary"
                     >
-                        I started programming during the COVID-19 pandemic,
-                        beginning with web development. This introduction really
-                        made me wonder what else is possible. I went on to earn
-                        a Bachelor of Science in Computer Science from the
-                        University of South Florida. My primary interests are in
-                        machine learning, specifically reinforcement learning,
-                        as well as high performance computing (I love thinking
-                        about low level details, but who doesn&apos;t).
+                        I have come to find that one of my greatest joys in life
+                        is learning. That joy lead me to computer science and
+                        math (and even some chemistry, physics, and the study of
+                        humans). My major interests include blockchain and
+                        reinforcement learning.
                     </p>
                     <p
-                        ref={quoteRef}
+                        ref={quote2Ref}
                         style={{
-                            opacity: quoteInView ? 1 : 0,
+                            opacity: quote2InView ? 1 : 0,
                             transition:
                                 "all 2s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
                         }}
                         className="relative my-5 max-w-xl text-custom-textSecondary"
                     >
-                        Here are a few of the technologies I have been able to
-                        work with over the years.
+                        Here are a few of the technologies I have worked with or
+                        am currently working with.
                     </p>
                 </div>
                 <div className="max-w-2xl grid place-content-stretch grid-cols-3 gap-2 md:gap-x-12 h-max px-4">

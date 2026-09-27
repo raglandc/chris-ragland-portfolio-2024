@@ -12,16 +12,17 @@ export default function MobileMenu() {
 
   return (
     <>
-      <div
+      <button
         onClick={showMenuHandler}
-        className='flex flex-col items-center justify-around w-6 cursor-pointer h-5 hover:scale-105 ease-in-out'
+        aria-label="Toggle mobile menu"
+        className='flex flex-col items-center justify-around w-6 h-5 hover:scale-105 ease-in-out'
       >
         <div className={'w-full h-px bg-custom-textPrimary'} />
         <div
           className={!showMenu ? 'w-full h-px bg-custom-textPrimary ease-in-out' : 'ease-in-out h-px bg-custom-textPrimary w-2/4'}
         />
         <div className={'w-full h-px bg-custom-textPrimary'} />
-      </div>
+      </button>
 
       {showMenu && (
         <>
