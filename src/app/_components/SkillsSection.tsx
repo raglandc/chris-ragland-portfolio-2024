@@ -50,10 +50,9 @@ export default function SkillsSection() {
                         }}
                         className="relative my-5 max-w-xl text-custom-textSecondary"
                     >
-                        I have come to find that one of my greatest joys in life
-                        is learning. That joy lead me to computer science and
-                        math (and even some chemistry, physics, and the study of
-                        humans). My major interests include blockchain and
+                        I am just a guy that truly enjoys learning. Computer
+                        science, math, chemistry, physics, and what it means to
+                        be human. My major interests are blockchain and
                         reinforcement learning.
                     </p>
                     <p
