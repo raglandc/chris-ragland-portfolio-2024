@@ -3,7 +3,7 @@
 import { useRef } from "react"
 import { useInView } from 'framer-motion'
 
-import SlideShow from "./util/SlideShow";
+import SlideShow from "./SlideShow";
 
 export default function SlideShowSection()
 {

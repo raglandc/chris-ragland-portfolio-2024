@@ -1,7 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
-import readingTime from "reading-time"; // TODO: REMOVE not used
 
 const ROOT = process.cwd();
 

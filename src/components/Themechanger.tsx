@@ -21,12 +21,12 @@ export default function ThemeChanger()
 
   const light = resolvedTheme === "light";
   return (
-    <button className="hover:bg-gray-300/50 p-2 text-custom-textPrimary w-8 h-8 rounded-full flex justify-center items-center">
-      {light ? (
-        <BsMoonStarsFill onClick={() => setTheme("dark")} size={20} />
-      ) : (
-        <BsFillSunFill onClick={() => setTheme("light")} size={20} />
-      )}
+    <button
+      onClick={() => setTheme(light ? "dark" : "light")}
+      aria-label={light ? "Switch to dark mode" : "Switch to light mode"}
+      className="hover:bg-gray-300/50 p-2 text-custom-textPrimary w-8 h-8 rounded-full flex justify-center items-center"
+    >
+      {light ? <BsMoonStarsFill size={20} /> : <BsFillSunFill size={20} />}
     </button>
   );
 };

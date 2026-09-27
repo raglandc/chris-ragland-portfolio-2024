@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import { useInView } from 'framer-motion'
 
 type SkillCardProps = {
-  key: number;
   title: string;
   logo: React.ReactNode
 }

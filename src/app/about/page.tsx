@@ -1,6 +1,5 @@
-"use client";
 import Image from "next/image";
-import TimeLineCard from "@/components/about-page-sections/util/TimeLineCard";
+import TimeLineCard from "./_components/TimeLineCard";
 
 export default function AboutPage() {
     return (
