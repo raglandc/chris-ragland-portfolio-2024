@@ -58,7 +58,7 @@ export default async function OrgoPage() {
     return (
         <main className="max-w-7xl pt-8 mx-auto px-4 md:px-6 md:pt-14">
             <PageProgressBar />
-            <article className="prose dark:prose-invert mx-auto pb-8 md:pb-16 lg:pb-32">
+            <article className="prose dark:prose-invert prose-img:mx-auto prose-img:block prose-img:rounded-xl mx-auto pb-8 md:pb-16 lg:pb-32">
                 <h1 className="text-3xl md:text-4xl mt-0">{data.title}</h1>
                 {data.date && <p className="m-0 opacity-70">{data.date}</p>}
                 {mdx}

@@ -30,7 +30,7 @@ export function listDecks() {
         .filter((f) => /\.(apkg|colpkg)$/i.test(f))
         .map((file) => ({
             file,
-            name: file.replace(/\.(apkg|colpkg)$/i, "").replace(/[-_]/g, " "),
+            name: file.replace(/\.(apkg|colpkg)$/i, "").replace(/[-_]+/g, " ").trim(),
             size: fs.statSync(path.join(FILES_DIR, file)).size,
             href: `/orgo/files/${encodeURIComponent(file)}`,
         }));
