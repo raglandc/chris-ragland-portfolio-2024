@@ -6,7 +6,7 @@ import { HiDownload } from "react-icons/hi";
 import PageProgressBar from "@/components/PageProgressBar";
 import { mdxComponents } from "@/components/MDXComponents";
 import { renderMdx } from "@/lib/mdx";
-import { listDecks } from "./lib";
+import { decksUpdatedAt, listDecks } from "./lib";
 
 // Unlisted page: not in the nav, and kept out of search engines.
 const ARTICLE = path.join(process.cwd(), "src/app/orgo/article.mdx");
@@ -26,29 +26,39 @@ function formatSize(bytes: number) {
         : `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
+function formatDate(date: Date) {
+    return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
 function Decks() {
     const decks = listDecks();
     if (decks.length === 0) return <p><em>Decks coming soon!</em></p>;
+    const updatedAt = decksUpdatedAt(decks.map((deck) => deck.file));
     return (
-        <ul className="not-prose grid gap-3 sm:grid-cols-2 p-0 my-6">
-            {decks.map((deck) => (
-                <li key={deck.file} className="list-none">
-                    <a
-                        href={deck.href}
-                        download
-                        className="flex items-center justify-between gap-3 rounded-xl border border-gray-300 dark:border-gray-700 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                    >
-                        <span>
-                            <span className="block font-semibold capitalize">{deck.name}</span>
-                            <span className="block text-sm opacity-70">
-                                {deck.file} · {formatSize(deck.size)}
+        <>
+            {updatedAt && (
+                <p className="text-sm opacity-70 mb-0">Decks last updated {formatDate(updatedAt)}</p>
+            )}
+            <ul className="not-prose grid gap-3 sm:grid-cols-2 p-0 mt-2 mb-6">
+                {decks.map((deck) => (
+                    <li key={deck.file} className="list-none">
+                        <a
+                            href={deck.href}
+                            download
+                            className="flex items-center justify-between gap-3 rounded-xl border border-gray-300 dark:border-gray-700 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                        >
+                            <span>
+                                <span className="block font-semibold capitalize">{deck.name}</span>
+                                <span className="block text-sm opacity-70">
+                                    {deck.file} · {formatSize(deck.size)}
+                                </span>
                             </span>
-                        </span>
-                        <HiDownload className="h-5 w-5 shrink-0" />
-                    </a>
-                </li>
-            ))}
-        </ul>
+                            <HiDownload className="h-5 w-5 shrink-0" />
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </>
     );
 }
 

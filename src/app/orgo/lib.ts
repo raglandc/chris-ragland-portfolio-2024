@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -23,6 +24,20 @@ export function listFiles(): string[] {
     return fs
         .readdirSync(FILES_DIR)
         .filter((f) => path.extname(f).toLowerCase() in MIME_TYPES);
+}
+
+// When the decks were last updated: the latest git commit touching a deck, since
+// mtime on a fresh clone is just the checkout time. Falls back to the newest mtime.
+export function decksUpdatedAt(files: string[]): Date | null {
+    if (files.length === 0) return null;
+    const paths = files.map((f) => path.join(FILES_DIR, f));
+    try {
+        const out = execFileSync("git", ["log", "-1", "--format=%cI", "--", ...paths], {
+            encoding: "utf8",
+        }).trim();
+        if (out) return new Date(out);
+    } catch {}
+    return new Date(Math.max(...paths.map((p) => fs.statSync(p).mtimeMs)));
 }
 
 export function listDecks() {
