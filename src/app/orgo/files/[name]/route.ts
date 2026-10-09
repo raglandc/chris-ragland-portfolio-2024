@@ -11,11 +11,7 @@ export function GET(_req: Request, { params }: { params: { name: string } }) {
     const name = decodeURIComponent(params.name);
     if (!listFiles().includes(name)) notFound();
     const ext = path.extname(name).toLowerCase();
-    const isDeck = ext === ".apkg" || ext === ".colpkg";
     return new Response(fs.readFileSync(path.join(FILES_DIR, name)), {
-        headers: {
-            "Content-Type": MIME_TYPES[ext],
-            ...(isDeck && { "Content-Disposition": `attachment; filename="${name}"` }),
-        },
+        headers: { "Content-Type": MIME_TYPES[ext] },
     });
 }

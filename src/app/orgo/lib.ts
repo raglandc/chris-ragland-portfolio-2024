@@ -2,13 +2,14 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 
-// Everything for this page lives in src/app/orgo. Drop Anki decks (.apkg),
-// gifs, and images into _files/ — they're served at /orgo/files/<name>.
+// Drop gifs and images into _files/ — they're served at /orgo/files/<name>.
 export const FILES_DIR = path.join(process.cwd(), "src/app/orgo/_files");
 
+// Anki decks (.apkg) go in public/ instead and are served as plain static files,
+// since prerendered route responses are capped at 20 MB on Vercel.
+export const DECKS_DIR = path.join(process.cwd(), "public/orgo/decks");
+
 export const MIME_TYPES: Record<string, string> = {
-    ".apkg": "application/octet-stream",
-    ".colpkg": "application/octet-stream",
     ".gif": "image/gif",
     ".png": "image/png",
     ".jpg": "image/jpeg",
@@ -30,7 +31,7 @@ export function listFiles(): string[] {
 // mtime on a fresh clone is just the checkout time. Falls back to the newest mtime.
 export function decksUpdatedAt(files: string[]): Date | null {
     if (files.length === 0) return null;
-    const paths = files.map((f) => path.join(FILES_DIR, f));
+    const paths = files.map((f) => path.join(DECKS_DIR, f));
     try {
         const out = execFileSync("git", ["log", "-1", "--format=%cI", "--", ...paths], {
             encoding: "utf8",
@@ -41,12 +42,14 @@ export function decksUpdatedAt(files: string[]): Date | null {
 }
 
 export function listDecks() {
-    return listFiles()
+    if (!fs.existsSync(DECKS_DIR)) return [];
+    return fs
+        .readdirSync(DECKS_DIR)
         .filter((f) => /\.(apkg|colpkg)$/i.test(f))
         .map((file) => ({
             file,
             name: file.replace(/\.(apkg|colpkg)$/i, "").replace(/[-_]+/g, " ").trim(),
-            size: fs.statSync(path.join(FILES_DIR, file)).size,
-            href: `/orgo/files/${encodeURIComponent(file)}`,
+            size: fs.statSync(path.join(DECKS_DIR, file)).size,
+            href: `/orgo/decks/${encodeURIComponent(file)}`,
         }));
 }
