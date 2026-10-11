@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 import { useTheme } from "next-themes";
+import { setThemeSmoothly } from "@/lib/theme";
 
 export default function ThemeChanger() 
 {
@@ -22,7 +23,7 @@ export default function ThemeChanger()
   const light = resolvedTheme === "light";
   return (
     <button
-      onClick={() => setTheme(light ? "dark" : "light")}
+      onClick={() => setThemeSmoothly(setTheme, light ? "dark" : "light")}
       aria-label={light ? "Switch to dark mode" : "Switch to light mode"}
       className="hover:bg-gray-300/50 p-2 text-custom-textPrimary w-8 h-8 rounded-full flex justify-center items-center"
     >
