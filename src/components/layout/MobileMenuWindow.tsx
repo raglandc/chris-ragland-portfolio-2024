@@ -6,6 +6,7 @@ import { BsMoonStarsFill, BsFillSunFill, BsBookFill } from "react-icons/bs"
 import { VscClose } from 'react-icons/vsc'
 import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
+import { setThemeSmoothly } from "@/lib/theme"
 import PortalOverlay from "../util/PortalOverlay"
 import MobileMenuLink from "./util/MobileMenuLink"
 
@@ -70,7 +71,7 @@ export default function MobileMenuWindow({ closeHandler }: MenuWindowProps) {
             title="Blog" 
             icon={<BsBookFill/>}
           />
-          <div className='flex text-white w-full items-center justify-between bg-gray-500 rounded-md p-4' onClick={() => setTheme(nextTheme)}>
+          <div className='flex text-white w-full items-center justify-between bg-gray-500 rounded-md p-4' onClick={() => setThemeSmoothly(setTheme, nextTheme)}>
             {resolvedTheme === "dark" ? (<BsFillSunFill size={18} />) : (<BsMoonStarsFill size={18} />)}
             {resolvedTheme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
           </div>
