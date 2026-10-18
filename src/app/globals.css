@@ -66,3 +66,8 @@ code, pre, .font-mono {
     mask-composite: intersect;
   }
 }
+
+/* Fades the footer network in from the top so it blends out of the page. */
+.footer-network-mask {
+  mask-image: linear-gradient(to top, black 50%, transparent);
+}
