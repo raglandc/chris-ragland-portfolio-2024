@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Typewriter from "typewriter-effect";
 import ScrambleText from "@/components/animation/ScrambleText";
-import NetworkBackground from "./NetworkBackground";
+import NetworkBackground from "@/components/animation/NetworkBackground";
 
 // Slow, deliberate reveal: the name cycles through hex while the hero fades
 // in, then resolves left to right at a readable pace.
