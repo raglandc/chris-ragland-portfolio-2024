@@ -1,5 +1,6 @@
 import Image from "next/image";
 import TimeLineCard from "./_components/TimeLineCard";
+import ScrambleText from "@/components/animation/ScrambleText";
 
 export default function AboutPage() {
     return (
@@ -48,7 +49,7 @@ export default function AboutPage() {
                         <div className="flex flex-wrap gap-8 pt-2 border-t border-gray-200 dark:border-gray-800">
                             <div>
                                 <p className="text-2xl font-bold text-custom-colorPrimary font-mono">
-                                    Fortune 100
+                                    <ScrambleText text="Fortune 100" trigger="inView" />
                                 </p>
                                 <p className="text-sm text-custom-textSecondary">
                                     Current Employer
@@ -56,7 +57,7 @@ export default function AboutPage() {
                             </div>
                             <div>
                                 <p className="text-2xl font-bold text-custom-colorPrimary font-mono">
-                                    B.S. CS
+                                    <ScrambleText text="B.S. CS" trigger="inView" />
                                 </p>
                                 <p className="text-sm text-custom-textSecondary">
                                     Univ. of South Florida
@@ -64,7 +65,7 @@ export default function AboutPage() {
                             </div>
                             <div>
                                 <p className="text-2xl font-bold text-custom-colorPrimary font-mono">
-                                    4+ yrs
+                                    <ScrambleText text="4+ yrs" trigger="inView" />
                                 </p>
                                 <p className="text-sm text-custom-textSecondary">
                                     Coding Experience

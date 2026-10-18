@@ -3,6 +3,18 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Typewriter from "typewriter-effect";
+import ScrambleText from "@/components/animation/ScrambleText";
+
+// Slow, deliberate reveal: the name cycles through hex while the hero fades
+// in, then resolves left to right at a readable pace.
+const HERO_SCRAMBLE = {
+    revealDelay: 900,
+    revealRate: 6,
+    settleDuration: 700,
+};
+// Start "Ragland" once "Chris" has resolved so it reads as one wave.
+const RAGLAND_REVEAL_DELAY =
+    HERO_SCRAMBLE.revealDelay + ("Chris".length * 1000) / HERO_SCRAMBLE.revealRate;
 
 export default function HeroSection() {
     const ref = useRef<HTMLElement | null>(null);
@@ -62,11 +74,21 @@ export default function HeroSection() {
                         my name is{" "}
                     </h1>
                     <h1 className="pb-1 text-6xl font-black tracking-tighter text-transparent md:text-8xl animate-text bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 bg-clip-text font-display">
-                        Chris{" "}
-                        <span className="hidden sm:contents">Ragland</span>
+                        <ScrambleText text="Chris" {...HERO_SCRAMBLE} />{" "}
+                        <span className="hidden sm:contents">
+                            <ScrambleText
+                                text="Ragland"
+                                {...HERO_SCRAMBLE}
+                                revealDelay={RAGLAND_REVEAL_DELAY}
+                            />
+                        </span>
                     </h1>
                     <h1 className="w-10/12 pb-1 text-6xl font-black tracking-tighter text-transparent sm:hidden md:text-8xl animate-text bg-gradient-to-l from-blue-600 via-indigo-600 to-blue-600 bg-clip-text font-display">
-                        Ragland
+                        <ScrambleText
+                            text="Ragland"
+                            {...HERO_SCRAMBLE}
+                            revealDelay={RAGLAND_REVEAL_DELAY}
+                        />
                     </h1>
                     <h2 className="text-4xl my-8 sm:text-5xl text-custom-textSecondary font-display">
                         <Typewriter

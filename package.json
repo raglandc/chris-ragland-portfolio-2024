@@ -12,6 +12,7 @@
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^16.1.6",
     "@xpd/tailwind-3dtransforms": "^1.0.3",
+    "animejs": "^4.5.0",
     "autoprefixer": "10.4.14",
     "date-fns": "^2.30.0",
     "eslint": "8.45.0",

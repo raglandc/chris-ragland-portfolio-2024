@@ -1,8 +1,8 @@
 "use client"
 import Link from 'next/link'
-import Image from 'next/image'
 import MobileMenu from './MobileMenu'
 import NavLink from './util/NavLink'
+import AnimatedLogo from './util/AnimatedLogo'
 import ThemeChanger from '../Themechanger'
 import ContactButton from './util/ContactButton'
 
@@ -14,12 +14,7 @@ export default function Navigation() {
           <Link
             href="/"
           >
-            <Image
-              src={'/icons/cr-favicon.png'}
-              alt='the letters c and r'
-              width={27}
-              height={27}
-            />
+            <AnimatedLogo />
           </Link>
         </div>
 

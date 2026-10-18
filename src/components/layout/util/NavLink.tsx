@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import ScrambleText from "@/components/animation/ScrambleText";
 
 type NavLinkProps = {
   link: string;
@@ -16,7 +17,7 @@ export default function NavLink({link, title}: NavLinkProps)
       href={link} 
       className={link == path ? "px-3 h-full justify-center flex items-center hover:cursor-pointer text-custom-colorPrimary" : "px-3 h-full justify-center flex items-center hover:text-custom-colorPrimary hover:cursor-pointer"}
     >
-      {title}
+      <ScrambleText text={title} trigger="hover" />
     </Link>
   )
 }
