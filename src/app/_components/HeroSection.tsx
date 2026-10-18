@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Typewriter from "typewriter-effect";
 import ScrambleText from "@/components/animation/ScrambleText";
+import NetworkBackground from "./NetworkBackground";
 
 // Slow, deliberate reveal: the name cycles through hex while the hero fades
 // in, then resolves left to right at a readable pace.
@@ -55,7 +56,9 @@ export default function HeroSection() {
                 </div>
             </motion.div>
 
-            <div className="mb-12 mt-64 md:mt-28 lg:my-28 lg:py-2">
+            <NetworkBackground className="absolute inset-0 h-full w-full hero-network-mask" />
+
+            <div className="relative mb-12 mt-64 md:mt-28 lg:my-28 lg:py-2">
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

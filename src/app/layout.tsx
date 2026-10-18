@@ -5,6 +5,7 @@ import Footer from '@/components/layout/Footer'
 import Providers from '@/components/Themeprovider'
 import ScrollToTop from '@/components/ScrollToTop'
 import CommandPalette from '@/components/CommandPalette'
+import HashTrail from '@/components/animation/HashTrail'
 
 import './globals.css'
 import 'katex/dist/katex.min.css'
@@ -42,6 +43,7 @@ export default function RootLayout({
             <ScrollToTop />
           <Footer />
           <CommandPalette />
+          <HashTrail />
         </Providers>
         <div id='portal-root' />
         <div id='backdrop-root'/>
