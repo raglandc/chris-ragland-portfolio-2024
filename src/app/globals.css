@@ -51,3 +51,18 @@ h1, h2, h3 {
 code, pre, .font-mono {
   font-family: var(--font-mono);
 }
+
+/* Fades the hero network out at the bottom, and on wide screens away from
+   the video on the right so it stays behind the text. */
+.hero-network-mask {
+  mask-image: linear-gradient(to bottom, black 70%, transparent);
+}
+
+@media (min-width: 1024px) {
+  .hero-network-mask {
+    mask-image:
+      linear-gradient(to bottom, black 70%, transparent),
+      linear-gradient(to right, black 40%, transparent 85%);
+    mask-composite: intersect;
+  }
+}
