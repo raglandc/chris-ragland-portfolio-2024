@@ -5,6 +5,7 @@ import Footer from '@/components/layout/Footer'
 import Providers from '@/components/Themeprovider'
 import ScrollToTop from '@/components/ScrollToTop'
 import CommandPalette from '@/components/CommandPalette'
+import ClickSound from '@/components/ClickSound'
 import HashTrail from '@/components/animation/HashTrail'
 
 import './globals.css'
@@ -44,6 +45,7 @@ export default function RootLayout({
           <Footer />
           <CommandPalette />
           <HashTrail />
+          <ClickSound />
         </Providers>
         <div id='portal-root' />
         <div id='backdrop-root'/>

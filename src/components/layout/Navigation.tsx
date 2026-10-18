@@ -4,6 +4,7 @@ import MobileMenu from './MobileMenu'
 import NavLink from './util/NavLink'
 import AnimatedLogo from './util/AnimatedLogo'
 import ThemeChanger from '../Themechanger'
+import SoundToggle from '../SoundToggle'
 import ContactButton from './util/ContactButton'
 
 export default function Navigation() {
@@ -33,6 +34,7 @@ export default function Navigation() {
           >
             ⌘K
           </button>
+          <SoundToggle />
           <ThemeChanger/>
           <ContactButton/>
         </div>

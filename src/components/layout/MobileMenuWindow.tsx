@@ -2,11 +2,12 @@
 import { useState, useEffect } from "react"
 import { FaHome } from 'react-icons/fa'
 import { MdWork, MdPerson } from 'react-icons/md'
-import { BsMoonStarsFill, BsFillSunFill, BsBookFill } from "react-icons/bs"
+import { BsMoonStarsFill, BsFillSunFill, BsBookFill, BsVolumeMuteFill, BsVolumeUpFill } from "react-icons/bs"
 import { VscClose } from 'react-icons/vsc'
 import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
 import { setThemeSmoothly } from "@/lib/theme"
+import { useClickSoundMuted } from "@/hooks/useClickSoundMuted"
 import PortalOverlay from "../util/PortalOverlay"
 import MobileMenuLink from "./util/MobileMenuLink"
 
@@ -17,6 +18,7 @@ type MenuWindowProps = {
 export default function MobileMenuWindow({ closeHandler }: MenuWindowProps) {
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
+  const [soundMuted, toggleSoundMuted] = useClickSoundMuted();
   const nextTheme = resolvedTheme === "dark" ? "light" : "dark";
 
     // useEffect only runs on the client, so now we can safely show the UI
@@ -75,6 +77,15 @@ export default function MobileMenuWindow({ closeHandler }: MenuWindowProps) {
             {resolvedTheme === "dark" ? (<BsFillSunFill size={18} />) : (<BsMoonStarsFill size={18} />)}
             {resolvedTheme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
           </div>
+          <button
+            type='button'
+            className='flex text-white w-full items-center justify-between bg-gray-500 rounded-md p-4 mt-3'
+            onClick={toggleSoundMuted}
+            data-skip-click-sound
+          >
+            {soundMuted ? (<BsVolumeMuteFill size={18} />) : (<BsVolumeUpFill size={18} />)}
+            {soundMuted ? "Unmute click sounds" : "Mute click sounds"}
+          </button>
         </ul>
       </motion.div>
     </PortalOverlay>
