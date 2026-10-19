@@ -67,6 +67,51 @@ code, pre, .font-mono {
   }
 }
 
+/* Fades the hero video into the page. A mask (not a background-colored
+   overlay) gives real transparency, so it blends in both themes and over the
+   network. Below md it only fades at the bottom; from md it also dissolves
+   on the left so it reads as emerging from the top-right corner.
+   The ramps follow an ease-in-out curve: a straight linear ramp leaves a
+   visible crease where it meets the solid video. */
+.hero-media-mask {
+  --fade-bottom: linear-gradient(
+    to bottom,
+    black 0%,
+    black 40%,
+    rgb(0 0 0 / 0.95) 50%,
+    rgb(0 0 0 / 0.8) 60%,
+    rgb(0 0 0 / 0.55) 70%,
+    rgb(0 0 0 / 0.3) 80%,
+    rgb(0 0 0 / 0.1) 90%,
+    transparent 100%
+  );
+  mask-image: var(--fade-bottom);
+}
+
+@media (min-width: 768px) {
+  .hero-media-mask {
+    --fade-left: linear-gradient(
+      to right,
+      transparent 0%,
+      rgb(0 0 0 / 0.05) 8%,
+      rgb(0 0 0 / 0.2) 18%,
+      rgb(0 0 0 / 0.45) 30%,
+      rgb(0 0 0 / 0.7) 42%,
+      rgb(0 0 0 / 0.9) 54%,
+      black 65%
+    );
+    /* Rounds off the bottom-left corner where the two fades meet, which
+       otherwise shows as a hard diagonal. */
+    --fade-corner: radial-gradient(
+      ellipse 130% 120% at 100% 0%,
+      black 45%,
+      transparent 100%
+    );
+    mask-image: var(--fade-bottom), var(--fade-left), var(--fade-corner);
+    mask-composite: intersect;
+  }
+}
+
 /* Fades the footer network in from the top so it blends out of the page. */
 .footer-network-mask {
   mask-image: linear-gradient(to top, black 50%, transparent);
