@@ -1,10 +1,11 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Typewriter from "typewriter-effect";
 import ScrambleText from "@/components/animation/ScrambleText";
 import NetworkBackground from "@/components/animation/NetworkBackground";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 // Slow, deliberate reveal: the name cycles through hex while the hero fades
 // in, then resolves left to right at a readable pace.
@@ -17,14 +18,78 @@ const HERO_SCRAMBLE = {
 const RAGLAND_REVEAL_DELAY =
     HERO_SCRAMBLE.revealDelay + ("Chris".length * 1000) / HERO_SCRAMBLE.revealRate;
 
+// Matches Tailwind's `md` breakpoint, where the video replaces the banner.
+const VIDEO_MEDIA_QUERY = "(min-width: 768px)";
+
+// Only fetches and plays the video where it is visible, holds it still for
+// reduced motion, pauses it once scrolled away, and fades it in on first frame.
+function HeroVideo({ reduceMotion }: { reduceMotion: boolean }) {
+    const videoRef = useRef<HTMLVideoElement | null>(null);
+    const [ready, setReady] = useState(false);
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        const mediaQueryList = window.matchMedia(VIDEO_MEDIA_QUERY);
+        let inView = true;
+
+        const sync = () => {
+            if (!mediaQueryList.matches) {
+                video.pause();
+                return;
+            }
+            // Load even under reduced motion so a still frame shows.
+            if (video.preload === "none") video.preload = "auto";
+            if (inView && !reduceMotion) {
+                video.play().catch(() => {});
+            } else {
+                video.pause();
+            }
+        };
+
+        const observer = new IntersectionObserver(([entry]) => {
+            inView = entry.isIntersecting;
+            sync();
+        });
+        observer.observe(video);
+        mediaQueryList.addEventListener("change", sync);
+        sync();
+
+        return () => {
+            observer.disconnect();
+            mediaQueryList.removeEventListener("change", sync);
+        };
+    }, [reduceMotion]);
+
+    return (
+        <video
+            ref={videoRef}
+            muted
+            loop
+            playsInline
+            preload="none"
+            onLoadedData={() => setReady(true)}
+            className={`hidden md:block h-full w-full object-cover object-center transition-opacity duration-1000 ease-out ${
+                ready ? "opacity-80" : "opacity-0"
+            }`}
+        >
+            <source src="/img/landing-page-video.webm" type="video/webm" />
+        </video>
+    );
+}
+
 export default function HeroSection() {
     const ref = useRef<HTMLElement | null>(null);
+    const reduceMotion = usePrefersReducedMotion();
     const { scrollYProgress } = useScroll({
         target: ref,
         offset: ["start start", "end start"],
     });
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", "55%"]);
-    const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+    // The video drifts down under the next section, so it has faded out
+    // before its visible part reaches that section's opaque top edge.
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+    const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
     return (
         <section
@@ -32,27 +97,15 @@ export default function HeroSection() {
             className="flex flex-col relative pb-8 bg-custom-background -z-10"
         >
             <motion.div
-                style={{ y, opacity }}
+                aria-hidden
+                style={reduceMotion ? undefined : { y, opacity }}
                 className="absolute -top-14 bg-custom-background -z-10 inset-0 will-change-transform"
             >
-                <div className="absolute inset-x-0 top-0 max-w-[1280px] h-full overflow-hidden lg:bottom-auto lg:right-0 lg:left-auto lg:w-[80%]">
-                    <video
-                        muted
-                        loop
-                        autoPlay
-                        playsInline
-                        className="hidden md:block w-full md:aspect-video object-cover object-center absolute opacity-80"
-                    >
-                        <source
-                            src="/img/landing-page-video.webm"
-                            type="video/webm"
-                        />
-                    </video>
-
-                    <div className='md:hidden w-full aspect-square bg-[url("/img/banner.webp")] bg-contain bg-no-repeat bg-center' />
-
-                    <div className="absolute -inset-px hidden lg:block bg-gradient-to-l from-transparent via-transparent to-custom-background" />
-                    <div className="absolute -inset-px bg-gradient-to-b from-transparent via-transparent to-custom-background" />
+                {/* Pinned to the top-right corner and filled edge to edge, so
+                    the mask fade always lands on the video's own edges. */}
+                <div className="hero-media-mask absolute top-0 right-0 h-full w-full md:w-[60%]">
+                    <HeroVideo reduceMotion={reduceMotion} />
+                    <div className='md:hidden h-full w-full bg-[url("/img/banner.webp")] bg-contain bg-top bg-no-repeat' />
                 </div>
             </motion.div>
 
