@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light dark">
+<title>Exam 2 Prep Quiz | Orgo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script>
+  // Follow the theme picked with the site's toggle. Read-only, and the page
+  // falls back to the system preference without it.
+  try {
+    var theme = localStorage.getItem("theme");
+    if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+  } catch (e) {}
+</script>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #fff;
+    --surface: #f9fafb;
+    --text: #0b0b0b;
+    --muted: #4b5563;
+    --border: #d1d5db;
+    --track: #e5e7eb;
+    --accent: #2563eb;
+    --accent-text: #1d4ed8;
+    --accent-soft: #eff6ff;
+    --good: #047857;
+    --good-border: #059669;
+    --good-soft: #ecfdf5;
+    --bad: #b91c1c;
+    --bad-border: #dc2626;
+    --bad-soft: #fef2f2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #111;
+      --surface: #1a1a1a;
+      --text: #fff;
+      --muted: #d1d5db;
+      --border: #3f3f46;
+      --track: #2e2e33;
+      --accent: #2563eb;
+      --accent-text: #93c5fd;
+      --accent-soft: #172033;
+      --good: #6ee7b7;
+      --good-border: #34d399;
+      --good-soft: #10291f;
+      --bad: #fca5a5;
+      --bad-border: #f87171;
+      --bad-soft: #301616;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #111;
+    --surface: #1a1a1a;
+    --text: #fff;
+    --muted: #d1d5db;
+    --border: #3f3f46;
+    --track: #2e2e33;
+    --accent: #2563eb;
+    --accent-text: #93c5fd;
+    --accent-soft: #172033;
+    --good: #6ee7b7;
+    --good-border: #34d399;
+    --good-soft: #10291f;
+    --bad: #fca5a5;
+    --bad-border: #f87171;
+    --bad-soft: #301616;
+  }
+
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 400 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  main { max-width: 680px; margin: 0 auto; padding: 24px 16px 64px; }
+
+  h1, h2, .score {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+  .mono {
+    font-family: "JetBrains Mono", Menlo, monospace;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .back { color: var(--muted); font-size: 15px; text-decoration: none; }
+  .back:hover { color: var(--text); text-decoration: underline; }
+  h1 { margin: 12px 0 0; font-size: clamp(28px, 7vw, 38px); font-weight: 800; line-height: 1.1; }
+  .subtitle { margin: 6px 0 24px; color: var(--muted); font-size: 15px; }
+
+  .progress { scroll-margin-top: 16px; }
+  .progress-label { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); }
+  .track { height: 8px; margin-top: 8px; border-radius: 999px; background: var(--track); overflow: hidden; }
+  .fill { height: 100%; border-radius: inherit; background: var(--accent); transition: width 0.25s ease; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 12px; }
+  .tag { padding: 2px 10px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
+  .tag.bonus { border-color: var(--accent-text); color: var(--accent-text); background: var(--accent-soft); }
+
+  .question { margin: 0 0 20px; font-size: 22px; font-weight: 700; line-height: 1.3; outline: none; }
+
+  .options { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    min-height: 52px;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg);
+    color: var(--text);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+  .option:hover:enabled { border-color: var(--accent); background: var(--accent-soft); }
+  .option:disabled { cursor: default; }
+  .option:disabled:not(.correct):not(.wrong) { color: var(--muted); }
+  .letter { flex: none; width: 1.6em; font-weight: 700; }
+  .option-text { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+  .mark { flex: none; font-weight: 700; }
+  .option.correct { border-color: var(--good-border); background: var(--good-soft); }
+  .option.correct .letter, .option.correct .mark { color: var(--good); }
+  .option.wrong { border-color: var(--bad-border); background: var(--bad-soft); }
+  .option.wrong .letter, .option.wrong .mark { color: var(--bad); }
+
+  .feedback {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-left: 4px solid var(--good-border);
+    border-radius: 0 12px 12px 0;
+    background: var(--surface);
+    animation: reveal 0.2s ease;
+  }
+  .feedback.miss { border-left-color: var(--bad-border); }
+  .feedback strong { display: block; color: var(--good); }
+  .feedback.miss strong { color: var(--bad); }
+  .feedback p { margin: 4px 0 0; }
+  @keyframes reveal { from { opacity: 0; transform: translateY(4px); } }
+
+  .nav { display: flex; align-items: center; gap: 12px; margin-top: 24px; scroll-margin-bottom: 16px; }
+  .btn {
+    min-height: 46px;
+    padding: 10px 20px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .btn:hover:enabled { border-color: var(--accent); }
+  .btn:disabled { opacity: 0.45; cursor: default; }
+  .btn.primary { margin-left: auto; border-color: var(--accent); background: var(--accent); color: #fff; }
+  .btn.primary:hover:enabled { background: #1d4ed8; border-color: #1d4ed8; }
+  button:focus-visible, a:focus-visible { outline: 3px solid var(--accent-text); outline-offset: 2px; }
+
+  .score { margin: 16px 0 0; font-size: clamp(56px, 18vw, 80px); font-weight: 800; line-height: 1; outline: none; }
+  .score small { color: var(--muted); font-size: 0.45em; font-weight: 600; }
+  .score-note { margin: 8px 0 0; color: var(--muted); }
+
+  .results h2 { margin: 36px 0 12px; font-size: 22px; font-weight: 700; }
+  .chapters { margin: 0; padding: 0; list-style: none; }
+  .chapters li { padding: 12px 0; border-top: 1px solid var(--border); }
+  .chapters li:last-child { border-bottom: 1px solid var(--border); }
+  .chapter-row { display: flex; justify-content: space-between; gap: 12px; }
+  .chapter-score { flex: none; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  .missed { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+  .missed li { padding: 14px 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+  .missed-tags { margin: 0 0 6px; color: var(--muted); }
+  .missed-question { margin: 0 0 10px; font-weight: 600; overflow-wrap: anywhere; }
+  .missed-answer { margin: 4px 0 0; overflow-wrap: anywhere; }
+  .missed-answer b { font-weight: 700; }
+  .missed-answer.yours b { color: var(--bad); }
+  .missed-answer.right b { color: var(--good); }
+
+  .results .btn.primary { display: block; width: 100%; margin-top: 32px; }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 480px) {
+    .question { font-size: 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/orgo">&larr; Back to Orgo</a>
+  <h1>Exam 2 Prep Quiz</h1>
+  <p class="subtitle">Ch. 3 Alkanes &middot; Ch. 4 Chemical Reactions &middot; Ch. 5 Stereochemistry</p>
+
+  <section id="quiz" aria-label="Quiz">
+    <div class="progress" id="progress">
+      <div class="progress-label mono">
+        <span id="counter"></span>
+        <span id="answered"></span>
+      </div>
+      <div class="track" id="track" role="progressbar" aria-label="Quiz progress" aria-valuemin="0">
+        <div class="fill" id="fill"></div>
+      </div>
+    </div>
+
+    <div class="tags mono" id="tags"></div>
+    <h2 class="question" id="question" tabindex="-1"></h2>
+    <ul class="options" id="options"></ul>
+    <div id="feedback" role="status"></div>
+
+    <div class="nav" id="nav">
+      <button class="btn" id="prev" type="button">Prev</button>
+      <button class="btn primary" id="next" type="button">Next</button>
+    </div>
+  </section>
+
+  <section class="results" id="results" aria-label="Results" hidden>
+    <p class="score" id="score" tabindex="-1"></p>
+    <p class="score-note" id="score-note"></p>
+
+    <h2>By chapter</h2>
+    <ul class="chapters" id="chapters"></ul>
+
+    <h2 id="missed-heading"></h2>
+    <ul class="missed" id="missed"></ul>
+
+    <button class="btn primary" id="retake" type="button">Retake Quiz</button>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var QUESTIONS = [
+    {"id": 1, "chapter": 3, "level": "Easy", "text": "What is the general molecular formula for cycloalkanes?", "options": ["CₙH₂ₙ₊₂", "CₙH₂ₙ", "CₙH₂ₙ₋₂", "CₙHₙ"], "answer": 1, "explanation": "Cycloalkanes have one ring (one degree of unsaturation), giving CₙH₂ₙ — two fewer H than open-chain alkanes (CₙH₂ₙ₊₂). Same formula as alkenes."},
+    {"id": 2, "chapter": 3, "level": "Easy", "text": "Which two types of strain are BOTH present in cyclopropane?", "options": ["Torsional strain and steric strain", "Angle strain and torsional strain", "Angle strain and steric strain only", "Angle strain only"], "answer": 1, "explanation": "Cyclopropane has angle strain (C–C–C forced to 60° vs. ideal 109.5°) AND torsional strain (all adjacent C–H bonds are eclipsed because the ring is flat and rigid)."},
+    {"id": 3, "chapter": 3, "level": "Medium", "text": "Rank from MOST to LEAST thermodynamically stable: cyclopropane, cyclobutane, cyclohexane, cyclopentane.", "options": ["Cyclohexane > cyclopentane > cyclobutane > cyclopropane", "Cyclopropane > cyclobutane > cyclopentane > cyclohexane", "Cyclohexane > cyclopropane > cyclopentane > cyclobutane", "Cyclopentane > cyclohexane > cyclobutane > cyclopropane"], "answer": 0, "explanation": "Stability decreases as ring strain increases. Cyclohexane in the chair has essentially no strain. Cyclopentane has minor torsional strain. Cyclobutane and cyclopropane have progressively more angle and torsional strain. Higher heat of combustion per –CH₂– means less stability."},
+    {"id": 4, "chapter": 3, "level": "Medium", "text": "Which statement about axial and equatorial positions in cyclohexane is TRUE?", "options": ["Axial bonds point roughly in the plane of the ring", "A ring flip converts equatorial positions to axial and axial to equatorial", "Large substituents always prefer axial positions", "All axial bonds point upward in the chair"], "answer": 1, "explanation": "A ring flip interconverts all axial and equatorial positions simultaneously. Large substituents prefer EQUATORIAL to avoid steric 1,3-diaxial interactions."},
+    {"id": 5, "chapter": 3, "level": "Medium", "text": "Which cyclohexane conformer is the LEAST stable?", "options": ["Chair", "Twist-boat", "Boat", "Half-chair"], "answer": 3, "explanation": "The half-chair is the highest-energy conformer — it is the transition state between the chair and boat. Order (most → least stable): chair > twist-boat > boat > half-chair."},
+    {"id": 6, "chapter": 3, "level": "Medium", "text": "In a boat conformation, what causes the “flagpole” interaction?", "options": ["Angle strain between C–C–C bond angles", "Steric repulsion between the two flagpole hydrogens at C1 and C4", "Torsional strain from eclipsed C–H bonds only", "Inductive strain from electron withdrawal"], "answer": 1, "explanation": "The flagpole interaction is steric (van der Waals) repulsion between the two H’s pointing directly at each other at C1 and C4 in the boat conformation."},
+    {"id": 7, "chapter": 3, "level": "Hard", "text": "Methylcyclohexane undergoes a ring flip. Which conformer is more stable and why?", "options": ["Methyl axial — axial bonds are shorter and more stable", "Methyl equatorial — avoids 1,3-diaxial interactions with ring axial H’s", "Both conformers are equally stable", "Methyl axial — equatorial positions increase torsional strain"], "answer": 1, "explanation": "The equatorial conformer is more stable. An axial methyl group experiences 1,3-diaxial interactions (gauche) with the axial H’s on C3 and C5. Moving it equatorial eliminates this strain (~1.74 kcal/mol, the A-value for methyl)."},
+    {"id": 8, "chapter": 3, "level": "Hard", "text": "Which measurement is used to compare ring strain across cycloalkanes?", "options": ["Heat of formation per mole", "Heat of combustion per –CH₂– unit compared to a strain-free reference", "Boiling point vs. open-chain alkanes", "Bond length deviation from standard C–C length"], "answer": 1, "explanation": "Ring strain is quantified by comparing heat of combustion per –CH₂– group. Cyclohexane (~658 kJ/mol per CH₂) is the strain-free reference. More strained rings release more energy per CH₂."},
+    {"id": 9, "chapter": 3, "level": "Hard", "text": "For trans-1,4-dimethylcyclohexane, which statement describes the most stable chair conformation?", "options": ["One methyl must always be axial and one equatorial", "Both methyls are equatorial — the most stable conformer has both equatorial", "Both methyls are axial — trans requires axial placement", "It cannot adopt a chair conformation"], "answer": 1, "explanation": "In trans-1,4-dimethylcyclohexane the trans configuration allows both methyls to be equatorial in the same chair conformer. This diequatorial conformer is the most stable; a ring flip would force both axial, greatly increasing strain."},
+    {"id": 10, "chapter": 4, "level": "Easy", "text": "Which step produces the first carbon radical in free radical halogenation?", "options": ["Initiation — homolytic cleavage of X₂", "Propagation Step 1 — halogen radical abstracts H from alkane", "Propagation Step 2 — carbon radical reacts with X₂", "Termination — two radicals combine"], "answer": 1, "explanation": "Propagation Step 1 (X• + R–H → HX + R•) is where the first carbon radical R• is produced. Initiation only makes X• from X₂."},
+    {"id": 11, "chapter": 4, "level": "Easy", "text": "Which of the following is a TERMINATION step?", "options": ["X₂ → 2X•", "R• + X₂ → R–X + X•", "X• + R–H → HX + R•", "R• + X• → R–X"], "answer": 3, "explanation": "Termination occurs when any two radicals combine, destroying both and stopping the chain. R• + X• → R–X produces no new radicals. The other options are initiation (A) and propagation steps (B, C)."},
+    {"id": 12, "chapter": 4, "level": "Medium", "text": "Calculate ΔH° for: Br• + CH₄ → HBr + •CH₃. BDE(C–H) = 438 kJ/mol; BDE(H–Br) = 366 kJ/mol.", "options": ["−72 kJ/mol", "+72 kJ/mol", "+804 kJ/mol", "−28 kJ/mol"], "answer": 1, "explanation": "ΔH° = BDE(bonds broken) − BDE(bonds formed) = 438 − 366 = +72 kJ/mol. This H-abstraction step is endothermic for Br•, which is why bromination is selective — the TS is late (product-like), making radical stability important."},
+    {"id": 13, "chapter": 4, "level": "Medium", "text": "Why is bromination more regioselective than chlorination?", "options": ["Br₂ absorbs more light and produces more radicals", "Br• is more reactive and abstracts H faster", "H-abstraction by Br• is endothermic, giving a late TS where radical stability matters greatly", "Cl• preferentially attacks primary carbons"], "answer": 2, "explanation": "By the Hammond postulate, an endothermic step has a late (product-like) TS. Br• H-abstraction is endothermic, so the TS resembles the product radical — stability differences between 1°, 2°, 3° matter enormously. Cl• abstraction is exothermic with an early TS, so radical stability barely matters → poor selectivity."},
+    {"id": 14, "chapter": 4, "level": "Medium", "text": "For chlorination of propane (1° factor = 1, 2° factor = 3.8), what is the approximate % yield of 2-chloropropane?", "options": ["44%", "56%", "38%", "62%"], "answer": 1, "explanation": "6 primary H’s × 1 = 6; 2 secondary H’s × 3.8 = 7.6; Total = 13.6. % 2-chloropropane = 7.6 / 13.6 × 100 ≈ 56%. % 1-chloropropane ≈ 44%."},
+    {"id": 15, "chapter": 4, "level": "Medium", "text": "On an energy diagram for a one-step reaction, the HEIGHT of the single peak represents:", "options": ["ΔH° of the reaction", "The activation energy (Eₐ) for the forward reaction", "The stability of the product", "The BDE of the weakest bond"], "answer": 1, "explanation": "The height from the reactant energy level to the TS peak is the activation energy Eₐ. ΔH° is the energy difference between reactants and products (ignoring the peak)."},
+    {"id": 16, "chapter": 4, "level": "Medium", "text": "In a two-step energy diagram with two peaks and one valley, the valley represents:", "options": ["A transition state that cannot be isolated", "A reactive intermediate that can theoretically be isolated", "The product of the reaction", "The activation energy for the reverse reaction"], "answer": 1, "explanation": "A valley represents an intermediate — a metastable species in an energy minimum between two transition states. Unlike TS peaks, intermediates have a finite lifetime. In radical halogenation, the carbon radical R• is this intermediate."},
+    {"id": 17, "chapter": 4, "level": "Hard", "text": "A reaction at low temperature gives predominantly product A; at high temperature under reversible conditions it gives product B (more stable). The best explanation is:", "options": ["Temperature changes BDE values", "At low T, the thermodynamic product forms", "At low T, the fastest-forming product predominates (kinetic control); at high T, the most stable product accumulates because the reaction is reversible (thermodynamic control)", "Temperature changes the mechanism from radical to ionic"], "answer": 2, "explanation": "Kinetic control (low T, irreversible) gives the product with the lowest Eₐ. Thermodynamic control (high T, reversible) allows equilibration so the most stable product accumulates regardless of which pathway is faster."},
+    {"id": 18, "chapter": 4, "level": "Hard", "text": "Rank from MOST to LEAST stable: (CH₃)₃C•, (CH₃)₂CH•, CH₃CH₂•, CH₃•", "options": ["CH₃• > CH₃CH₂• > (CH₃)₂CH• > (CH₃)₃C•", "(CH₃)₃C• > (CH₃)₂CH• > CH₃CH₂• > CH₃•", "(CH₃)₂CH• > (CH₃)₃C• > CH₃CH₂• > CH₃•", "CH₃CH₂• > (CH₃)₂CH• > (CH₃)₃C• > CH₃•"], "answer": 1, "explanation": "Radical stability: 3° > 2° > 1° > methyl. Alkyl groups donate electron density through hyperconjugation, stabilizing the radical center. Same order as carbocation stability."},
+    {"id": 19, "chapter": 4, "level": "Hard", "text": "For bromination of 2-methylbutane, the MAJOR product and approximate % yield is:", "options": ["2-bromo-2-methylbutane (~90%+) — the single tertiary H has a reactivity factor of 1640", "1-bromo-2-methylbutane (~40%) — primary carbons are most numerous", "2-bromo-2-methylbutane (~35%) via statistical favorability", "3-bromo-2-methylbutane (~50%) due to secondary stability"], "answer": 0, "explanation": "1 tertiary H × 1640 = 1640; 2 secondary H’s (C3) × 82 = 164; 9 primary H’s × 1 = 9. Total ≈ 1813. % tertiary ≈ 1640/1813 ≈ 90%+. The extreme selectivity of Br• makes the tertiary product overwhelmingly dominant."},
+    {"id": 20, "chapter": 4, "level": "Hard", "text": "For CH₃CH₃ + Br₂ → CH₃CH₂Br + HBr, using BDE(C–H 1°) = 423, BDE(Br–Br) = 193, BDE(C–Br) = 285, BDE(H–Br) = 366 (all kJ/mol), what is ΔH°?", "options": ["−35 kJ/mol", "+35 kJ/mol", "−101 kJ/mol", "+101 kJ/mol"], "answer": 0, "explanation": "Broken: C–H (423) + Br–Br (193) = 616. Formed: C–Br (285) + H–Br (366) = 651. ΔH° = 616 − 651 = −35 kJ/mol (exothermic)."},
+    {"id": 21, "chapter": 5, "level": "Easy", "text": "What is the defining characteristic of enantiomers?", "options": ["Same formula, different connectivity", "Non-superimposable mirror images", "Some but not all stereocenters inverted", "They rotate light in the same direction"], "answer": 1, "explanation": "Enantiomers are non-superimposable mirror images — like left and right hands. ALL stereocenters are inverted. They rotate polarized light by equal amounts in OPPOSITE directions."},
+    {"id": 22, "chapter": 5, "level": "Easy", "text": "A molecule has 3 chiral carbons and no meso forms. How many maximum stereoisomers can it have?", "options": ["3", "6", "8", "9"], "answer": 2, "explanation": "2ⁿ rule: max stereoisomers = 2ⁿ where n = number of chiral carbons. 2³ = 8."},
+    {"id": 23, "chapter": 5, "level": "Easy", "text": "What is a racemic mixture?", "options": ["A mixture of diastereomers in any ratio", "A pure enantiomer with [α] = 0", "An equal (50:50) mixture of enantiomers with net optical rotation of zero", "A mixture of constitutional isomers"], "answer": 2, "explanation": "A racemic mixture contains exactly equal amounts of both enantiomers. Opposite rotations cancel, giving [α] = 0. All other physical properties (mp, bp, solubility) are identical to those of the pure enantiomers."},
+    {"id": 24, "chapter": 5, "level": "Medium", "text": "A chiral center has –OH (priority 1), –CH₂OH (priority 2), –CH₃ (priority 3), –H (priority 4) pointing away. The 1→2→3 sequence goes counterclockwise. What is the configuration?", "options": ["R", "S", "Cannot be determined", "The center is achiral"], "answer": 1, "explanation": "With #4 pointing away, trace 1→2→3 counterclockwise = S. No reversal needed since the lowest priority group is already pointing away from you."},
+    {"id": 25, "chapter": 5, "level": "Medium", "text": "Which compound is a MESO compound?", "options": ["(2R,3R)-2,3-dichlorobutane", "(2S,3S)-2,3-dichlorobutane", "(2R,3S)-2,3-dichlorobutane", "A 50:50 mixture of (2R,3R) and (2S,3S)"], "answer": 2, "explanation": "(2R,3S)-2,3-dichlorobutane has two chiral carbons with opposite configurations and an internal plane of symmetry bisecting the C2–C3 bond. This makes it achiral and superimposable on its mirror image. Option D is a racemic mixture, not a meso compound."},
+    {"id": 26, "chapter": 5, "level": "Medium", "text": "Two stereoisomers have configurations (2R,3R) and (2R,3S). Their relationship is:", "options": ["Enantiomers", "Diastereomers", "Constitutional isomers", "The same compound"], "answer": 1, "explanation": "They are diastereomers. Enantiomers require ALL stereocenters to be inverted. Here C2 is R in both; only C3 differs. When SOME (but not all) stereocenters differ, the molecules are diastereomers — stereoisomers that are not mirror images, with different physical properties."},
+    {"id": 27, "chapter": 5, "level": "Medium", "text": "A chiral compound (c = 0.5 g/mL, l = 2.0 dm) gives an observed rotation of +18.0°. What is [α]?", "options": ["+18.0°", "+9.0°", "+36.0°", "+4.5°"], "answer": 0, "explanation": "[α] = α / (c × l) = +18.0° / (0.5 × 2.0) = +18.0° / 1.0 = +18.0°. Units: c in g/mL, l in decimeters (dm). Always verify units before calculating."},
+    {"id": 28, "chapter": 5, "level": "Medium", "text": "Which of the following molecules is ACHIRAL?", "options": ["2-bromobutane", "2-bromopentane", "2-methylpropan-2-ol (tert-butanol)", "2-chloro-3-methylbutane"], "answer": 2, "explanation": "tert-Butanol has a central carbon bonded to three identical –CH₃ groups and one –OH. Three identical substituents means it is NOT a chiral center. The molecule has a plane of symmetry and is achiral. All other options have carbons with 4 different substituents."},
+    {"id": 29, "chapter": 5, "level": "Hard", "text": "In a Fischer projection, horizontal bonds at each stereocenter project:", "options": ["Away from the viewer (into the page)", "Toward the viewer (out of the page)", "In the plane of the page", "Upward and downward in 3D space"], "answer": 1, "explanation": "This is a fundamental Fischer convention: horizontal bonds always project TOWARD the viewer (wedge bonds), vertical bonds project AWAY (dash bonds). This must be applied consistently when converting to other representations or assigning R/S."},
+    {"id": 30, "chapter": 5, "level": "Hard", "text": "In a Fischer projection of a two-stereocenter compound, you rotate the entire projection 180°. The result is:", "options": ["The enantiomer — all configurations inverted", "The same compound — a 180° rotation does not change configuration", "A diastereomer — one center is inverted", "An achiral compound"], "answer": 1, "explanation": "Rotating a Fischer projection 180° is equivalent to rotating the whole molecule 180° in space — same compound viewed from the other end. All absolute configurations are unchanged. A 90° rotation WOULD give the enantiomer. An odd number of two-group swaps gives the enantiomer; an even number gives the original."},
+    {"chapter": 5, "level": "Extra Credit", "text": "Compound X has [α]ᴅ = +24°. It is mixed with its enantiomer in a 3:1 ratio (X:enantiomer). What is the observed specific rotation?", "options": ["+12°", "+6°", "+18°", "+24°"], "answer": 0, "explanation": "75%(+24°) + 25%(−24°) = +18 − 6 = +12°. Equivalently: enantiomeric excess = 75% − 25% = 50%; net [α] = 50% × 24° = +12°.", "bonus": true}
+];
+
+  var CHAPTERS = { 3: "Alkanes", 4: "Chemical Reactions", 5: "Stereochemistry" };
+  var LETTERS = ["A", "B", "C", "D"];
+  var core = QUESTIONS.filter(function (q) { return !q.bonus; });
+
+  var current = 0;
+  var answers = QUESTIONS.map(function () { return null; });
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  function el(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  function isCorrect(q) {
+    return answers[QUESTIONS.indexOf(q)] === q.answer;
+  }
+
+  function label(q) {
+    return q.bonus ? "Bonus question" : "Question " + q.id + " of " + core.length;
+  }
+
+  function optionText(q, index) {
+    return LETTERS[index] + ") " + q.options[index];
+  }
+
+  function renderProgress() {
+    var done = answers.filter(function (a) { return a !== null; }).length;
+    $("counter").textContent = label(QUESTIONS[current]);
+    $("answered").textContent = done + " answered";
+    $("fill").style.width = (done / QUESTIONS.length) * 100 + "%";
+    $("track").setAttribute("aria-valuemax", QUESTIONS.length);
+    $("track").setAttribute("aria-valuenow", done);
+  }
+
+  function renderTags(q) {
+    var tags = $("tags");
+    tags.textContent = "";
+    if (q.bonus) tags.appendChild(el("span", "tag bonus", "Bonus"));
+    tags.appendChild(el("span", "tag", "Ch. " + q.chapter));
+    tags.appendChild(el("span", "tag", q.level));
+  }
+
+  function renderOptions(q, chosen) {
+    var list = $("options");
+    var locked = chosen !== null;
+    list.textContent = "";
+
+    q.options.forEach(function (text, index) {
+      var button = el("button", "option");
+      var correct = locked && index === q.answer;
+      var wrong = locked && index === chosen && chosen !== q.answer;
+      button.type = "button";
+      button.disabled = locked;
+      if (correct) button.classList.add("correct");
+      if (wrong) button.classList.add("wrong");
+
+      button.appendChild(el("span", "letter", LETTERS[index]));
+      button.appendChild(el("span", "option-text", text));
+      if (correct || wrong) {
+        var mark = el("span", "mark", correct ? "✓" : "✗");
+        mark.setAttribute("aria-hidden", "true");
+        button.appendChild(mark);
+        button.appendChild(el("span", "visually-hidden", correct ? " (correct answer)" : " (your answer, incorrect)"));
+      }
+      if (!locked) button.addEventListener("click", function () { choose(index); });
+
+      var item = el("li");
+      item.appendChild(button);
+      list.appendChild(item);
+    });
+  }
+
+  function renderFeedback(q, chosen) {
+    var box = $("feedback");
+    box.textContent = "";
+    if (chosen === null) return;
+    var hit = chosen === q.answer;
+    var card = el("div", hit ? "feedback" : "feedback miss");
+    card.appendChild(el("strong", "", hit ? "Correct" : "Incorrect. The answer is " + LETTERS[q.answer] + "."));
+    card.appendChild(el("p", "", q.explanation));
+    box.appendChild(card);
+  }
+
+  function render() {
+    var q = QUESTIONS[current];
+    var chosen = answers[current];
+    var last = current === QUESTIONS.length - 1;
+
+    renderProgress();
+    renderTags(q);
+    $("question").textContent = q.text;
+    renderOptions(q, chosen);
+    renderFeedback(q, chosen);
+    $("prev").disabled = current === 0;
+    $("next").hidden = chosen === null;
+    $("next").textContent = last ? "See Results" : "Next";
+  }
+
+  function go(index) {
+    current = index;
+    render();
+    $("progress").scrollIntoView();
+    $("question").focus({ preventScroll: true });
+  }
+
+  function choose(index) {
+    answers[current] = index;
+    render();
+    $("next").focus({ preventScroll: true });
+    $("nav").scrollIntoView({ block: "nearest" });
+  }
+
+  function tally(list) {
+    return {
+      right: list.filter(isCorrect).length,
+      total: list.length
+    };
+  }
+
+  function renderChapters(bonus) {
+    var list = $("chapters");
+    list.textContent = "";
+
+    Object.keys(CHAPTERS).forEach(function (chapter) {
+      var score = tally(core.filter(function (q) { return q.chapter === Number(chapter); }));
+      var item = el("li");
+      var row = el("div", "chapter-row");
+      row.appendChild(el("span", "", "Ch. " + chapter + ": " + CHAPTERS[chapter]));
+      row.appendChild(el("span", "chapter-score", score.right + "/" + score.total));
+      var track = el("div", "track");
+      var fill = el("div", "fill");
+      fill.style.width = (score.right / score.total) * 100 + "%";
+      track.appendChild(fill);
+      item.appendChild(row);
+      item.appendChild(track);
+      list.appendChild(item);
+    });
+
+    var item = el("li");
+    var row = el("div", "chapter-row");
+    row.appendChild(el("span", "", "Bonus (extra credit)"));
+    row.appendChild(el("span", "chapter-score", isCorrect(bonus) ? "1/1" : "0/1"));
+    item.appendChild(row);
+    list.appendChild(item);
+  }
+
+  function renderMissed() {
+    var missed = QUESTIONS.filter(function (q) { return !isCorrect(q); });
+    var list = $("missed");
+    list.textContent = "";
+    $("missed-heading").textContent = missed.length
+      ? "Missed questions (" + missed.length + ")"
+      : "Missed questions";
+
+    if (!missed.length) {
+      list.appendChild(el("li", "", "None. You got every question right."));
+      return;
+    }
+
+    missed.forEach(function (q) {
+      var item = el("li");
+      var tagLine = q.bonus ? "Bonus" : "Q" + q.id;
+      item.appendChild(el("p", "missed-tags mono", tagLine + " · Ch. " + q.chapter + " · " + q.level));
+      item.appendChild(el("p", "missed-question", q.text));
+
+      var yours = el("p", "missed-answer yours");
+      yours.appendChild(el("b", "", "Your answer: "));
+      yours.appendChild(document.createTextNode(optionText(q, answers[QUESTIONS.indexOf(q)])));
+      item.appendChild(yours);
+
+      var right = el("p", "missed-answer right");
+      right.appendChild(el("b", "", "Correct answer: "));
+      right.appendChild(document.createTextNode(optionText(q, q.answer)));
+      item.appendChild(right);
+
+      list.appendChild(item);
+    });
+  }
+
+  function showResults() {
+    var score = tally(core);
+    var bonus = QUESTIONS.filter(function (q) { return q.bonus; })[0];
+    var scoreEl = $("score");
+
+    scoreEl.textContent = score.right;
+    scoreEl.appendChild(el("small", "", " / " + score.total));
+    $("score-note").textContent =
+      Math.round((score.right / score.total) * 100) + "%" +
+      (isCorrect(bonus) ? ", plus the bonus question" : "");
+    renderChapters(bonus);
+    renderMissed();
+
+    $("quiz").hidden = true;
+    $("results").hidden = false;
+    window.scrollTo(0, 0);
+    scoreEl.focus({ preventScroll: true });
+  }
+
+  function retake() {
+    answers = QUESTIONS.map(function () { return null; });
+    current = 0;
+    $("results").hidden = true;
+    $("quiz").hidden = false;
+    render();
+    window.scrollTo(0, 0);
+    $("question").focus({ preventScroll: true });
+  }
+
+  $("prev").addEventListener("click", function () { go(current - 1); });
+  $("next").addEventListener("click", function () {
+    if (current === QUESTIONS.length - 1) showResults();
+    else go(current + 1);
+  });
+  $("retake").addEventListener("click", retake);
+
+  render();
+})();
+</script>
+</body>
+</html>
